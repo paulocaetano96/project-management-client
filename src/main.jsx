@@ -1,13 +1,20 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
-import { BrowserRouter as Router } from 'react-router-dom'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+//importing the browser router from the npm package react-router-dom and naming it router
+import { BrowserRouter as Router } from "react-router-dom";
+//we import the AuthWrapper from context
+import { AuthWrapper } from "./context/auth.context";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Router>
-      <App />
+      {/* we wrap the authentication around App so that we can use itl */}
+      <AuthWrapper>
+        <App />
+      </AuthWrapper>
     </Router>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
