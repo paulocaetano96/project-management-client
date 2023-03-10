@@ -4,12 +4,13 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css'
 // ---------------------------------------------------- component imports
 import Home from './pages/Home';
+import NavConsole from './components/NavConsole';
+import Signup from './pages/Signup';
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
+
 import './App.css';
 
-import { Routes, Route } from 'react-router-dom';
-import NavConsole from './components/NavConsole';
+
 function App() {
 
   return (
@@ -17,7 +18,8 @@ function App() {
       <NavConsole />
       
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/home' element={<Home />} />
       </Routes>
 
     </div>
