@@ -9,6 +9,7 @@ import Signup from './pages/Signup';
 import Home from './pages/Home';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
+import Calendar from './pages/Calendar';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path='/home' element={<Home />} />
+        <Route path='/calendar' element={<Calendar />} />
       </Routes>
     </div>
   )
