@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect, createContext } from "react";
+import { useNavigate } from 'react-router-dom'
 
 import axios from "axios";
 
@@ -9,6 +10,7 @@ const AuthContext = createContext();
 
 //every time we wrap something, we have to pass props so that we can access the children components, in this case, the <App />
 function AuthWrapper(props) {
+  const navigate = useNavigate()
   const [loggedIn, setLoggedIn] = useState(false); //-> we ALWAYS start as false because we dont want to give access to people that aren't logged in already.
   const [user, setUser] = useState(null); //-> and we're here, storing on the user the information comming from the verify on postman and on the code, so, the user email and password in our case
   const [loading, setLoading] = useState(true); //-> we are always "loading" when waiting for the API, and when we get the data, it sets to false, so we got the information so no more need to be loading
@@ -63,6 +65,7 @@ function AuthWrapper(props) {
   const logout = async () => {
     localStorage.removeItem("authToken");
     authenticateUser();
+    navigate('/');
   };
 
   //to prevent us from losing info everytime we refresh, to not lose the token.

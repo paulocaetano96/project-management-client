@@ -11,7 +11,7 @@ function NavConsole() {
     return (
       <nav className="navconsole-links">
         {/* home should be available to everyone */}
-        <Link to="/">Home</Link>
+        <Link to="/home">Home</Link>
   
         {/* if the user is logged In, we show the Projects and Add projects, information we want to show ONLY to people that are already logged in */}
         {loggedIn ? (
