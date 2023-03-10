@@ -3,25 +3,25 @@ import { Routes, Route } from 'react-router-dom';
 // ---------------------------------------------------- CSS imports
 import './App.css'
 // ---------------------------------------------------- component imports
-import Home from './pages/Home';
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import './App.css';
-
-import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Landing from './pages/Landing';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
 import NavConsole from './components/NavConsole';
-function App() {
 
+function App() {
   return (
     <div className="App">
       <NavConsole />
-      
-      <Routes>
-        <Route path='/' element={<Home />} />
-      </Routes>
 
+      <Routes>
+        <Route path='/' element={<Landing />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path='/home' element={<Home />} />
+      </Routes>
     </div>
   )
 }
-
 export default App
