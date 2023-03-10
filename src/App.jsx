@@ -4,13 +4,23 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css'
 // ---------------------------------------------------- component imports
 import Home from './pages/Home';
+import { useState } from 'react';
+import reactLogo from './assets/react.svg';
+import './App.css';
 
+import { Routes, Route } from 'react-router-dom';
+import NavConsole from './components/NavConsole';
 function App() {
 
   return (
-    <Routes>
-				<Route path='/' element={<Home />} />
-			</Routes>
+    <div className="App">
+      <NavConsole />
+      
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
+
+    </div>
   )
 }
 
