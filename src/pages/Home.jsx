@@ -28,7 +28,7 @@ function Home() {
             {messages && (
                 messages.map((message) => {
                     return (
-                        <article>
+                        <article key={message._id}>
                         <h3>{message.title}</h3>
                         <p>{message.description}</p>
                         </article>

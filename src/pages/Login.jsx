@@ -5,6 +5,8 @@ import { AuthContext } from '../context/auth.context'
 
 
 function Login() {
+    
+    const navigate = useNavigate()
 
     //we want to login with email and password
     const [email, setEmail] = useState('')
@@ -17,44 +19,59 @@ function Login() {
     //deconstruct the authenticateUser to be able to run the function that we wrote on the auth.context.jsx
     const { authenticateUser } = useContext(AuthContext)
 
-
     //create the handle submit function
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
 
         //
         e.preventDefault()
 
         //now, to submit it to the database:
         try {
-    //we check the .env file to see if our URL is correct. the VITE_API_URL
-            //we pass the url and the email, password
-        const response = axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, {email, password});
+        //we check the .env file to see if our URL is correct. the VITE_API_URL
+        //we pass the url and the email, password
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, {email, password});
 
+        //in here, we save the token that was created for the logged in user, saving it in the localStorage so that a user that left the website is still logged in.
+        localStorage.setItem('authToken', response.data.authToken);
 
-    //in here, we save the token that was created for the logged in user, saving it in the localStorage so that a user that left the website is still logged in.
-        localStorage.setItem('authToken', response.data.token);
-
-    //and after we've saved the token in the local storage, we call the function to validade said token and send us back all the info related to the user of that token.
+        //and after we've saved the token in the local storage, we call the function to validade said token and send us back all the info related to the user of that token.
         authenticateUser();
 
-        console.log(response.data)
+        console.log(response.data);
 
-    //so, we await for the user to be created, THEN, if successfull, we're redirected to the home page
-    navigate('/home')
+        //so, we await for the user to be created, THEN, if successfull, we're redirected to the home page
+        navigate('/home');
 
         } catch (error) {
             console.log(error)
         }
     }
 
-    const navigate = useNavigate()
+
+
+/*     const handleSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, {email, password});
+			navigate('/projects');
+
+            localStorage.setItem("authToken", response.data.authToken) //authToken comes from the backend
+
+            authenticateUser();
+
+		} catch (error) {
+			console.log(error);
+		}
+	}; */
+
+
 
     return (
         <section>
 
             <h1>Login</h1>
 
-                <form onSubmit="handleSubmit">
+                <form onSubmit={handleSubmit}>
 
                     <label htmlFor="email">Email</label>
                     <input type="email" name="email" id="email" value={email} onChange={handleEmail}/>
@@ -69,11 +86,6 @@ function Login() {
 {/* if the user doesn't have account, we give him an option to make one */}
             <p>Don't have an account?</p>
             <Link to="/signup">Signup</Link>
-
-
-
-
-
 
         </section>
     )
