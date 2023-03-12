@@ -1,6 +1,9 @@
 // ---------------------------------------------------- package imports
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
 // ---------------------------------------------------- CSS imports
 import './App.css'
 // ---------------------------------------------------- component imports

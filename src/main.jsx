@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
+import "react-datetime/css/react-datetime.css";
 
 //importing the browser router from the npm package react-router-dom and naming it router
 import { BrowserRouter as Router } from "react-router-dom";

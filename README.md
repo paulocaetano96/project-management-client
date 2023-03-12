@@ -384,7 +384,7 @@ Mystery API only seen on friday, maybe something with dogs or pokemons or sports
 
 ## Packages
 
-mobiscroll || @mui/material || toastify || Axios
+@mui/material || toastify || Axios || moment || Fullcalendar || modal || datetime
 
 mongoose; Ironlauncher; multer; cloudinary; multer-storage-cloudinary; react-router-dom;
 
