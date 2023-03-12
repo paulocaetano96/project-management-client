@@ -2,6 +2,7 @@ import React, {useState, useRef} from 'react'
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import calendarService from '../services/calendar.services';
+import moment from 'moment';
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -17,7 +18,12 @@ function Calendar() {
 
     const onEventAdded = event => {
         let calendarApi = calendarRef.current.getApi()
-        calendarApi.addEvent(event)
+        calendarApi.addEvent({
+            start: moment(event.start).toDate(),
+            end: moment(event.end).toDate(),
+            title: event.title
+        })
+
     }
 
 
