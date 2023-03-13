@@ -5,6 +5,7 @@ import calendarService from '../services/calendar.services';
 //-------------------------------------------------------------- Fullcalendar imports ⤵
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
+import listPlugin from '@fullcalendar/list'
 //-------------------------------------------------------------- MUI imports ⤵
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -76,29 +77,58 @@ function Calendar() {
     </Box>
   );
 
+  const edit = (anchor) => (
+    <Box
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      role="presentation"
+    >
+      {/* add event component, passing down the function as prop */}
+      <EditEvent onEventAdded={event => onEventAdded(event)}/>
+    </Box>
+  );
+
   //-------------------------------------------------------------- Return ⤵
 
   return (
     <section>
         {['top'].map((anchor) => (
             <React.Fragment key={anchor}>
-            <Button onClick={toggleDrawer(anchor, true)}>Create event</Button>
-            <Drawer
-                PaperProps={{ sx: {height: 350}, elevation: 20 }}
-                anchor={anchor}
-                open={state[anchor]}
-                onClose={toggleDrawer(anchor, false)}
-            >
-                {list(anchor)}
-            </Drawer>
+              <Button onClick={toggleDrawer(anchor, true)}>Create event</Button>
+              <Drawer
+                  PaperProps={{ sx: {height: 350}, elevation: 20 }}
+                  anchor={anchor}
+                  open={state[anchor]}
+                  onClose={toggleDrawer(anchor, false)}
+              >
+                  {list(anchor)}
+              </Drawer>
             </React.Fragment>
         ))}
 
         <FullCalendar
             ref={calendarRef}
             events={events}
-            plugins={[ dayGridPlugin ]}
+            plugins={[ dayGridPlugin, listPlugin ]}
             initialView="dayGridMonth"
+            headerToolbar= {{
+              left: 'prev,next today',
+              center: 'title',
+              right: 'dayGridMonth,timeGridWeek,listWeek'
+            }}
+            eventClick={function(arg){
+              console.log(arg.event);
+              console.log(arg.event._def.extendedProps._id);
+
+              <Drawer
+                PaperProps={{ sx: {height: 350}, elevation: 20 }}
+                anchor={anchor}
+                open={state[anchor]}
+                onClose={toggleDrawer(anchor, false)}
+              >
+                {edit(anchor)}
+              </Drawer>
+            }}
+
             eventAdd={(event) => handleEventAdd(event)} 
             datesSet={(date) => handleDatesSet(date)}
         />
@@ -109,3 +139,37 @@ function Calendar() {
 }
 
 export default Calendar
+
+
+
+{/* render Drawer component with anchor "top" for creating/editing messages */}
+{["top"].map((anchor) => (
+  <React.Fragment key={anchor}>
+    {/* button to open Drawer and show create message form */}
+    <Button onClick={toggleDrawer(anchor, true)}>Create Message</Button>
+    {/* Drawer component containing either CreateMessage or EditMessage component */}
+    <Drawer
+      anchor={anchor}
+      open={state[anchor]}
+      onClose={toggleDrawer(anchor, false)}
+    >
+      {selectedMessage ? (
+      // render EditMessage component with selectedMessage props
+        <EditMessage
+          message={selectedMessage}
+          onUpdate={(handleUpdateMessage)}
+          onDelete={handleDeleteMessage}
+          onClose={() => {
+            setSelectedMessage(null);
+            setState({ ...state, top: false });
+          }}
+        />
+      ) : (
+        // render CreateMessage component
+        <CreateMessage
+          onClose={() => setState({ ...state, [anchor]: false })}
+        />
+      )}
+    </Drawer>
+  </React.Fragment>
+))}

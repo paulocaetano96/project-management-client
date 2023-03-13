@@ -84,9 +84,6 @@ function Home() {
 
   //------------------------------------------------------------- MUI Drawer functions ⤵
 
-
-
-
   //const toggleDrawer = (anchor, open, message) => (event) => {...}: Defines a function called toggleDrawer that takes in anchor, open, and message as arguments. The function returns another function that updates the state with the new anchor and open values and updates the selectedMessage state if message is defined.
   const toggleDrawer = (anchor, open, message) => (event) => {
     if (
@@ -104,7 +101,7 @@ function Home() {
   };
 
   //const handleEditMessage = (message) => {...}: Defines a function called handleEditMessage that takes in a message object as an argument. The function updates the selectedMessage state with the message object and sets the state.top property to true.
-  const handleEditMessage = (message) => {
+  const handleEditDrawer = (message) => {
     setSelectedMessage(message);
     setState({ ...state, top: true });
   };
@@ -158,7 +155,7 @@ function Home() {
                 <p>{message.description}</p>
                 <div>
                 {/* button to open Drawer and show edit message form */}
-                  <button onClick={() => handleEditMessage(message)}>
+                  <button onClick={() => handleEditDrawer(message)}>
                     Edit Message
                   </button>
                   {/* button to delete message with given id */}
