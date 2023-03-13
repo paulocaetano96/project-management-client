@@ -1,7 +1,7 @@
 import axios from 'axios';
 import moment from 'moment';
 
-class CalendarService {
+class EventService {
 	constructor() {
 		this.api = axios.create({
 			baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5005',
@@ -26,13 +26,16 @@ class CalendarService {
 		return this.api.post('/api/events', body);
 	};
 
-/*     getSingleProject = (id) => {
+    getSingleEvent = (id) => {
         return this.api.get(`/api/projects/${id}`, id)
-    } */
+    }
 
+	editEvent = (body) => {
+		return this.api.put(`/api/events/${id}`, body)
+	}
 
 }
 
-const calendarService = new CalendarService();
+const eventService = new EventService();
 
-export default calendarService;
+export default eventService;
