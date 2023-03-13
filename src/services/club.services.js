@@ -18,29 +18,13 @@ class ClubService {
     });
   }
 //Defining a method getClub that makes a GET request to the /api/club endpoint and returns the response.
-getClub = () => {
-  return this.api.get("/api/club/:id");
+getClub = (id) => {
+  return this.api.get(`/api/club/${id}`);
 };
 
-
-/* 
-//Defining a method getMessages that makes a GET request to the /api/messages endpoint and returns the response.
-  getMessages = () => {
-    return this.api.get("/api/messages");
-  };
-//Defining a method createMessage that makes a POST request to the /api/messages endpoint with a request body and returns the response.
-  createMessage = (body) => {
-    return this.api.post("/api/messages", body);
-  };
-//Defining a method updateMessage that makes a PUT request to the /api/messages/:id endpoint with a request body and the ID of the message to update, and returns the response.
-  updateMessage = (id, body) => {
-    return this.api.put(`/api/messages/${id}`, body);
-  };
-//Defining a method deleteMessage that makes a DELETE request to the /api/messages/:id endpoint with the ID of the message to delete, and returns the response.
-  deleteMessage = (id) => {
-    return this.api.delete(`/api/messages/${id}`);
-  };
-} */
+updateClub = (id, club) => {
+  return this.api.put(`/api/club/${id}`, club);
+}
 
 };
 

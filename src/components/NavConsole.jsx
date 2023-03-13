@@ -20,7 +20,7 @@ function NavConsole() {
             <span>Hello {user.name}</span>
   
             <Link to="/calendar">Calendar</Link>
-            <Link to="/club">Club</Link>
+            <Link to={`/club/${user.club}`}>Club</Link>
             {/* inside this onClick, is the function we passed it on the const {loggedIn, user, logout} and both these logout are the same, they're comming from the auth.context.jsx file, we have that function there. */}
             <button onClick={logout}>Logout</button>
           </>

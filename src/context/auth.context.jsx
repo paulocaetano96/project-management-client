@@ -14,7 +14,7 @@ function AuthWrapper(props) {
   const [loggedIn, setLoggedIn] = useState(false); //-> we ALWAYS start as false because we dont want to give access to people that aren't logged in already.
   const [user, setUser] = useState(null); //-> and we're here, storing on the user the information comming from the verify on postman and on the code, so, the user email and password in our case
   const [loading, setLoading] = useState(true); //-> we are always "loading" when waiting for the API, and when we get the data, it sets to false, so we got the information so no more need to be loading
-
+console.log(user)
   //functions and methods -----------------------------------------------------
 
   const authenticateUser = async () => {
