@@ -13,6 +13,7 @@ import Home from './pages/Home';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Calendar from './pages/Calendar';
+import ClubDetails from './pages/Club';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path='/home' element={<Home />} />
         <Route path='/calendar' element={<Calendar />} />
+        <Route path='/club' element={<Club />} />
       </Routes>
     </div>
   )
