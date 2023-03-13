@@ -1,19 +1,22 @@
 import React, {useState, useRef} from 'react'
-import FullCalendar from '@fullcalendar/react' // must go before plugins
-import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
-import calendarService from '../services/calendar.services';
 import moment from 'moment';
 
+import calendarService from '../services/calendar.services';
+//-------------------------------------------------------------- Fullcalendar imports ⤵
+import FullCalendar from '@fullcalendar/react' // must go before plugins
+import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
+//-------------------------------------------------------------- MUI imports ⤵
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
-
+//-------------------------------------------------------------- Component imports ⤵
 import AddEvent from '../components/AddEvent';
 
 function Calendar() {
 
     const [events, setEvents] = useState([])
 
+    //calendar functionality
     const calendarRef = useRef(null)
 
     const onEventAdded = event => {
@@ -23,9 +26,9 @@ function Calendar() {
             end: moment(event.end).toDate(),
             title: event.title
         })
-
     }
 
+    //-------------------------------------------------------------- Handler functions ⤵
 
     async function handleEventAdd(data) {
         await calendarService.createEvent(data.event);
@@ -36,7 +39,7 @@ function Calendar() {
         setEvents(response.data);
     }
 
-    //---------------------------------------------------- MUI Drawer functions ⤵
+    //------------------------------------------------------------- MUI Drawer functions ⤵
 
     const [state, setState] = React.useState({
         top: false,
@@ -55,18 +58,20 @@ function Calendar() {
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
       role="presentation"
     >
+      {/* add event component, passing down the function as prop */}
       <AddEvent onEventAdded={event => onEventAdded(event)}/>
     </Box>
   );
 
-  //---------------------------------------------------- Return ⤵
+  //-------------------------------------------------------------- Return ⤵
 
   return (
     <section>
         {['top'].map((anchor) => (
             <React.Fragment key={anchor}>
-            <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+            <Button onClick={toggleDrawer(anchor, true)}>Create event</Button>
             <Drawer
+                PaperProps={{ sx: {height: 350}, elevation: 20 }}
                 anchor={anchor}
                 open={state[anchor]}
                 onClose={toggleDrawer(anchor, false)}
