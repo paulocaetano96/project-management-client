@@ -12,7 +12,7 @@ function CreateMessage(props) {
 
   // Function that handles the form submission
   const handleSubmit = async (e) => {
-    /* e.preventDefault(); */
+    e.preventDefault();
     // Assembling the data object to be sent to the server
     const data = { title, description };
     try {
