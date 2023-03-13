@@ -18,6 +18,14 @@ function Home() {
   const [messages, setMessages] = useState([]);
   //const { loggedIn, user } = useContext(AuthContext);: Initializes two variables loggedIn and user from the AuthContext using the useContext hook.
   const { loggedIn, user } = useContext(AuthContext);
+    //const [selectedMessage, setSelectedMessage] = useState(null);: Initializes a state variable called selectedMessage as null and a function called setSelectedMessage that can be used to update the selectedMessage state.
+  const [selectedMessage, setSelectedMessage] = useState(null);
+
+  //const [state, setState] = useState({top: false, left: false,});: Initializes a state variable called state as an object with two properties top and left, both initialized as false. Also initializes a function called setState that can be used to update the state.
+  const [state, setState] = useState({
+    top: false,
+    left: false,
+  });
 
 
   //const getMessages = async () => {...}: Defines a function called getMessages that uses the messageService object to make a GET request to the server to retrieve all messages.
@@ -31,43 +39,7 @@ function Home() {
     }
   };
 
-  //useEffect(() => {...}, []);: Runs the getMessages function when the component mounts.
-  useEffect(() => {
-    getMessages();
-  }, []);
-
-
-    //const [state, setState] = useState({top: false, left: false,});: Initializes a state variable called state as an object with two properties top and left, both initialized as false. Also initializes a function called setState that can be used to update the state.
-  const [state, setState] = useState({
-    top: false,
-    left: false,
-  });
-
-  //const [selectedMessage, setSelectedMessage] = useState(null);: Initializes a state variable called selectedMessage as null and a function called setSelectedMessage that can be used to update the selectedMessage state.
-  const [selectedMessage, setSelectedMessage] = useState(null);
-
-
-  //const toggleDrawer = (anchor, open, message) => (event) => {...}: Defines a function called toggleDrawer that takes in anchor, open, and message as arguments. The function returns another function that updates the state with the new anchor and open values and updates the selectedMessage state if message is defined.
-  const toggleDrawer = (anchor, open, message) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    if (message) {
-      setSelectedMessage(message);
-    }
-
-    setState({ ...state, [anchor]: open });
-  };
-
-  //const handleEditMessage = (message) => {...}: Defines a function called handleEditMessage that takes in a message object as an argument. The function updates the selectedMessage state with the message object and sets the state.top property to true.
-  const handleEditMessage = (message) => {
-    setSelectedMessage(message);
-    setState({ ...state, top: true });
-  };
+  //------------------------------------------------------------- Handler functions ⤵
 
   //const handleUpdateMessage = async (updatedMessage) => {...}: Defines a function called handleUpdateMessage that takes in an updatedMessage object as an argument. The function uses the messageService object to make a PUT request to the server to update the updatedMessage. It then updates the messages state with the updated message and sets the selectedMessage and state.top state to null and false, respectively.
   const handleUpdateMessage = async (updatedMessage) => {
@@ -104,6 +76,40 @@ function Home() {
       console.log(error);
     }
   };
+
+  //useEffect(() => {...}, []);: Runs the getMessages function when the component mounts.
+  useEffect(() => {
+    getMessages();
+  }, [state]);
+
+  //------------------------------------------------------------- MUI Drawer functions ⤵
+
+
+
+
+  //const toggleDrawer = (anchor, open, message) => (event) => {...}: Defines a function called toggleDrawer that takes in anchor, open, and message as arguments. The function returns another function that updates the state with the new anchor and open values and updates the selectedMessage state if message is defined.
+  const toggleDrawer = (anchor, open, message) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    if (message) {
+      setSelectedMessage(message);
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
+  //const handleEditMessage = (message) => {...}: Defines a function called handleEditMessage that takes in a message object as an argument. The function updates the selectedMessage state with the message object and sets the state.top property to true.
+  const handleEditMessage = (message) => {
+    setSelectedMessage(message);
+    setState({ ...state, top: true });
+  };
+
+  
 
 // render section containing a list of messages and a create/edit message form using Drawer
   return (
