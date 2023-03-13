@@ -13,7 +13,7 @@ import Home from './pages/Home';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Calendar from './pages/Calendar';
-import ClubDetails from './pages/Club';
+import Club from './pages/Club';
 
 function App() {
   return (
