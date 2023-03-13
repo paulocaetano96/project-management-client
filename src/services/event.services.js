@@ -31,7 +31,7 @@ class EventService {
     }
 
 	editEvent = (body) => {
-		return this.api.put(`/api/events/${id}`, body)
+		return this.api.put(`/api/events`, body)
 	}
 
 }

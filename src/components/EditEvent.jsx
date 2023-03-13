@@ -5,19 +5,20 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 
 function EditEvent(props) {
-	const [title, setTitle] = useState('');
-	const [start, setStart] = useState(new Date());
-	const [end, setEnd] = useState(new Date());
+    console.log(props)
     const {selectedEvent, onEventEdited } = props;
-    const eventId = selectedEvent.event._def.extendedProps._id
-
-    const navigate = useNavigate();
+    console.log(selectedEvent.event.start)
+	const [title, setTitle] = useState(selectedEvent.event._def.title);
+	const [start, setStart] = useState(selectedEvent.event.start);
+	const [end, setEnd] = useState(selectedEvent.event.end);
+    const id = selectedEvent.event._def.extendedProps._id
 
     const handleTitle = (e) => setTitle(e.target.value);
 
     const handleSubmit = (e) => {
-/*         e.preventDefault(); */
-        onEventEdited({ title, start, end });
+        e.preventDefault();
+
+        onEventEdited({ id, title, start, end });
     };
 
 	return (
