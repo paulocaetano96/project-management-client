@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/auth.context';
+
 
 import clubService from '../services/club.services';
 
 
 function Club() {
 
-  const [club, setClub] = useState('');
-  const [name, setName] = useState('');
+/*   const { loggedIn, user, logout } = useContext(AuthContext);
+ */
 
 
 
@@ -16,7 +18,7 @@ function Club() {
   return (
     <div>
       <p>Club Name: </p>
-      <p>{name}</p>
+       <p>{user.name}</p>}
     </div>
   );
 };
