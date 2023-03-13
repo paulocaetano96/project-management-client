@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import moment from 'moment';
 
 import eventService from '../services/event.services';
@@ -17,6 +17,9 @@ function Calendar() {
 
     const [events, setEvents] = useState([])
     const [selectedEvent, setSelectedEvent] = useState(null);
+    const [state, setState] = useState({
+      top: false,
+  });
 
     //calendar functionality
     const calendarRef = useRef(null)
@@ -31,14 +34,13 @@ function Calendar() {
     } */
 
     const onEventAdded = async (e) => {
-/*       e.preventDefault(); */
       const start = moment(e.start).toDate();
       const end = moment(e.end).toDate();
       const title = e.title;
       const body = { title, start, end };
       try {
         await eventService.createEvent(body)
-/*         navigate(`/calendar`); */
+        setState({ ...state, top: false });
       } catch (error) {
         console.log(error);
       }
@@ -56,22 +58,22 @@ function Calendar() {
   } */
 
   const onEventEdited = async (e) => {
-    e.preventDefault();
-		const body = { title, start, end };
+    const start = moment(e.start).toDate();
+    const end = moment(e.end).toDate();
+    const title = e.title;
+    const id = e.id;
+		const body = { id, title, start, end };
 		try {
 			await eventService.editEvent(body)
-			navigate(`/calendar`);
+      setSelectedEvent(null);
+      setState({ ...state, top: false });
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
     //-------------------------------------------------------------- Handler functions ⤵
-
-    async function handleEventAdd(data) {
-        await eventService.createEvent(data.event);
-    }
-
+    
     async function handleDatesSet() {
         const response = await eventService.getEvents();
         setEvents(response.data);
@@ -79,9 +81,7 @@ function Calendar() {
 
     //------------------------------------------------------------- MUI Drawer functions ⤵
 
-    const [state, setState] = useState({
-        top: false,
-    });
+
 
   const toggleDrawer = (anchor, open, calendarEvent) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -109,6 +109,12 @@ function Calendar() {
       <AddEvent onEventAdded={event => onEventAdded(event)}/>
     </Box>
   ); */
+
+  //-------------------------------------------------------------- useEffect ⤵
+
+  useEffect(() => {
+    handleDatesSet();
+}, [state])
 
   //-------------------------------------------------------------- Return ⤵
 
@@ -159,7 +165,6 @@ function Calendar() {
               handleEditDrawer(arg)
             }}
 
-            eventAdd={(event) => handleEventAdd(event)} 
             datesSet={(date) => handleDatesSet(date)}
         />
 
