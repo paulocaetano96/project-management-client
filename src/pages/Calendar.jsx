@@ -140,36 +140,3 @@ function Calendar() {
 
 export default Calendar
 
-
-
-{/* render Drawer component with anchor "top" for creating/editing messages */}
-{["top"].map((anchor) => (
-  <React.Fragment key={anchor}>
-    {/* button to open Drawer and show create message form */}
-    <Button onClick={toggleDrawer(anchor, true)}>Create Message</Button>
-    {/* Drawer component containing either CreateMessage or EditMessage component */}
-    <Drawer
-      anchor={anchor}
-      open={state[anchor]}
-      onClose={toggleDrawer(anchor, false)}
-    >
-      {selectedMessage ? (
-      // render EditMessage component with selectedMessage props
-        <EditMessage
-          message={selectedMessage}
-          onUpdate={(handleUpdateMessage)}
-          onDelete={handleDeleteMessage}
-          onClose={() => {
-            setSelectedMessage(null);
-            setState({ ...state, top: false });
-          }}
-        />
-      ) : (
-        // render CreateMessage component
-        <CreateMessage
-          onClose={() => setState({ ...state, [anchor]: false })}
-        />
-      )}
-    </Drawer>
-  </React.Fragment>
-))}
