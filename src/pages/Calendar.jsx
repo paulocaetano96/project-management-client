@@ -1,91 +1,114 @@
 import React, {useState, useRef} from 'react'
 import moment from 'moment';
 
-import calendarService from '../services/calendar.services';
+import eventService from '../services/event.services';
 //-------------------------------------------------------------- Fullcalendar imports ⤵
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import listPlugin from '@fullcalendar/list'
 //-------------------------------------------------------------- MUI imports ⤵
-import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 //-------------------------------------------------------------- Component imports ⤵
 import AddEvent from '../components/AddEvent';
+import EditEvent from '../components/EditEvent'
 
 function Calendar() {
 
     const [events, setEvents] = useState([])
+    const [selectedEvent, setSelectedEvent] = useState(null);
 
     //calendar functionality
     const calendarRef = useRef(null)
 
-    const onEventAdded = event => {
+/*     const onEventAdded = event => {
         let calendarApi = calendarRef.current.getApi()
         calendarApi.addEvent({
             start: moment(event.start).toDate(),
             end: moment(event.end).toDate(),
             title: event.title
         })
-    }
+    } */
 
-    /* const calendar = new Calendar(calendarEl, {
-
-      eventClick: function(info) {
-        alert('Event: ' + info.event.title);
-        alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-        alert('View: ' + info.view.type);
-    
-        // change the border color just for fun
-        info.el.style.borderColor = 'red';
+    const onEventAdded = async (e) => {
+/*       e.preventDefault(); */
+      const start = moment(e.start).toDate();
+      const end = moment(e.end).toDate();
+      const title = e.title;
+      const body = { title, start, end };
+      try {
+        await eventService.createEvent(body)
+/*         navigate(`/calendar`); */
+      } catch (error) {
+        console.log(error);
       }
-    
-    }); */
+    };
+
+/*     const onEventEdited = event => {
+      let calendarApi = calendarRef.current.getApi()
+      calendarApi.addEvent({
+          start: moment(event.start).toDate(),
+          end: moment(event.end).toDate(),
+          title: event.title
+      })
+      setSelectedEvent(null);
+      setState({ ...state, top: false });
+  } */
+
+  const onEventEdited = async (e) => {
+    e.preventDefault();
+		const body = { title, start, end };
+		try {
+			await eventService.editEvent(body)
+			navigate(`/calendar`);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
     //-------------------------------------------------------------- Handler functions ⤵
 
     async function handleEventAdd(data) {
-        await calendarService.createEvent(data.event);
+        await eventService.createEvent(data.event);
     }
 
-    async function handleDatesSet(data) {
-        const response = await calendarService.getEvents();
+    async function handleDatesSet() {
+        const response = await eventService.getEvents();
         setEvents(response.data);
     }
 
     //------------------------------------------------------------- MUI Drawer functions ⤵
 
-    const [state, setState] = React.useState({
+    const [state, setState] = useState({
         top: false,
     });
 
-  const toggleDrawer = (anchor, open) => (event) => {
+  const toggleDrawer = (anchor, open, calendarEvent) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
+    }
+
+    if (calendarEvent) {
+      setSelectedEvent(calendarEvent);
     }
 
     setState({ ...state, [anchor]: open });
   };
 
-  const list = (anchor) => (
+  const handleEditDrawer = (event) => {
+    setSelectedEvent(event);
+    setState({ ...state, top: true });
+  };
+
+/*   const list = (anchor) => (
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
       role="presentation"
     >
-      {/* add event component, passing down the function as prop */}
+
       <AddEvent onEventAdded={event => onEventAdded(event)}/>
     </Box>
-  );
-
-  const edit = (anchor) => (
-    <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
-      role="presentation"
-    >
-      {/* add event component, passing down the function as prop */}
-      <EditEvent onEventAdded={event => onEventAdded(event)}/>
-    </Box>
-  );
+  ); */
 
   //-------------------------------------------------------------- Return ⤵
 
@@ -100,7 +123,24 @@ function Calendar() {
                   open={state[anchor]}
                   onClose={toggleDrawer(anchor, false)}
               >
-                  {list(anchor)}
+                  {selectedEvent ? (
+                  // render EditEvent component if there is a selectedEvent
+                    <EditEvent
+                      selectedEvent={selectedEvent}
+                      onEventEdited={event => onEventEdited(event)}
+                      //onDelete={handleDeleteMessage}
+                      onClose={() => {
+                        setSelectedEvent(null);
+                        setState({ ...state, top: false });
+                      }}
+                    />
+                  ) : (
+                    // render CreateMessage component if there isn't a selectedEvent
+                    <AddEvent
+                      onClose={() => setState({ ...state, [anchor]: false })}
+                      onEventAdded={event => onEventAdded(event)}
+                    />
+                  )}
               </Drawer>
             </React.Fragment>
         ))}
@@ -116,17 +156,7 @@ function Calendar() {
               right: 'dayGridMonth,timeGridWeek,listWeek'
             }}
             eventClick={function(arg){
-              console.log(arg.event);
-              console.log(arg.event._def.extendedProps._id);
-
-              <Drawer
-                PaperProps={{ sx: {height: 350}, elevation: 20 }}
-                anchor={anchor}
-                open={state[anchor]}
-                onClose={toggleDrawer(anchor, false)}
-              >
-                {edit(anchor)}
-              </Drawer>
+              handleEditDrawer(arg)
             }}
 
             eventAdd={(event) => handleEventAdd(event)} 

@@ -32,7 +32,6 @@ function Home() {
   const getMessages = async () => {
     try {
       const response = await messageService.getMessages();
-      console.log(response.data);
       setMessages(response.data);
     } catch (error) {
       console.log(error);
@@ -100,7 +99,7 @@ function Home() {
     setState({ ...state, [anchor]: open });
   };
 
-  //const handleEditMessage = (message) => {...}: Defines a function called handleEditMessage that takes in a message object as an argument. The function updates the selectedMessage state with the message object and sets the state.top property to true.
+  //const handleEditMessage = (message) => {...}: Defines a function called handleEditDrawer that takes in a message object as an argument. The function updates the selectedMessage state with the message object and sets the state.top property to true.
   const handleEditDrawer = (message) => {
     setSelectedMessage(message);
     setState({ ...state, top: true });
