@@ -20,8 +20,6 @@ class EventService {
 		return this.api.get('/api/events');
 	};
 
-    /* '?start='+moment(data.start).toISOString()+'&end='+moment(data.end).toISOString() */
-
 	createEvent = (body) => {
 		return this.api.post('/api/events', body);
 	};
@@ -31,7 +29,11 @@ class EventService {
     }
 
 	editEvent = (body) => {
-		return this.api.put(`/api/events`, body)
+		return this.api.put('/api/events', body)
+	}
+
+	deleteEvent = (id) => {
+		return this.api.delete(`/api/events/${id}`)
 	}
 
 }

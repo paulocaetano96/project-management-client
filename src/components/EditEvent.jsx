@@ -5,9 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 
 function EditEvent(props) {
-    console.log(props)
-    const {selectedEvent, onEventEdited } = props;
-    console.log(selectedEvent.event.start)
+    const {selectedEvent, onEventEdited, onEventDeleted } = props;
 	const [title, setTitle] = useState(selectedEvent.event._def.title);
 	const [start, setStart] = useState(selectedEvent.event.start);
 	const [end, setEnd] = useState(selectedEvent.event.end);
@@ -17,9 +15,13 @@ function EditEvent(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         onEventEdited({ id, title, start, end });
     };
+
+    const handleDelete = () => {
+        onEventDeleted({id})
+    }
+
 
 	return (
 		<section>
@@ -44,6 +46,8 @@ function EditEvent(props) {
                 
                 <button type='submit'>Edit Event</button>
 			</form>
+
+            <button onClick={handleDelete}>Delete Event</button>
 		</section>
 	);
 }
