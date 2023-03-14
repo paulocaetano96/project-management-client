@@ -105,7 +105,6 @@ function Home() {
     setState({ ...state, top: true });
   };
 
-  
 
 // render section containing a list of messages and a create/edit message form using Drawer
   return (
