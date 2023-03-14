@@ -123,7 +123,9 @@ function Home() {
       {["top"].map((anchor) => (
         <React.Fragment key={anchor}>
           {/* button to open Drawer and show create message form */}
-          <Button onClick={toggleDrawer(anchor, true)}>Create Message</Button>
+          {user.role === "staff" && (
+            <Button onClick={toggleDrawer(anchor, true)}>Create Message</Button>
+          )}
           {/* Drawer component containing either CreateMessage or EditMessage component */}
           <Drawer
             anchor={anchor}
@@ -162,7 +164,8 @@ function Home() {
                   <article key={message._id}>
                     <h3>{message.title}</h3>
                     <p>{message.description}</p>
-                    <div>
+                    {user.role === "staff" && (
+                      <div>
                     {/* button to open Drawer and show edit message form */}
                       <button onClick={() => handleEditDrawer(message)}>
                         Edit Message
@@ -172,6 +175,7 @@ function Home() {
                         Delete Message
                       </button>
                     </div>
+                    )}
                   </article>
                 );
             })}

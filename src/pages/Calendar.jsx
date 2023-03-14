@@ -13,11 +13,12 @@ import Button from '@mui/material/Button';
 import AddEvent from '../components/AddEvent';
 import EditEvent from '../components/EditEvent'
 import { AuthContext } from "../context/auth.context";
+import EventDetailsView from '../components/EventDetailsView';
 
 //-------------------------------------------------------------- Function ⤵
 
 function Calendar() {
-    const { setAuthContex, user } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [events, setEvents] = useState([])
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [state, setState] = useState({
@@ -78,8 +79,7 @@ function Calendar() {
     } catch (error) {
       console.log(error)    
     }
-  }  
-
+  }
 
   //------------------------------------------------------------- MUI Drawer functions ⤵
 
@@ -111,16 +111,21 @@ function Calendar() {
 
   return (
     <section>
+      { user && (
+        <>
         {['top'].map((anchor) => (
             <React.Fragment key={anchor}>
+            {user.role === "staff" && (
               <Button onClick={toggleDrawer(anchor, true)}>Create event</Button>
+            )}
               <Drawer
                   PaperProps={{ sx: {height: 350}, elevation: 20 }}
                   anchor={anchor}
                   open={state[anchor]}
                   onClose={toggleDrawer(anchor, false)}
               >
-                  {selectedEvent ? (
+              {/* check if user is staff or player and act accordingly */}
+              {user.role === "staff" ? (selectedEvent ? (
                   // render EditEvent component if there is a selectedEvent
                     <EditEvent
                       selectedEvent={selectedEvent}
@@ -137,35 +142,41 @@ function Calendar() {
                       onClose={() => setState({ ...state, [anchor]: false })}
                       onEventAdded={event => onEventAdded(event)}
                     />
-                  )}
+                  )) : (
+                    <EventDetailsView
+                      selectedEvent={selectedEvent}
+                      onClose={() => {
+                        setSelectedEvent(null);
+                        setState({ ...state, top: false });
+                      }}
+                  />) }
+
               </Drawer>
             </React.Fragment>
         ))}
 
-        { user && (
-          <>
-            <FullCalendar
-              ref={calendarRef}
-              events={events}
-              plugins={[ dayGridPlugin, listPlugin ]}
-              initialView="dayGridMonth"
-              headerToolbar= {{
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,listWeek'
-              }}
-              eventClick={function(arg){
-                handleEditDrawer(arg)
-              }}
+          <FullCalendar
+            ref={calendarRef}
+            events={events}
+            plugins={[ dayGridPlugin, listPlugin ]}
+            initialView="dayGridMonth"
+            headerToolbar= {{
+              left: 'prev,next today',
+              center: 'title',
+              right: 'dayGridMonth,timeGridWeek,listWeek'
+            }}
+            eventClick={function(arg){
+              handleEditDrawer(arg)
+            }}
 
-              datesSet={handleDatesSet}
-            />
-          </>
-        )}
+            datesSet={handleDatesSet}
+          />
+        </>
+      )}
+
     </section>
 
   )
 }
 
 export default Calendar
-
