@@ -18,7 +18,7 @@ import EventDetailsView from '../components/EventDetailsView';
 //-------------------------------------------------------------- Function ⤵
 
 function Calendar() {
-    const { setAuthContex, user } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [events, setEvents] = useState([])
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [state, setState] = useState({
