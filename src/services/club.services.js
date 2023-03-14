@@ -17,7 +17,17 @@ class ClubService {
       return config;
     });
   }
-//Defining a method getClub that makes a GET request to the /api/club endpoint and returns the response.
+
+
+createClub = (body) => {
+  return this.api.post('/api/club', body)
+}
+
+
+createProject = (body) => {
+  return this.api.post('/api/projects', body)
+}
+  
 getClub = (id) => {
   return this.api.get(`/api/club/${id}`);
 };

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import AddClub from '../components/AddClub';
 
 function Signup() {
 	const navigate = useNavigate();
@@ -78,6 +79,8 @@ function Signup() {
 
 				<button type='submit'>Create account</button>
 			</form>
+
+			<AddClub/>
 
 			<p>Already have an account?</p>
 			<Link to='/login'>Login</Link>
