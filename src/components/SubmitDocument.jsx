@@ -11,7 +11,7 @@ import TextField from "@mui/material/TextField";
 function SubmitDocument() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [url, setUrl] = useState("");
+  const [fileUrl, setFileUrl] = useState("");
   const [group, setGroup] = useState("");
 
   const handleSubmit = async (e) => {
@@ -23,7 +23,7 @@ function SubmitDocument() {
         {
           title,
           description,
-          url,
+          fileUrl,
           group,
         }
       );
@@ -39,14 +39,14 @@ function SubmitDocument() {
     }
 
     const uploadData = new FormData();
-    uploadData.append("url", e.target.files[0]);
+    uploadData.append("fileUrl", e.target.files[0]);
 
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/upload`,
         uploadData
       );
-      setUrl(response.data.fileUrl);
+      setFileUrl(response.data.fileUrl);
       console.log("upload console log", response.data.fileUrl);
     } catch (error) {
       console.log("Error while uploading the file: ", error);
@@ -60,11 +60,11 @@ function SubmitDocument() {
       <div className="upload-document-container">
         <div className="mb-3">
           <form onSubmit={handleSubmit}>
-            <label htmlFor="url">Insert file</label>
+            <label htmlFor="fileUrl">Insert file</label>
             <input
               type="file"
-              name="url"
-              id="url"
+              name="fileUrl"
+              id="fileUrl"
               onChange={handleFileUpload}
               className="form-control"
               aria-label="file example"

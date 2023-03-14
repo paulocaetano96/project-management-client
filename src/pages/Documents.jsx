@@ -156,7 +156,7 @@ function Documents() {
                   </CloudinaryContext>
                 </div> */}
 
-                <Link to={document.url}>
+                <Link to={document.fileUrl}>
                   <h3>{document.title}</h3>
                 </Link>
 
