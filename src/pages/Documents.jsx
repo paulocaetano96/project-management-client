@@ -41,6 +41,7 @@ function Documents() {
         uploadData
       );
       setUrl(response.data.fileUrl);
+      console.log("upload console log", response.data.fileUrl)
     } catch (error) {
       console.log("Error while uploading the file: ", error);
     }
@@ -48,7 +49,7 @@ function Documents() {
 
   return (
     <div>
-      <h1>DOCUMENTS OLE OLE</h1>
+      <h1>DOCUMENTS OLE OLE OLE</h1>
 
       <div className="mb-3">
         <form onSubmit={handleSubmit}>
