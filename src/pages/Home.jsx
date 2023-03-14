@@ -27,7 +27,6 @@ function Home() {
     left: false,
   });
 
-
   //Defines a function called loadMessages that uses the messageService object to make a GET request to the server to retrieve all messages, then filter by user club
   const loadMessages = async () => {
     try {
@@ -36,13 +35,17 @@ function Home() {
       const filteredMessages = response.data.filter(function(message) {
         return message.club === user.club
       })
-      console.log(filteredMessages)
       setMessages(filteredMessages);
+      const importantMessages = filteredMessages.filter(function(message) {
+        return message.important === true
+      })
+      const normalMessages = filteredMessages.filter(function(message) {
+        return message.important === false
+      })
     } catch (error) {
       console.log(error);
     }
   };
-
 
   //------------------------------------------------------------- Handler functions ⤵
 
@@ -155,12 +158,13 @@ function Home() {
 
       {/* wait for the AuthContext, before rendering messages */}
 
-        {/* render list of messages */}
+        {/* render list of important messages */}
         <div className="message-container">
             {/* if messages is not null or undefined, map over messages array and render each message as an article */}
             {messages &&
               messages.map((message) => {
-                return (
+                if (message.important === true) {
+                  return (
                   <article key={message._id}>
                     <h3>{message.title}</h3>
                     <p>{message.description}</p>
@@ -178,12 +182,39 @@ function Home() {
                     )}
                   </article>
                 );
+                }
+            })}
+        </div>
+
+        {/* render list of normal messages */}
+        <div className="message-container">
+            {/* if messages is not null or undefined, map over messages array and render each message as an article */}
+            {messages &&
+              messages.map((message) => {
+                if (message.important === false) {
+                  return (
+                  <article key={message._id}>
+                    <h3>{message.title}</h3>
+                    <p>{message.description}</p>
+                    {user.role === "staff" && (
+                      <div>
+                    {/* button to open Drawer and show edit message form */}
+                      <button onClick={() => handleEditDrawer(message)}>
+                        Edit Message
+                      </button>
+                      {/* button to delete message with given id */}
+                      <button onClick={() => handleDeleteMessage(message._id)}>
+                        Delete Message
+                      </button>
+                    </div>
+                    )}
+                  </article>
+                );
+                }
             })}
         </div>
       </>
     )}
-      
-      
     </section>
   );
 }
