@@ -30,7 +30,6 @@ function Home() {
   //Defines a function called loadMessages that uses the messageService object to make a GET request to the server to retrieve all messages, then filter by user club
   const loadMessages = async () => {
     try {
-      console.log(user)
       const response = await messageService.getMessages();
       const filteredMessages = response.data.filter(function(message) {
         return message.club === user.club
