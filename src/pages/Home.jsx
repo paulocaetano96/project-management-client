@@ -16,9 +16,9 @@ import "../App.css";
 function Home() {
   //Initializes a state variable called messages as an empty array and a function called setMessages that can be used to update the messages state.
   const [messages, setMessages] = useState([]);
-  //const { loggedIn, user } = useContext(AuthContext);: Initializes two variables loggedIn and user from the AuthContext using the useContext hook.
+  //Initializes two variables loggedIn and user from the AuthContext using the useContext hook.
   const { loggedIn, user } = useContext(AuthContext);
-    //const [selectedMessage, setSelectedMessage] = useState(null);: Initializes a state variable called selectedMessage as null and a function called setSelectedMessage that can be used to update the selectedMessage state.
+  //Initializes a state variable called selectedMessage as null and a function called setSelectedMessage that can be used to update the selectedMessage state.
   const [selectedMessage, setSelectedMessage] = useState(null);
 
   //const [state, setState] = useState({top: false, left: false,});: Initializes a state variable called state as an object with two properties top and left, both initialized as false. Also initializes a function called setState that can be used to update the state.
@@ -28,15 +28,21 @@ function Home() {
   });
 
 
-  //const getMessages = async () => {...}: Defines a function called getMessages that uses the messageService object to make a GET request to the server to retrieve all messages.
-  const getMessages = async () => {
+  //Defines a function called loadMessages that uses the messageService object to make a GET request to the server to retrieve all messages, then filter by user club
+  const loadMessages = async () => {
     try {
+      console.log(user)
       const response = await messageService.getMessages();
-      setMessages(response.data);
+      const filteredMessages = response.data.filter(function(message) {
+        return message.club === user.club
+      })
+      console.log(filteredMessages)
+      setMessages(filteredMessages);
     } catch (error) {
       console.log(error);
     }
   };
+
 
   //------------------------------------------------------------- Handler functions ⤵
 
@@ -53,6 +59,7 @@ function Home() {
       );
       setMessages(updatedMessages);
       setSelectedMessage(null);
+      console.log(selectedMessage)
       setState({ ...state, top: false });
     } catch (error) {
       console.log(error);
@@ -76,10 +83,10 @@ function Home() {
     }
   };
 
-  //useEffect(() => {...}, []);: Runs the getMessages function when the component mounts.
+  //useEffect(() => {...}, []);: Runs the loadMessages function when the component mounts.
   useEffect(() => {
-    getMessages();
-  }, [state]);
+    loadMessages();
+  }, [user, state]);
 
   //------------------------------------------------------------- MUI Drawer functions ⤵
 
@@ -94,7 +101,7 @@ function Home() {
 
     if (message) {
       setSelectedMessage(message);
-    }
+    } else setSelectedMessage(null);
 
     setState({ ...state, [anchor]: open });
   };
@@ -109,6 +116,8 @@ function Home() {
 // render section containing a list of messages and a create/edit message form using Drawer
   return (
     <section>
+    {user && (
+      <>
       <h1>Messages</h1>
       {/* render Drawer component with anchor "top" for creating/editing messages */}
       {["top"].map((anchor) => (
@@ -142,29 +151,35 @@ function Home() {
         </React.Fragment>
       ))}
 
-      {/* render list of messages */}
-      <div className="message-container">
-       {/* if messages is not null or undefined, map over messages array and render each message as an article */}
-        {messages &&
-          messages.map((message) => {
-            return (
-              <article key={message._id}>
-                <h3>{message.title}</h3>
-                <p>{message.description}</p>
-                <div>
-                {/* button to open Drawer and show edit message form */}
-                  <button onClick={() => handleEditDrawer(message)}>
-                    Edit Message
-                  </button>
-                  {/* button to delete message with given id */}
-                  <button onClick={() => handleDeleteMessage(message._id)}>
-                    Delete Message
-                  </button>
-                </div>
-              </article>
-            );
-          })}
-      </div>
+      {/* wait for the AuthContext, before rendering messages */}
+
+        {/* render list of messages */}
+        <div className="message-container">
+            {/* if messages is not null or undefined, map over messages array and render each message as an article */}
+            {messages &&
+              messages.map((message) => {
+                return (
+                  <article key={message._id}>
+                    <h3>{message.title}</h3>
+                    <p>{message.description}</p>
+                    <div>
+                    {/* button to open Drawer and show edit message form */}
+                      <button onClick={() => handleEditDrawer(message)}>
+                        Edit Message
+                      </button>
+                      {/* button to delete message with given id */}
+                      <button onClick={() => handleDeleteMessage(message._id)}>
+                        Delete Message
+                      </button>
+                    </div>
+                  </article>
+                );
+            })}
+        </div>
+      </>
+    )}
+      
+      
     </section>
   );
 }

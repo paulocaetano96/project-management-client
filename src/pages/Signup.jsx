@@ -65,7 +65,7 @@ function Signup() {
 				/>
 				<label htmlFor='club'>insert club key</label>
 				<input
-					type='club'
+					type='text'
 					name='club'
 					id='club'
 					value={club}

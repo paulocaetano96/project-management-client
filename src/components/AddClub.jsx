@@ -14,7 +14,6 @@ function AddClub() {
 	const [secondaryColor, setSecondaryColor] = useState('');
 	const [teams, setTeams] = useState([]);
 	const [createdClub, setCreatedClub] = useState(null)
-	const navigate = useNavigate();
 
 	// ---------------------------------------------------- handle functions ⤵
 
@@ -52,7 +51,7 @@ function AddClub() {
 					onChange={handleName}
 				/>
 				<label htmlFor='sport'>Sport</label>
-				<textarea
+				<input
 					type='text'
 					name='sport'
 					id='sport'
@@ -60,7 +59,7 @@ function AddClub() {
 					onChange={handleSport}
 				/>
 				<label htmlFor='primaryColor'>Primary color</label>
-				<textarea
+				<input
 					type='text'
 					name='primaryColor'
 					id='primaryColor'
@@ -68,7 +67,7 @@ function AddClub() {
 					onChange={handlePrimaryColor}
 				/>
 				<label htmlFor='secondaryColor'>Secondary color</label>
-				<textarea
+				<input
 					type='text'
 					name='secondaryColor'
 					id='secondaryColor'
@@ -76,7 +75,7 @@ function AddClub() {
 					onChange={handleSecondaryColor}
 				/>
 				<label htmlFor='teams'>Teams</label>
-				<textarea
+				<input
 					type='text'
 					name='teams'
 					id='teams'

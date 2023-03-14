@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react'
+import React, {useState, useRef, useEffect, useContext} from 'react'
 import moment from 'moment';
 
 import eventService from '../services/event.services';
@@ -12,11 +12,12 @@ import Button from '@mui/material/Button';
 //-------------------------------------------------------------- Component imports ⤵
 import AddEvent from '../components/AddEvent';
 import EditEvent from '../components/EditEvent'
+import { AuthContext } from "../context/auth.context";
 
 //-------------------------------------------------------------- Function ⤵
 
 function Calendar() {
-
+    const { setAuthContex, user } = useContext(AuthContext);
     const [events, setEvents] = useState([])
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [state, setState] = useState({
@@ -32,7 +33,8 @@ function Calendar() {
       const start = moment(e.start).toDate();
       const end = moment(e.end).toDate();
       const title = e.title;
-      const body = { title, start, end };
+      const club = e.club;
+      const body = { title, start, end, club };
       try {
         await eventService.createEvent(body)
         setState({ ...state, top: false });
@@ -64,18 +66,22 @@ function Calendar() {
     } catch (error) {
         console.log(error)
     }
-}
+  }
 
-    //-------------------------------------------------------------- Handler functions ⤵
-    
-    async function handleDatesSet() {
-        const response = await eventService.getEvents();
-        setEvents(response.data);
+  const handleDatesSet = async () => {
+    try {
+      const response = await eventService.getEvents();
+      const filteredEvents = response.data.filter(function(event) {
+        return event.club === user.club
+      })
+      setEvents(filteredEvents);
+    } catch (error) {
+      console.log(error)    
     }
+  }  
 
-    //------------------------------------------------------------- MUI Drawer functions ⤵
 
-
+  //------------------------------------------------------------- MUI Drawer functions ⤵
 
   const toggleDrawer = (anchor, open, calendarEvent) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -99,7 +105,7 @@ function Calendar() {
 
   useEffect(() => {
     handleDatesSet();
-}, [state])
+}, [user, state])
 
   //-------------------------------------------------------------- Return ⤵
 
@@ -136,23 +142,26 @@ function Calendar() {
             </React.Fragment>
         ))}
 
-        <FullCalendar
-            ref={calendarRef}
-            events={events}
-            plugins={[ dayGridPlugin, listPlugin ]}
-            initialView="dayGridMonth"
-            headerToolbar= {{
-              left: 'prev,next today',
-              center: 'title',
-              right: 'dayGridMonth,timeGridWeek,listWeek'
-            }}
-            eventClick={function(arg){
-              handleEditDrawer(arg)
-            }}
+        { user && (
+          <>
+            <FullCalendar
+              ref={calendarRef}
+              events={events}
+              plugins={[ dayGridPlugin, listPlugin ]}
+              initialView="dayGridMonth"
+              headerToolbar= {{
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,listWeek'
+              }}
+              eventClick={function(arg){
+                handleEditDrawer(arg)
+              }}
 
-            datesSet={(date) => handleDatesSet(date)}
-        />
-
+              datesSet={handleDatesSet}
+            />
+          </>
+        )}
     </section>
 
   )
