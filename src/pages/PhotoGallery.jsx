@@ -146,6 +146,7 @@ function PhotoGallery() {
                 <img src={photo.url} alt={photo.title} />
                 <h3>{photo.title}</h3>
                 <p>{photo.description}</p>
+                <p>{photo.gallery}</p>
                 <div>
                   {/* button to open Drawer and show edit photo form */}
                   <button onClick={() => handleEditDrawer(photo)}>
