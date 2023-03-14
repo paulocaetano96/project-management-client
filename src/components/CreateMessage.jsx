@@ -15,6 +15,7 @@ function CreateMessage(props) {
     // Initializing the state of the component to manage user input
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [expirationDays, setExpirationDays] = useState("");
   const [important, setImportant] = useState(false)
   const { user } = useContext(AuthContext);
 
@@ -28,7 +29,7 @@ function CreateMessage(props) {
     e.preventDefault();
     const club = user.club;
     // Assembling the data object to be sent to the server
-    const data = { title, description, club, important };
+    const data = { title, description, club, important, expirationDays };
     try {
         // Making an API call to create a new message using messageService
       const response = await messageService.createMessage(data);
@@ -67,6 +68,16 @@ function CreateMessage(props) {
           required
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+        />
+        <TextField
+          label="Expires in (days)"
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          multiline
+          maxRows={1}
+          value={expirationDays}
+          onChange={(e) => setExpirationDays(e.target.value)}
         />
         <FormGroup>
           <FormControlLabel control={
