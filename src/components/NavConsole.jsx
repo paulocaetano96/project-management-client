@@ -26,7 +26,9 @@ function NavConsole() {
 
           <Link to="/documents" className="navconsole-link">Documents</Link>
 
-          <Link to={`/club/${user.club}`} className="navconsole-link">Club</Link>
+            {user.role === "staff" && (
+              <Link to={`/club/${user.club}`}  className="navconsole-link">Club</Link>
+            )}
 
           <Link to="/photos" className="navconsole-link">Photo Gallery</Link>
 
