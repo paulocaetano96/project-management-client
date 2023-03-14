@@ -13,6 +13,8 @@ import Button from '@mui/material/Button';
 import AddEvent from '../components/AddEvent';
 import EditEvent from '../components/EditEvent'
 
+//-------------------------------------------------------------- Function ⤵
+
 function Calendar() {
 
     const [events, setEvents] = useState([])
@@ -24,14 +26,7 @@ function Calendar() {
     //calendar functionality
     const calendarRef = useRef(null)
 
-/*     const onEventAdded = event => {
-        let calendarApi = calendarRef.current.getApi()
-        calendarApi.addEvent({
-            start: moment(event.start).toDate(),
-            end: moment(event.end).toDate(),
-            title: event.title
-        })
-    } */
+    //-------------------------------------------------------------- CRUD ⤵
 
     const onEventAdded = async (e) => {
       const start = moment(e.start).toDate();
@@ -45,17 +40,6 @@ function Calendar() {
         console.log(error);
       }
     };
-
-/*     const onEventEdited = event => {
-      let calendarApi = calendarRef.current.getApi()
-      calendarApi.addEvent({
-          start: moment(event.start).toDate(),
-          end: moment(event.end).toDate(),
-          title: event.title
-      })
-      setSelectedEvent(null);
-      setState({ ...state, top: false });
-  } */
 
   const onEventEdited = async (e) => {
     const start = moment(e.start).toDate();
@@ -71,6 +55,16 @@ function Calendar() {
 			console.log(error);
 		}
 	};
+
+  const onEventDeleted = async (e) => {
+    try {
+        await eventService.deleteEvent(e.id)
+        setSelectedEvent(null);
+        setState({ ...state, top: false });
+    } catch (error) {
+        console.log(error)
+    }
+}
 
     //-------------------------------------------------------------- Handler functions ⤵
     
@@ -100,15 +94,6 @@ function Calendar() {
     setState({ ...state, top: true });
   };
 
-/*   const list = (anchor) => (
-    <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
-      role="presentation"
-    >
-
-      <AddEvent onEventAdded={event => onEventAdded(event)}/>
-    </Box>
-  ); */
 
   //-------------------------------------------------------------- useEffect ⤵
 
@@ -134,7 +119,7 @@ function Calendar() {
                     <EditEvent
                       selectedEvent={selectedEvent}
                       onEventEdited={event => onEventEdited(event)}
-                      //onDelete={handleDeleteMessage}
+                      onEventDeleted={event => onEventDeleted(event)}
                       onClose={() => {
                         setSelectedEvent(null);
                         setState({ ...state, top: false });
