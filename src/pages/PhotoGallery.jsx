@@ -101,6 +101,8 @@ function PhotoGallery() {
     setState({ ...state, top: true });
   };
 
+  
+
   return (
     <div>
       {/* render Drawer component with anchor "top" for creating/editing photos */}
@@ -142,8 +144,7 @@ function PhotoGallery() {
           photos.map((photo) => {
             return (
               <article key={photo._id}>
-
-                <img src={photo.url} alt={photo.title} />
+                <img src={photo.fileUrl} alt={photo.title} />
                 <h3>{photo.title}</h3>
                 <p>{photo.description}</p>
                 <p>{photo.gallery}</p>
