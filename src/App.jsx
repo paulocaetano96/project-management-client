@@ -12,6 +12,7 @@ import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Calendar from './pages/Calendar';
 import Club from './pages/Club';
+import Documents from './pages/Documents';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path='/home' element={<Home />} />
         <Route path='/calendar' element={<Calendar />} />
         <Route path='/club/:id' element={<Club />} />
+        <Route path='/documents' element={<Documents />} />
       </Routes>
     </div>
   )
