@@ -1,103 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+
+import SubmitDocument from "../components/SubmitDocument";
+import documentService from "../services/document.services";
+
+import CreateMessage from "../components/CreateMessage";
+import EditMessage from "../components/EditMessage";
+
+
+
+
 function Documents() {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [url, setUrl] = useState("");
-  const [group, setGroup] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+   //Initializes a state variable called documents as an empty array and a function called setDocuments that can be used to update the documents state.
+   const [documents, setDocuments] = useState([]);
+   //const { loggedIn, user } = useContext(AuthContext);: Initializes two variables loggedIn and user from the AuthContext using the useContext hook.
+   const { loggedIn, user } = useContext(AuthContext);
+     //const [selectedDocument, setSelectedDocument] = useState(null);: Initializes a state variable called selectedDocument as null and a function called setSelectedDocument that can be used to update the selectedDocument state.
+   const [selectedDocument, setSelectedDocument] = useState(null);
+ 
+   //const [state, setState] = useState({top: false});: Initializes a state variable called state as an object with two properties top and left, both initialized as false. Also initializes a function called setState that can be used to update the state.
+   const [state, setState] = useState({
+     top: false
+   });
 
+
+   //const getDocuments = async () => {...}: Defines a function called getDocuments that uses the documentService object to make a GET request to the server to retrieve all messages.
+  const getDocuments = async () => {
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/documents`,
-        {
-          title,
-          description,
-          url,
-          group,
-        }
-      );
-      console.log(response.data);
+      const response = await messageService.getDocuments();
+      setMessages(response.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleFileUpload = async (e) => {
-    if (!e.target.files || e.target.files.length === 0) {
-      return;
-    }
-
-    const uploadData = new FormData();
-    uploadData.append("url", e.target.files[0]);
-
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/upload`,
-        uploadData
-      );
-      setUrl(response.data.fileUrl);
-    } catch (error) {
-      console.log("Error while uploading the file: ", error);
-    }
-  };
-
   return (
     <div>
-      <h1>DOCUMENTS OLE OLE</h1>
 
-      <div className="mb-3">
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="url">Insert file</label>
-          <input
-            type="file"
-            name="url"
-            id="url"
-            onChange={handleFileUpload}
-            className="form-control"
-            aria-label="file example"
-            required
-          />
-
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-
-          <label htmlFor="description">Description</label>
-          <input
-            type="text"
-            name="description"
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-
-          <label htmlFor="group">Group</label>
-          <input
-            type="text"
-            name="group"
-            id="group"
-            value={group}
-            onChange={(e) => setGroup(e.target.value)}
-          />
-
-          <button type="submit" className="btn btn-primary">
-            Submit Document
-          </button>
-        </form>
-      </div>
+      <SubmitDocument />
     </div>
-  );
+  )
 }
 
-export default Documents;
-
+export default Documents
