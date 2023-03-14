@@ -14,7 +14,7 @@ function CreateMessage(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Assembling the data object to be sent to the server
-    const data = { title, description };
+    const data = { title, description, club };
     try {
         // Making an API call to create a new message using messageService
       const response = await messageService.createMessage(data);

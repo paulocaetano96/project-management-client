@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Datetime from 'react-datetime';
 
-
+import { AuthContext } from "../context/auth.context";
 
 function AddEvent({ onEventAdded }) {
 	const [title, setTitle] = useState('');
 	const [start, setStart] = useState(new Date());
 	const [end, setEnd] = useState(new Date());
+	const { user } = useContext(AuthContext);
 
     const handleTitle = (e) => setTitle(e.target.value);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        onEventAdded({ title, start, end });
+		const club = user.club;
+        onEventAdded({ title, start, end, club });
     };
 
 	return (
