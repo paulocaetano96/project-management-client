@@ -13,6 +13,7 @@ import Calendar from './pages/Calendar';
 import Club from './pages/Club';
 import Documents from './pages/Documents';
 import PhotoGallery from './pages/PhotoGallery';
+import Private from './components/Private';
 
 function App() {
   return (
@@ -23,11 +24,11 @@ function App() {
         <Route path='/' element={<Landing />} />
         <Route path="/signup" element={<Signup  />} />
         <Route path="/login" element={<Login />} />
-        <Route path='/home' element={<Home />} />
-        <Route path='/calendar' element={<Calendar />} />
-        <Route path='/club/:id' element={<Club />} />
-        <Route path='/documents' element={<Documents />} />
-        <Route path='/photos' element={<PhotoGallery />} />
+        <Route path='/home' element={<Private><Home /></Private>} />
+        <Route path='/calendar' element={<Private><Calendar /></Private>} />
+        <Route path='/club/:id' element={<Private><Club /></Private>} />
+        <Route path='/documents' element={<Private><Documents /></Private>} />
+        <Route path='/photos' element={<Private><PhotoGallery /></Private>} />
       </Routes>
     </div>
   )
