@@ -6,6 +6,10 @@ import { AuthContext } from "../context/auth.context";
 import clubService from "../services/club.services";
 import EditClub from "../components/EditClub";
 
+// CSS imports
+import '../styles/navconsole.css';
+
+
 function Club() {
   const [club, setClub] = useState(null);
 
