@@ -1,18 +1,21 @@
 // Importing React, useState, TextField, Button and messageService components from libraries and services
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import messageService from "../services/message.services";
+import { AuthContext } from "../context/auth.context";
 
 //Defining a functional component CreateMessage and accepting props as a parameter.
 function CreateMessage(props) {
     // Initializing the state of the component to manage user input
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const { user } = useContext(AuthContext);
 
   // Function that handles the form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const club = user.club;
     // Assembling the data object to be sent to the server
     const data = { title, description, club };
     try {

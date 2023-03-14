@@ -18,7 +18,6 @@ import { AuthContext } from "../context/auth.context";
 
 function Calendar() {
     const { setAuthContex, user } = useContext(AuthContext);
-    const [currentUser, setCurrentUser] = useState(null)
     const [events, setEvents] = useState([])
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [state, setState] = useState({
@@ -72,8 +71,10 @@ function Calendar() {
   const handleDatesSet = async () => {
     try {
       const response = await eventService.getEvents();
-      console.log(user)
-      setEvents(response.data);
+      const filteredEvents = response.data.filter(function(event) {
+        return event.club === user.club
+      })
+      setEvents(filteredEvents);
     } catch (error) {
       console.log(error)    
     }
@@ -104,11 +105,7 @@ function Calendar() {
 
   useEffect(() => {
     handleDatesSet();
-}, [state])
-
-  useEffect(() => {
-    setCurrentUser(user);
-}, [])
+}, [user, state])
 
   //-------------------------------------------------------------- Return ⤵
 
