@@ -12,19 +12,22 @@ function NavConsole() {
   
     return (
       <nav className="navconsole-links">
-        {/* home should be available to everyone */}
-        <Link to="/home">Home</Link>
+        
   
         {/* if the user is logged In, we show the Projects and Add projects, information we want to show ONLY to people that are already logged in */}
         {loggedIn ? (
           <>
             <span>Hello {user.name}</span>
+
+            <Link to="/home">Home</Link>
   
             <Link to="/calendar">Calendar</Link>
 
             <Link to="/documents">Documents</Link>
 
-            <Link to={`/club/${user.club}`}>Club</Link>
+            {user.role === "staff" && (
+              <Link to={`/club/${user.club}`}>Club</Link>
+            )}
 
             <Link to="/photos">Photo Gallery</Link>
             

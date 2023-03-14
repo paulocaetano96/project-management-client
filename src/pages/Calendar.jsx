@@ -6,6 +6,7 @@ import eventService from '../services/event.services';
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import listPlugin from '@fullcalendar/list'
+import timeGridPlugin from '@fullcalendar/timegrid'
 //-------------------------------------------------------------- MUI imports ⤵
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
@@ -158,7 +159,7 @@ function Calendar() {
           <FullCalendar
             ref={calendarRef}
             events={events}
-            plugins={[ dayGridPlugin, listPlugin ]}
+            plugins={[ dayGridPlugin,timeGridPlugin, listPlugin ]}
             initialView="dayGridMonth"
             headerToolbar= {{
               left: 'prev,next today',
