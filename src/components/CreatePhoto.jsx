@@ -8,23 +8,23 @@ import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
-function SubmitDocument() {
+function CreatePhoto() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [gallery, setGallery] = useState("");
   const [url, setUrl] = useState("");
-  const [group, setGroup] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/documents`,
+        `${import.meta.env.VITE_API_URL}/api/photos`,
         {
           title,
           description,
+          gallery,
           url,
-          group,
         }
       );
       console.log(response.data);
@@ -55,7 +55,7 @@ function SubmitDocument() {
 
   return (
     <div>
-      <h1>DOCUMENTS OLE OLE OLE</h1>
+      <h1>Please Upload a photo here</h1>
 
       <div className="upload-document-container">
         <div className="mb-3">
@@ -89,17 +89,17 @@ function SubmitDocument() {
               onChange={(e) => setDescription(e.target.value)}
             />
 
-            <label htmlFor="group">Group</label>
+            <label htmlFor="gallery">Gallery</label>
             <input
               type="text"
-              name="group"
-              id="group"
-              value={group}
-              onChange={(e) => setGroup(e.target.value)}
+              name="gallery"
+              id="gallery"
+              value={gallery}
+              onChange={(e) => setGallery(e.target.value)}
             />
 
             <button type="submit" className="btn btn-primary">
-              Submit Document
+              Submit Photo
             </button>
           </form>
         </div>
@@ -108,4 +108,4 @@ function SubmitDocument() {
   );
 }
 
-export default SubmitDocument;
+export default CreatePhoto;

@@ -1,6 +1,5 @@
 // ---------------------------------------------------- package imports
 import { Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
 
 // ---------------------------------------------------- CSS imports
 import './App.css'
@@ -13,6 +12,7 @@ import Login from './pages/Login';
 import Calendar from './pages/Calendar';
 import Club from './pages/Club';
 import Documents from './pages/Documents';
+import PhotoGallery from './pages/PhotoGallery';
 
 function App() {
   return (
@@ -27,6 +27,7 @@ function App() {
         <Route path='/calendar' element={<Calendar />} />
         <Route path='/club/:id' element={<Club />} />
         <Route path='/documents' element={<Documents />} />
+        <Route path='/photos' element={<PhotoGallery />} />
       </Routes>
     </div>
   )

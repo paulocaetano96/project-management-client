@@ -22,15 +22,15 @@ class DocumentService {
     return this.api.get("/api/documents");
   };
 //Defining a method createMessage that makes a POST request to the /api/messages endpoint with a request body and returns the response.
-  createMessage = (body) => {
+  createDocument = (body) => {
     return this.api.post("/api/documents", body);
   };
 //Defining a method updateMessage that makes a PUT request to the /api/messages/:id endpoint with a request body and the ID of the message to update, and returns the response.
-  updateMessage = (id, body) => {
+  updateDocument = (id, body) => {
     return this.api.put(`/api/documents/${id}`, body);
   };
 //Defining a method deleteMessage that makes a DELETE request to the /api/messages/:id endpoint with the ID of the message to delete, and returns the response.
-  deleteMessage = (id) => {
+  deleteDocument = (id) => {
     return this.api.delete(`/api/documents/${id}`);
   };
 }
