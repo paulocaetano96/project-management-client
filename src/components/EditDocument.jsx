@@ -5,22 +5,20 @@ import documentService from "../services/document.services";
 
 //Defining a functional component EditDocument and accepting props as a parameter.
 function EditDocument(props) {
-
-  const { document, onClose } = props   ;
+  const { document, onClose } = props;
 
   //Initializing the title and description state variables using useState hook, and setting their default values to the title and description properties of props.message.
-  const [ title, setTitle ] = useState(props.document.title);
-  const [ description, setDescription ] = useState(props.document.description);
-    const [url, setUrl ] = useState(props.document.url); 
-    const [group, setGroup ] = useState(props.document.group); 
+  const [title, setTitle] = useState(props.document.title);
+  const [description, setDescription] = useState(props.document.description);
+  const [group, setGroup] = useState(props.document.group);
 
   //Defining a function handleSubmit to handle form submission, which prevents the default form submission behavior,
   const handleSubmit = async (e) => {
     e.preventDefault();
     //creates a data object containing title and description properties
-    const data = { title, description, url, group };
+    const data = { title, description, group };
     try {
-        //then we call the updateDocument method of documentervice with the data object and the props.document._id. 
+      //then we call the updateDocument method of documentervice with the data object and the props.document._id.
       const response = await documentService.updateDocument(
         props.document._id,
         data
@@ -31,7 +29,7 @@ function EditDocument(props) {
       //calls props.onClose() to close the form
       props.onClose();
     } catch (error) {
-        //If there's an error, it logs the error.
+      //If there's an error, it logs the error.
       console.log(error);
     }
   };
@@ -50,7 +48,7 @@ function EditDocument(props) {
   };
 
   return (
-//Rendering a form with 4 TextField components for title, description, Url and group,  respectively. The TextField components are populated with the corresponding state variables and are set to call handleTitle and handleDescription functions, respectively, when their values change. A Button component is also rendered with the label "Edit Document" and set to submit the form on click, calling the handleSubmit function. The form is wrapped in a form element with the onSubmit attribute set to call handleSubmit function. Finally, the entire form is returned by the component.
+    //Rendering a form with 4 TextField components for title, description and group,  respectively. The TextField components are populated with the corresponding state variables and are set to call handleTitle and handleDescription functions, respectively, when their values change. A Button component is also rendered with the label "Edit Document" and set to submit the form on click, calling the handleSubmit function. The form is wrapped in a form element with the onSubmit attribute set to call handleSubmit function. Finally, the entire form is returned by the component.
     <form onSubmit={handleSubmit}>
       <TextField
         label="Title"
@@ -70,7 +68,7 @@ function EditDocument(props) {
         value={description}
         onChange={handleDescription}
       />
-      
+
       <TextField
         label="Group"
         variant="outlined"

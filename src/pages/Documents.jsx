@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import axios from "axios";
-import { Link } from "react-router-dom";
+
 
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
