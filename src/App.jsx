@@ -1,6 +1,10 @@
 // ---------------------------------------------------- package imports
-import { useState, useEffect, useContext } from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import { AuthContext } from './context/auth.context';
+
+/* import Link from '@mui/material/Link';
+ */
 // ---------------------------------------------------- CSS imports
 import "./App.css";
 // ---------------------------------------------------- component imports
@@ -17,7 +21,6 @@ import Private from "./components/Private";
 
 //---------------------------------------------------- MUI COMPONENT IMPORTS
 //------------DRAWER IMPORTS
-import * as React from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
@@ -38,9 +41,14 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import CollectionsIcon from '@mui/icons-material/Collections';
+
 function App() {
   //Drawer function for all pages
   const [open, setOpen] = useState(false);
+  const { loggedIn, user, logout } = useContext(AuthContext);
+
 
   const theme = useTheme();
 
@@ -137,7 +145,11 @@ function App() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
-              Mini variant drawer
+              {/* TEAM COMMS LOGOTYPE IMAGE - INSTERT ALL OTHER IMAGES FOR THE NAVBAR HERE */}
+              <img
+                src="../public/images/teamcomms-logo.png"
+                alt="team comms logotype picture"
+              />
             </Typography>
           </Toolbar>
         </AppBar>
@@ -152,111 +164,59 @@ function App() {
             </IconButton>
           </DrawerHeader>
           <Divider />
-          <List>
-            {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-              <ListItem key={text} disablePadding sx={{ display: "block" }}>
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
+          
+
+                <NavConsole />
+
+
+
+
           <Divider />
-          <List>
-            {["All mail", "Trash", "Spam"].map((text, index) => (
-              <ListItem key={text} disablePadding sx={{ display: "block" }}>
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
+          
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <DrawerHeader />
-          <Typography paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod
-          </Typography>
-          <Typography paragraph>
-            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-            ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-            elementum integer enim neque volutpat ac tincidunt. Ornare
-            suspendisse sed nisi lacus sed viverra
-          </Typography>
+
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/home" element={<Home />} />
+            <Route
+              path="/calendar"
+              element={
+                <Private>
+                  <Calendar />
+                </Private>
+              }
+            />
+            <Route
+              path="/club/:id"
+              element={
+                <Private>
+                  <Club />
+                </Private>
+              }
+            />
+            <Route
+              path="/documents"
+              element={
+                <Private>
+                  <Documents />
+                </Private>
+              }
+            />
+            <Route
+              path="/photos"
+              element={
+                <Private>
+                  <PhotoGallery />
+                </Private>
+              }
+            />
+          </Routes>
         </Box>
       </Box>
-
-      <NavConsole />
-
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-        <Route
-          path="/calendar"
-          element={
-            <Private>
-              <Calendar />
-            </Private>
-          }
-        />
-        <Route
-          path="/club/:id"
-          element={
-            <Private>
-              <Club />
-            </Private>
-          }
-        />
-        <Route
-          path="/documents"
-          element={
-            <Private>
-              <Documents />
-            </Private>
-          }
-        />
-        <Route
-          path="/photos"
-          element={
-            <Private>
-              <PhotoGallery />
-            </Private>
-          }
-        />
-      </Routes>
     </div>
   );
 }
