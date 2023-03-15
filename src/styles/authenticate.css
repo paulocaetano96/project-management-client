@@ -2,7 +2,6 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	overflow:hidden
 }
 
 .authenticate-page {
@@ -34,6 +33,7 @@
 	height: 100%;
 	display: flex;
 	justify-content: center;
+	flex-grow: 1;
 }
 
 .screen__background {		
@@ -205,12 +205,33 @@
 	display: none;
 }
 
-#add-club-component p{
+#create-club-toggle {
+	max-width: 40vh;
+	margin-bottom: 30px;
+}
+
+/* #add-club-component {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+} */
+
+/* #add-club-component p{
 	margin: 0;
 	padding: 0;
 	color: white;
 	font-size: 0.8rem;
+	display: flex;
 	flex-direction: column;
+} */
+
+#club-key {
+	width: 100%;
+	color: white;
+	position: relative;
+	text-align: center;
+	z-index:999;
 }
 
 

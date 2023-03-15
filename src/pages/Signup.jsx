@@ -13,9 +13,7 @@ function Signup() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [club, setClub] = useState('');
-	const [role, setRole] = useState('player')
-
-	
+	const [role, setRole] = useState('player');
 
 	const [clubName, setClubName] = useState('');
 	const [sport, setSport] = useState('');
@@ -23,7 +21,8 @@ function Signup() {
 	const [secondaryColor, setSecondaryColor] = useState('');
 	const [teams, setTeams] = useState([]);
 	const [createdClub, setCreatedClub] = useState(null);
-	const [isVisible, setVisible] = useState("false");
+	const [isVisible, setVisible] = useState('false');
+	const [buttonIsVisible, buttonSetVisible] = useState('true');
 
 	//---------------------------------- handler functions ⤵
 
@@ -36,13 +35,18 @@ function Signup() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			await axios.post(`${import.meta.env.VITE_API_URL}/auth/signup`, {email, name, password, club, role});
+			await axios.post(`${import.meta.env.VITE_API_URL}/auth/signup`, {
+				email,
+				name,
+				password,
+				club,
+				role,
+			});
 			navigate('/login');
 		} catch (error) {
 			console.log(error);
 		}
 	};
-
 
 	const handleClubName = (e) => setClubName(e.target.value);
 	const handleSport = (e) => setSport(e.target.value);
@@ -52,12 +56,17 @@ function Signup() {
 
 	const handleClubSubmit = async (e) => {
 		e.preventDefault();
-		const body = { name: clubName, sport, primaryColor, secondaryColor, teams };
+		const body = {
+			name: clubName,
+			sport,
+			primaryColor,
+			secondaryColor,
+			teams,
+		};
 		try {
 			const responseClub = await clubService.createClub(body); //doesn't have to be body, just because on the backend it's req.body. We can call it whatever on the frontend
 			setCreatedClub(responseClub);
-			console.log(createdClub);
-			console.log(responseClub);
+			handleToggle();
 		} catch (error) {
 			console.log(error);
 		}
@@ -65,178 +74,207 @@ function Signup() {
 
 	const handleToggle = () => {
 		setVisible(!isVisible);
-	  };
-
+		buttonSetVisible(!buttonIsVisible);
+	};
 
 	//---------------------------------- return ⤵
 
 	return (
 		<section className='authenticate-page'>
-
-			<div className="container">
-                <div className="screen">
-                    <div className="screen__content">
-                        <form className='authenticate' id='signup-form' onSubmit={handleSubmit}>
-                            <div className="authenticate__field">
+			<div className='container'>
+				<div className='screen'>
+					<div className='screen__content'>
+						<form
+							className='authenticate'
+							id='signup-form'
+							onSubmit={handleSubmit}>
+							<div className='authenticate__field'>
 								<input
-									className="authenticate__input"
-									placeholder="Name" 
+									className='authenticate__input'
+									placeholder='Name'
 									type='text'
 									name='name'
 									id='name'
 									value={name}
 									onChange={handleName}
 								/>
-                            </div>
-                            <div className="authenticate__field">
+							</div>
+							<div className='authenticate__field'>
 								<input
-									className="authenticate__input"
-									placeholder="E-mail" 
+									className='authenticate__input'
+									placeholder='E-mail'
 									type='email'
 									name='email'
 									id='email'
 									value={email}
 									onChange={handleEmail}
 								/>
-                            </div>
-                            <div className="authenticate__field">
+							</div>
+							<div className='authenticate__field'>
 								<input
-									className="authenticate__input"
-									placeholder="Password" 
+									className='authenticate__input'
+									placeholder='Password'
 									type='password'
 									name='password'
 									id='password'
 									value={password}
 									onChange={handlePassword}
 								/>
-                            </div>
-                            <div className="authenticate__field">
+							</div>
+							<div className='authenticate__field'>
 								<input
-									className="authenticate__input"
-									placeholder="Insert club key" 
+									className='authenticate__input'
+									placeholder='Insert club key'
 									type='text'
 									name='club'
 									id='club'
 									value={club}
 									onChange={handleClub}
 								/>
-                            </div>
+							</div>
 
-							<div className="authenticate-field" id="signup-role">
+							<div
+								className='authenticate-field'
+								id='signup-role'>
 								<h4>Select your role:</h4>
-								<div id="radio-buttons">
-									<label htmlFor="staff">staff</label>
-									<input type="radio" id="staff" name="role" value="staff" checked={role==='staff'} onChange={handleRole}/>
+								<div id='radio-buttons'>
+									<label htmlFor='staff'>staff</label>
+									<input
+										type='radio'
+										id='staff'
+										name='role'
+										value='staff'
+										checked={role === 'staff'}
+										onChange={handleRole}
+									/>
 								</div>
-								<div id="radio-buttons">
-									<label htmlFor="player">player</label>
-									<input type="radio" id="player" name="role" value="player" checked={role==='player'} onChange={handleRole}/>
+								<div id='radio-buttons'>
+									<label htmlFor='player'>player</label>
+									<input
+										type='radio'
+										id='player'
+										name='role'
+										value='player'
+										checked={role === 'player'}
+										onChange={handleRole}
+									/>
 								</div>
 							</div>
 
-                            <button className="button authenticate__submit" type="submit" id='signup-submit'>
-                                <span className="button__text">Create account</span>
-                                <i className="button__icon fas fa-chevron-right"></i>
-                            </button>
+							<button
+								className='button authenticate__submit'
+								type='submit'
+								id='signup-submit'>
+								<span className='button__text'>
+									Create account
+								</span>
+								<i className='button__icon fas fa-chevron-right'></i>
+							</button>
+						</form>
+					</div>
+					<div className='screen__content' id='add-club-component'>
+						<button
+							id='create-club-toggle'
+							onClick={handleToggle}
+							className={
+								buttonIsVisible
+									? 'button authenticate__submit'
+									: "button authenticate__submit hidden"
+							}>
+							Create a new club
+						</button>
 
-                        </form>
-                        
-                        
-                    </div>
-                    <div className="screen__content">
-					<section className='screen__content' id='add-club-component'>
+						<form
+							className={
+								isVisible
+									? 'authenticate hidden'
+									: 'authenticate'
+							}
+							id='add-club-form'
+							onSubmit={handleClubSubmit}>
+							<div className='authenticate__field'>
+								<input
+									className='authenticate__input'
+									placeholder='Club name'
+									type='text'
+									name='clubName'
+									id='clubName'
+									value={clubName}
+									onChange={handleClubName}
+								/>
+							</div>
+							<div className='authenticate__field'>
+								<input
+									className='authenticate__input'
+									placeholder='Sport'
+									type='text'
+									name='sport'
+									id='sport'
+									value={sport}
+									onChange={handleSport}
+								/>
+							</div>
+							<div className='authenticate__field'>
+								<input
+									className='authenticate__input'
+									placeholder='Primary Color'
+									type='text'
+									name='primaryColor'
+									id='primaryColor'
+									value={primaryColor}
+									onChange={handlePrimaryColor}
+								/>
+							</div>
+							<div className='authenticate__field'>
+								<input
+									className='authenticate__input'
+									placeholder='Secondary Color'
+									type='text'
+									name='secondaryColor'
+									id='secondaryColor'
+									value={secondaryColor}
+									onChange={handleSecondaryColor}
+								/>
+							</div>
+							<div className='authenticate__field'>
+								<input
+									className='authenticate__input'
+									placeholder='Teams'
+									type='text'
+									name='teams'
+									id='teams'
+									value={teams}
+									onChange={handleTeams}
+								/>
+							</div>
 
+							<button
+								className='button authenticate__submit'
+								type='submit'
+								id='add-club-submit'>
+								<span className='button__text'>
+									Create club
+								</span>
+							</button>
+						</form>
+					</div>
+					<div id="club-key">
+						{createdClub && (
+							<p >
+								Your club key is{' '}
+								<span>{`${createdClub.data._id}`}</span>
+							</p>
+						)}
+					</div>
 
-
-		<button onClick={handleToggle}>Toggle class</button>
-			<form
-				className={isVisible? 'authenticate hidden' : 'authenticate'}
-				id='add-club-form'
-				onSubmit={handleClubSubmit}>
-				<div className='authenticate__field'>
-					<input
-						className='authenticate__input'
-						placeholder='Club name'
-						type='text'
-						name='clubName'
-						id='clubName'
-						value={clubName}
-						onChange={handleClubName}
-					/>
+					<div className='screen__background'>
+						<span className='screen__background__shape screen__background__shape4'></span>
+						<span className='screen__background__shape screen__background__shape3'></span>
+						<span className='screen__background__shape screen__background__shape2'></span>
+						<span className='screen__background__shape screen__background__shape1'></span>
+					</div>
 				</div>
-				<div className='authenticate__field'>
-					<input
-						className='authenticate__input'
-						placeholder='Sport'
-						type='text'
-						name='sport'
-						id='sport'
-						value={sport}
-						onChange={handleSport}
-					/>
-				</div>
-				<div className='authenticate__field'>
-					<input
-						className='authenticate__input'
-						placeholder='Primary Color'
-						type='text'
-						name='primaryColor'
-						id='primaryColor'
-						value={primaryColor}
-						onChange={handlePrimaryColor}
-					/>
-				</div>
-				<div className='authenticate__field'>
-					<input
-						className='authenticate__input'
-						placeholder='Secondary Color'
-						type='text'
-						name='secondaryColor'
-						id='secondaryColor'
-						value={secondaryColor}
-						onChange={handleSecondaryColor}
-					/>
-				</div>
-				<div className='authenticate__field'>
-					<input
-						className='authenticate__input'
-						placeholder='Teams'
-						type='text'
-						name='teams'
-						id='teams'
-						value={teams}
-						onChange={handleTeams}
-					/>
-				</div>
-
-				<button
-					className='button authenticate__submit'
-					type='submit'
-					id='add-club-submit'>
-					<span className='button__text'>Create club</span>
-				</button>
-			</form>
-
-			<div>
-				{createdClub && (
-					<p>
-						Your club key is <span>{`${createdClub.data._id}`}</span>
-					</p>
-				)}
 			</div>
-
-			
-		</section>
-                    </div>
-                    <div className="screen__background">
-                        <span className="screen__background__shape screen__background__shape4"></span>
-                        <span className="screen__background__shape screen__background__shape3"></span>		
-                        <span className="screen__background__shape screen__background__shape2"></span>
-                        <span className="screen__background__shape screen__background__shape1"></span>
-                    </div>		
-                </div>
-            </div>
-
 		</section>
 	);
 }
