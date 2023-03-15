@@ -109,10 +109,10 @@
     justify-content: space-evenly;
 }
 
-.message-cardbuttons{
+.message-card-buttons{
     margin-top: 2vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
 }
 
@@ -124,11 +124,26 @@
 }
 
 /* ----------------------------- */
-#create-message-button {
+
+#create-message-btn {
+    margin: 20px 0;
+    background-color: #bd5b43;
+}
+
+#edit-message-btn {
+    margin: 10px 10px;
+    font-size: 0.8rem;
+}
+
+#delete-message-btn {
+    margin: 10px 10px;
+    font-size: 0.8rem;
+}
+/* #create-message-button {
 
     position: relative;
-  --b: 3px;   /* border thickness */
-  --s: .45em; /* size of the corner */
+  --b: 3px;
+  --s: .45em;
   --color: #373B44;
   
   padding: calc(.5em + var(--s)) calc(.9em + var(--s));
@@ -158,3 +173,4 @@
   background: var(--color);
   color: #fff;
 }
+ */

@@ -5,6 +5,10 @@ import { AuthContext } from "../context/auth.context";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import Stack from '@mui/material/Stack';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import messageService from "../services/message.services";
 import CreateMessage from "../components/CreateMessage";
@@ -128,10 +132,13 @@ function Home() {
               <React.Fragment key={anchor}>
                 {/* button to open Drawer and show create message form */}
                 {user.role === "staff" && (
-                  
-                  <Button id="create-message-button" onClick={toggleDrawer(anchor, true)} >
-                    CREATE MESSAGE
-                  </Button>
+
+                  <Stack direction="row" spacing={2}>
+                    <Button variant="contained" endIcon={<AddCircleIcon />} onClick={toggleDrawer(anchor, true)} id="create-message-btn">
+                    Create message
+                    </Button>
+                  </Stack>
+
                 )}
                 {/* Drawer component containing either CreateMessage or EditMessage component */}
                 <Drawer
@@ -180,25 +187,30 @@ function Home() {
                         <h3 className="card-title">{message.title}</h3>
                         <p>{message.description}</p>
                         {user.role === "staff" && (
-                          <div className="message-cardbuttons">
+                          <div className="message-card-buttons">
+
                             {/* button to open Drawer and show edit message form */}
-                            <button className="editbutton" onClick={() => handleEditDrawer(message)}>
-                              Edit Message
-                            </button>
+                            <Stack direction="row" spacing={2}>
+                              <Button variant="outlined" endIcon={<EditIcon />} onClick={() => handleEditDrawer(message)} id="edit-message-btn">
+                              Edit
+                              </Button>
+                            </Stack>
                             {/* button to delete message with given id */}
-                            <button className="deletebutton" onClick={() => handleDeleteMessage(message._id)}
-                            >
-                              Delete Message
-                            </button>
+                            <Stack direction="row" spacing={2}>
+                              <Button variant="outlined" endIcon={<DeleteIcon />} onClick={() => handleDeleteMessage(message._id)} id="delete-message-btn">
+                              Delete
+                              </Button>
+                            </Stack>
+
                           </div>
                         )}
                         <details>
                           <summary>Read by {message.readBy.length} of {message.sentTo.length}</summary>
                           {message.readBy.forEach((user) => {{<p>user</p>}})}
                           <p>{message.readBy[0]}</p>
-{/*                           <p>Ready by: {message.readBy.map((user) => {<span>`${user.name}`</span>})}</p> */}
+                          <p>Ready by: {message.readBy.map((user) => {<span>`${user.name}`</span>})}</p>
                         </details>
-                        <p>Read by {message.readBy.length} of {message.sentTo.length}</p>
+{/*                         <p>Read by {message.readBy.length} of {message.sentTo.length}</p> */}
                       </article>
                     );
                   }
@@ -220,16 +232,19 @@ function Home() {
                         <h3 className="card-title">{message.title}</h3>
                         <p>{message.description}</p>
                         {user.role === "staff" && (
-                          <div className="message-cardbuttons">
+                          <div className="message-card-buttons">
                             {/* button to open Drawer and show edit message form */}
-                            <button className="editbutton" onClick={() => handleEditDrawer(message)}>
-                              Edit Message
-                            </button>
+                            <Stack direction="row" spacing={2}>
+                              <Button variant="outlined" endIcon={<EditIcon />} onClick={() => handleEditDrawer(message)} id="edit-message-btn">
+                              Edit
+                              </Button>
+                            </Stack>
                             {/* button to delete message with given id */}
-                            <button className="deletebutton" onClick={() => handleDeleteMessage(message._id)}
-                            >
-                              Delete Message
-                            </button>
+                            <Stack direction="row" spacing={2}>
+                              <Button variant="outlined" endIcon={<DeleteIcon />} onClick={() => handleDeleteMessage(message._id)} id="delete-message-btn">
+                              Delete
+                              </Button>
+                            </Stack>
                           </div>
                         )}
                         <p>Read by {message.readBy.length} of {message.sentTo.length}</p>
