@@ -50,7 +50,7 @@ function NavConsole() {
       {loggedIn ? (
         <>
           <List>
-            <ListItem disablePadding sx={{ display: "block" }}>
+            <Link to="/profile"><ListItem disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -79,9 +79,10 @@ function NavConsole() {
                   />
                 </Link>
               </ListItemButton>
-            </ListItem>
+            </ListItem></Link>
 
-            <ListItem disablePadding sx={{ display: "block" }}>
+
+            <Link to="/calendar"><ListItem disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -110,9 +111,10 @@ function NavConsole() {
                   />
                 </Link>
               </ListItemButton>
-            </ListItem>
+            </ListItem></Link>
 
-            <ListItem disablePadding sx={{ display: "block" }}>
+
+            <Link to="/documents"><ListItem disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -141,9 +143,10 @@ function NavConsole() {
                   />
                 </Link>
               </ListItemButton>
-            </ListItem>
+            </ListItem></Link>
 
-            <ListItem disablePadding sx={{ display: "block" }}>
+
+            <Link to="/photos"><ListItem disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -172,10 +175,11 @@ function NavConsole() {
                   />
                 </Link>
               </ListItemButton>
-            </ListItem>
+            </ListItem></Link>
+
 
             {user.role === "staff" && (
-              <ListItem disablePadding sx={{ display: "block" }}>
+              <Link to={`/club/${user.club}`}><ListItem disablePadding sx={{ display: "block" }}>
                 <ListItemButton
                   sx={{
                     minHeight: 48,
@@ -204,8 +208,12 @@ function NavConsole() {
                     />
                   </Link>
                 </ListItemButton>
-              </ListItem>
+              </ListItem></Link>
             )}
+
+
+
+                    
 
             <ListItem disablePadding sx={{ display: "block" }}>
               <ListItemButton
