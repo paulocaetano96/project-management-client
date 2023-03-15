@@ -66,19 +66,16 @@ function NavConsole() {
                     justifyContent: "center",
                   }}
                 >
-                  <Link to="/profile" className="navconsole-link">
+
                     <EmojiPeopleOutlinedIcon />
-                  </Link>
+
                 </ListItemIcon>
-                <Link
-                  to="/profile"
-                  className="navconsole-link navconsole-link-text"
-                >
+
                   <ListItemText
                     primary={` Hello ${user.name}`}
                     sx={{ opacity: open ? 1 : 0 }}
                   />
-                </Link>
+
               </ListItemButton>
             </ListItem></Link>
 
@@ -98,19 +95,16 @@ function NavConsole() {
                     justifyContent: "center",
                   }}
                 >
-                  <Link to="/home" className="navconsole-link">
+                  
                     <CottageOutlinedIcon />
-                  </Link>
+
                 </ListItemIcon>
-                <Link
-                  to="/home"
-                  className="navconsole-link navconsole-link-text"
-                >
+               
                   <ListItemText
                     primary="Home"
                     sx={{ opacity: open ? 1 : 0 }}
                   />
-                </Link>
+
               </ListItemButton>
             </ListItem></Link>
 
@@ -129,19 +123,16 @@ function NavConsole() {
                     justifyContent: "center",
                   }}
                 >
-                  <Link to="/calendar" className="navconsole-link">
+                  
                     <CalendarMonthIcon />
-                  </Link>
+
                 </ListItemIcon>
-                <Link
-                  to="/calendar"
-                  className="navconsole-link navconsole-link-text"
-                >
+                
                   <ListItemText
                     primary={"Calendar"}
                     sx={{ opacity: open ? 1 : 0 }}
                   />
-                </Link>
+
               </ListItemButton>
             </ListItem></Link>
 
@@ -161,19 +152,16 @@ function NavConsole() {
                     justifyContent: "center",
                   }}
                 >
-                  <Link to="/documents" className="navconsole-link">
+                  
                     <MailIcon />
-                  </Link>
+
                 </DocumentScannerOutlinedIcon>
-                <Link
-                  to="/documents"
-                  className="navconsole-link navconsole-link-text"
-                >
+                
                   <ListItemText
                     primary={"Documents"}
                     sx={{ opacity: open ? 1 : 0 }}
                   />
-                </Link>
+
               </ListItemButton>
             </ListItem></Link>
 
@@ -193,19 +181,16 @@ function NavConsole() {
                     justifyContent: "center",
                   }}
                 >
-                  <Link to="/photos" className="navconsole-link">
+                  
                     <CollectionsOutlinedIcon />
-                  </Link>
+
                 </ListItemIcon>
-                <Link
-                  to="/photos"
-                  className="navconsole-link navconsole-link-text"
-                >
+               
                   <ListItemText
                     primary={"Photo Gallery"}
                     sx={{ opacity: open ? 1 : 0 }}
                   />
-                </Link>
+
               </ListItemButton>
             </ListItem></Link>
 
@@ -226,27 +211,21 @@ function NavConsole() {
                       justifyContent: "center",
                     }}
                   >
-                    <Link to={`/club/${user.club}`} className="navconsole-link">
+                    
                       <ImportContactsOutlinedIcon />
-                    </Link>
+
                   </ListItemIcon>
-                  <Link
-                    to={`/club/${user.club}`}
-                    className="navconsole-link navconsole-link-text"
-                  >
+                 
                     <ListItemText
                       primary={"Club Details"}
                       sx={{ opacity: open ? 1 : 0 }}
                     />
-                  </Link>
+
                 </ListItemButton>
               </ListItem></Link>
             )}
 
-
-
-                    
-
+            <Link to="/">
             <ListItem disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 sx={{
@@ -262,19 +241,20 @@ function NavConsole() {
                     justifyContent: "center",
                   }}
                 >
-                  <Link to="/" className="navconsole-link">
+                  
                     <CancelPresentationOutlinedIcon onClick={logout}/>
-                  </Link>
+                  
                 </ListItemIcon>
-                <Link to="/" className="navconsole-link navconsole-link-text">
+                
                   <ListItemText
                     onClick={logout}
                     primary={"Logout"}
                     sx={{ opacity: open ? 1 : 0 }}
                   />
-                </Link>
+                
               </ListItemButton>
             </ListItem>
+            </Link>
           </List>
         </>
       ) : (
@@ -297,16 +277,16 @@ function NavConsole() {
                       justifyContent: "center",
                     }}
                   >
-                    <Link to="/" className="navconsole-link">
+
                       <CottageOutlinedIcon />
-                    </Link>
+
                   </ListItemIcon>
-                  <Link to="/" className="navconsole-link navconsole-link-text">
+
                     <ListItemText
                       primary={"Home"}
                       sx={{ opacity: open ? 1 : 0 }}
                     />
-                  </Link>
+
                 </ListItemButton>
               </ListItem>
             </Link>
@@ -327,19 +307,16 @@ function NavConsole() {
                       justifyContent: "center",
                     }}
                   >
-                    <Link to="/login" className="navconsole-link">
+
                       <ExitToAppOutlinedIcon />
-                    </Link>
+
                   </ListItemIcon>
-                  <Link
-                    to="/login"
-                    className="navconsole-link navconsole-link-text"
-                  >
+
                     <ListItemText
                       primary={"Login"}
                       sx={{ opacity: open ? 1 : 0 }}
                     />
-                  </Link>
+
                 </ListItemButton>
               </ListItem>
             </Link>
@@ -360,19 +337,16 @@ function NavConsole() {
                       justifyContent: "center",
                     }}
                   >
-                    <Link to="/signup" className="navconsole-link">
+
                       <GroupAddOutlinedIcon />
-                    </Link>
+
                   </ListItemIcon>
-                  <Link
-                    to="/signup"
-                    className="navconsole-link navconsole-link-text"
-                  >
+
                     <ListItemText
                       primary={"Signup"}
                       sx={{ opacity: open ? 1 : 0 }}
                     />
-                  </Link>
+
                 </ListItemButton>
               </ListItem>
             </Link>

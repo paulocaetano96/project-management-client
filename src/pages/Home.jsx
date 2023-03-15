@@ -166,6 +166,9 @@ function Home() {
               {/* if messages is not null or undefined, map over messages array and render each message as an article */}
               {messages &&
                 messages.map((message) => {
+                  if (!message.readBy.includes(user._id)) {
+                    message.readBy.push(user._id)
+                  }
                   if (message.important === true) {
                     return (
                       <article
@@ -188,6 +191,7 @@ function Home() {
                             </button>
                           </div>
                         )}
+                        <p>Read by {message.readBy.length} of {message.sentTo.length}</p>
                       </article>
                     );
                   }
@@ -221,6 +225,7 @@ function Home() {
                             </button>
                           </div>
                         )}
+                        <p>Read by {message.readBy.length} of {message.sentTo.length}</p>
                       </article>
                     );
                   }
