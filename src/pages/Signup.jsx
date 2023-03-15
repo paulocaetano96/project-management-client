@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import AddClub from '../components/AddClub';
+import clubService from '../services/club.services';
 
 function Signup() {
 	const navigate = useNavigate();
@@ -13,6 +14,16 @@ function Signup() {
 	const [password, setPassword] = useState('');
 	const [club, setClub] = useState('');
 	const [role, setRole] = useState('player')
+
+	
+
+	const [clubName, setClubName] = useState('');
+	const [sport, setSport] = useState('');
+	const [primaryColor, setPrimaryColor] = useState('');
+	const [secondaryColor, setSecondaryColor] = useState('');
+	const [teams, setTeams] = useState([]);
+	const [createdClub, setCreatedClub] = useState(null);
+	const [isVisible, setVisible] = useState("false");
 
 	//---------------------------------- handler functions ⤵
 
@@ -33,113 +44,199 @@ function Signup() {
 	};
 
 
+	const handleClubName = (e) => setClubName(e.target.value);
+	const handleSport = (e) => setSport(e.target.value);
+	const handlePrimaryColor = (e) => setPrimaryColor(e.target.value);
+	const handleSecondaryColor = (e) => setSecondaryColor(e.target.value);
+	const handleTeams = (e) => setTeams(e.target.value);
+
+	const handleClubSubmit = async (e) => {
+		e.preventDefault();
+		const body = { name: clubName, sport, primaryColor, secondaryColor, teams };
+		try {
+			const responseClub = await clubService.createClub(body); //doesn't have to be body, just because on the backend it's req.body. We can call it whatever on the frontend
+			setCreatedClub(responseClub);
+			console.log(createdClub);
+			console.log(responseClub);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleToggle = () => {
+		setVisible(!isVisible);
+	  };
+
+
 	//---------------------------------- return ⤵
 
 	return (
-		<section>
+		<section className='authenticate-page'>
 
-<div class="container">
-                <div class="screen">
-                    <div class="screen__content">
-                        <form className='login' onSubmit={handleSubmit}>
-                            <div class="login__field">
-                                <i class="login__icon fas fa-user"></i>
-                                <input 
-                                    type="email" 
-                                    class="login__input" 
-                                    placeholder="Email" 
-                                    name="email" 
-                                    id="email" 
-                                    value={email} 
-                                    onChange={handleEmail}
-                                />
+			<div className="container">
+                <div className="screen">
+                    <div className="screen__content">
+                        <form className='authenticate' id='signup-form' onSubmit={handleSubmit}>
+                            <div className="authenticate__field">
+								<input
+									className="authenticate__input"
+									placeholder="Name" 
+									type='text'
+									name='name'
+									id='name'
+									value={name}
+									onChange={handleName}
+								/>
                             </div>
-                            <div class="login__field">
-                                <i class="login__icon fas fa-lock"></i>
-                                <input 
-                                    type="password" 
-                                    class="login__input" 
-                                    placeholder="Password"
-                                    name="password"
-                                    id="password"
-                                    value={password} 
-                                    onChange={handlePassword}
-                                />
+                            <div className="authenticate__field">
+								<input
+									className="authenticate__input"
+									placeholder="E-mail" 
+									type='email'
+									name='email'
+									id='email'
+									value={email}
+									onChange={handleEmail}
+								/>
+                            </div>
+                            <div className="authenticate__field">
+								<input
+									className="authenticate__input"
+									placeholder="Password" 
+									type='password'
+									name='password'
+									id='password'
+									value={password}
+									onChange={handlePassword}
+								/>
+                            </div>
+                            <div className="authenticate__field">
+								<input
+									className="authenticate__input"
+									placeholder="Insert club key" 
+									type='text'
+									name='club'
+									id='club'
+									value={club}
+									onChange={handleClub}
+								/>
                             </div>
 
-                            <button class="button login__submit" type="submit">
-                                <span class="button__text">Log In Now</span>
-                                <i class="button__icon fas fa-chevron-right"></i>
+							<div className="authenticate-field" id="signup-role">
+								<h4>Select your role:</h4>
+								<div id="radio-buttons">
+									<label htmlFor="staff">staff</label>
+									<input type="radio" id="staff" name="role" value="staff" checked={role==='staff'} onChange={handleRole}/>
+								</div>
+								<div id="radio-buttons">
+									<label htmlFor="player">player</label>
+									<input type="radio" id="player" name="role" value="player" checked={role==='player'} onChange={handleRole}/>
+								</div>
+							</div>
+
+                            <button className="button authenticate__submit" type="submit" id='signup-submit'>
+                                <span className="button__text">Create account</span>
+                                <i className="button__icon fas fa-chevron-right"></i>
                             </button>
 
                         </form>
                         
+                        
                     </div>
-                    <div class="screen__background">
-                        <span class="screen__background__shape screen__background__shape4"></span>
-                        <span class="screen__background__shape screen__background__shape3"></span>		
-                        <span class="screen__background__shape screen__background__shape2"></span>
-                        <span class="screen__background__shape screen__background__shape1"></span>
+                    <div className="screen__content">
+					<section className='screen__content' id='add-club-component'>
+
+
+
+		<button onClick={handleToggle}>Toggle class</button>
+			<form
+				className={isVisible? 'authenticate hidden' : 'authenticate'}
+				id='add-club-form'
+				onSubmit={handleClubSubmit}>
+				<div className='authenticate__field'>
+					<input
+						className='authenticate__input'
+						placeholder='Club name'
+						type='text'
+						name='clubName'
+						id='clubName'
+						value={clubName}
+						onChange={handleClubName}
+					/>
+				</div>
+				<div className='authenticate__field'>
+					<input
+						className='authenticate__input'
+						placeholder='Sport'
+						type='text'
+						name='sport'
+						id='sport'
+						value={sport}
+						onChange={handleSport}
+					/>
+				</div>
+				<div className='authenticate__field'>
+					<input
+						className='authenticate__input'
+						placeholder='Primary Color'
+						type='text'
+						name='primaryColor'
+						id='primaryColor'
+						value={primaryColor}
+						onChange={handlePrimaryColor}
+					/>
+				</div>
+				<div className='authenticate__field'>
+					<input
+						className='authenticate__input'
+						placeholder='Secondary Color'
+						type='text'
+						name='secondaryColor'
+						id='secondaryColor'
+						value={secondaryColor}
+						onChange={handleSecondaryColor}
+					/>
+				</div>
+				<div className='authenticate__field'>
+					<input
+						className='authenticate__input'
+						placeholder='Teams'
+						type='text'
+						name='teams'
+						id='teams'
+						value={teams}
+						onChange={handleTeams}
+					/>
+				</div>
+
+				<button
+					className='button authenticate__submit'
+					type='submit'
+					id='add-club-submit'>
+					<span className='button__text'>Create club</span>
+				</button>
+			</form>
+
+			<div>
+				{createdClub && (
+					<p>
+						Your club key is <span>{`${createdClub.data._id}`}</span>
+					</p>
+				)}
+			</div>
+
+			
+		</section>
+                    </div>
+                    <div className="screen__background">
+                        <span className="screen__background__shape screen__background__shape4"></span>
+                        <span className="screen__background__shape screen__background__shape3"></span>		
+                        <span className="screen__background__shape screen__background__shape2"></span>
+                        <span className="screen__background__shape screen__background__shape1"></span>
                     </div>		
                 </div>
             </div>
 
-
-
-
-
-
-
-
-
-
-			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
-				<label htmlFor='name'>Name</label>
-				<input
-					type='text'
-					name='name'
-					id='name'
-					value={name}
-					onChange={handleName}
-				/>
-				<label htmlFor='email'>E-mail</label>
-				<input
-					type='email'
-					name='email'
-					id='email'
-					value={email}
-					onChange={handleEmail}
-				/>
-				<label htmlFor='password'>Password</label>
-				<input
-					type='password'
-					name='password'
-					id='password'
-					value={password}
-					onChange={handlePassword}
-				/>
-				<label htmlFor='club'>insert club key</label>
-				<input
-					type='text'
-					name='club'
-					id='club'
-					value={club}
-					onChange={handleClub}
-				/>
-				<h4>Select your role</h4>
-				<label htmlFor="staff">Staff</label>
-				<input type="radio" id="staff" name="role" value="staff" checked={role==='staff'} onChange={handleRole}/>
-				<label htmlFor="player">Player</label>
-				<input type="radio" id="player" name="role" value="player" checked={role==='player'} onChange={handleRole}/>
-
-				<button type='submit'>Create account</button>
-			</form>
-
-			<AddClub/>
-
-			<p>Already have an account?</p>
-			<Link to='/login'>Login</Link>
 		</section>
 	);
 }

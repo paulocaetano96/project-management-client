@@ -11,6 +11,10 @@
     justify-content: flex-start;
     align-items: center;
   }
+
+.navconsole * {
+  overflow:hidden
+}
   
   .navconsole a {
     margin-bottom: 10px;

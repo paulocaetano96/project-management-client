@@ -5,7 +5,7 @@
 	overflow:hidden
 }
 
-.login-page {
+.authenticate-page {
 	background-color: #22314a;		
 }
 
@@ -20,8 +20,11 @@
 .screen {		
 	background: linear-gradient(90deg, #bd5b43, #22314a);		
 	position: relative;	
-	height: 60vh;
-	width: 70%;	
+	width: 70%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
 /* 	box-shadow: 0px 0px 24px #bd5b43; */
 }
 
@@ -29,6 +32,8 @@
 	z-index: 1;
 	position: relative;	
 	height: 100%;
+	display: flex;
+	justify-content: center;
 }
 
 .screen__background {		
@@ -83,25 +88,23 @@
 	border-radius: 60px;
 }
 
-.login {
+.authenticate {
 	width: 60vh;
 	padding: 30px;
-	padding-top: 10%;
 }
 
-.login__field {
-	padding: 20px 0px;	
+.authenticate__field {
+	padding: 5px 0px;	
 	position: relative;	
-
 }
 
-.login__icon {
+/* .authenticate__icon {
 	position: absolute;
 	top: 30px;
 	color: #7875B5;
-}
+} */
 
-.login__input {
+.authenticate__input {
 	border: none;
 	border-bottom: 2px solid #D1D1D4;
 	background: none;
@@ -110,17 +113,16 @@
 	font-weight: 700;
 	width: 75%;
 	transition: .2s;
-
 }
 
-.login__input:active,
-.login__input:focus,
-.login__input:hover {
+.authenticate__input:active,
+.authenticate__input:focus,
+.authenticate__input:hover {
 	outline: none;
 	border-bottom-color: #22314a;
 }
 
-.login__submit {
+.authenticate__submit {
 	background: #fff;
 	font-size: 14px;
 	margin-top: 30px;
@@ -138,18 +140,79 @@
 	transition: .2s;
 }
 
-.login__submit:active,
-.login__submit:focus,
-.login__submit:hover {
+.authenticate__submit:active,
+.authenticate__submit:focus,
+.authenticate__submit:hover {
 	border-color:#22314a;
 	outline: none;
 }
 
-.button__icon {
+/* .button__icon {
 	font-size: 24px;
 	margin-left: auto;
 	color: #22314a;
+} */
+
+/* ------------------------------------ LOGIN SPECIFIC */
+
+#login-form {
+	padding-top: 20%;
 }
+
+#call-to-signup {
+	width: 30%;
+	height: 100%;
+	font-size: 0.8rem;
+	display: flex;
+	flex-direction: column;
+	align-items: end;
+}
+
+#call-to-signup p {
+	color: white;
+}
+
+#call-to-signup button {
+	max-height: 5px;
+	max-width: 90px;
+	font-size: 0.8rem;
+	margin: 20px 0;
+}
+
+/* ------------------------------------ SIGNUP SPECIFIC */
+
+#signup-form {
+	padding: 20px;
+	font-size: 0.8rem;
+}
+
+#signup-role {
+	display: flex;
+	margin: 10px 0;
+}
+
+#radio-buttons {
+	margin-left: 20px;
+}
+
+#radio-buttons > * {
+	padding: 5px;
+}
+
+/* ------------------------------------ ADD CLUB SPECIFIC */
+
+.hidden {
+	display: none;
+}
+
+#add-club-component p{
+	margin: 0;
+	padding: 0;
+	color: white;
+	font-size: 0.8rem;
+	flex-direction: column;
+}
+
 
 /* .social-login {	
 	position: absolute;

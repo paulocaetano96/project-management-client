@@ -1,3 +1,5 @@
+import '../styles/authenticate.css';
+
 // ---------------------------------------------------- package imports ⤵
 
 import React, { useState } from 'react';
@@ -13,7 +15,8 @@ function AddClub() {
 	const [primaryColor, setPrimaryColor] = useState('');
 	const [secondaryColor, setSecondaryColor] = useState('');
 	const [teams, setTeams] = useState([]);
-	const [createdClub, setCreatedClub] = useState(null)
+	const [createdClub, setCreatedClub] = useState(null);
+	const [isVisible, setVisible] = useState("false");
 
 	// ---------------------------------------------------- handle functions ⤵
 
@@ -28,66 +31,100 @@ function AddClub() {
 		const body = { name, sport, primaryColor, secondaryColor, teams };
 		try {
 			const responseClub = await clubService.createClub(body); //doesn't have to be body, just because on the backend it's req.body. We can call it whatever on the frontend
-  			setCreatedClub(responseClub)
-			console.log(createdClub)
-			console.log(responseClub)
+			setCreatedClub(responseClub);
+			console.log(createdClub);
+			console.log(responseClub);
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
+	const handleToggle = () => {
+		setVisible(!isVisible);
+	  };
+
 	// ---------------------------------------------------- return ⤵
 
 	return (
-		<section>
-			<h1>Create a club</h1>
-			<form onSubmit={handleSubmit}>
-				<label htmlFor='name'>Name</label>
-				<input
-					type='text'
-					name='name'
-					id='name'
-					value={name}
-					onChange={handleName}
-				/>
-				<label htmlFor='sport'>Sport</label>
-				<input
-					type='text'
-					name='sport'
-					id='sport'
-					value={sport}
-					onChange={handleSport}
-				/>
-				<label htmlFor='primaryColor'>Primary color</label>
-				<input
-					type='text'
-					name='primaryColor'
-					id='primaryColor'
-					value={primaryColor}
-					onChange={handlePrimaryColor}
-				/>
-				<label htmlFor='secondaryColor'>Secondary color</label>
-				<input
-					type='text'
-					name='secondaryColor'
-					id='secondaryColor'
-					value={secondaryColor}
-					onChange={handleSecondaryColor}
-				/>
-				<label htmlFor='teams'>Teams</label>
-				<input
-					type='text'
-					name='teams'
-					id='teams'
-					value={teams}
-					onChange={handleTeams}
-				/>
-				<button type='submit'>Create Club</button>
+		<section className='screen__content' id='add-club-component'>
+		<button onClick={handleToggle}>Toggle class</button>
+			<form
+				className={isVisible? 'authenticate hidden' : 'authenticate'}
+				id='add-club-form'
+				onSubmit={handleSubmit}>
+				<div className='authenticate__field'>
+					<input
+						className='authenticate__input'
+						placeholder='Club name'
+						type='text'
+						name='clubName'
+						id='clubName'
+						value={name}
+						onChange={handleName}
+					/>
+				</div>
+				<div className='authenticate__field'>
+					<input
+						className='authenticate__input'
+						placeholder='Sport'
+						type='text'
+						name='sport'
+						id='sport'
+						value={sport}
+						onChange={handleSport}
+					/>
+				</div>
+				<div className='authenticate__field'>
+					<input
+						className='authenticate__input'
+						placeholder='Primary Color'
+						type='text'
+						name='primaryColor'
+						id='primaryColor'
+						value={primaryColor}
+						onChange={handlePrimaryColor}
+					/>
+				</div>
+				<div className='authenticate__field'>
+					<input
+						className='authenticate__input'
+						placeholder='Secondary Color'
+						type='text'
+						name='secondaryColor'
+						id='secondaryColor'
+						value={secondaryColor}
+						onChange={handleSecondaryColor}
+					/>
+				</div>
+				<div className='authenticate__field'>
+					<input
+						className='authenticate__input'
+						placeholder='Teams'
+						type='text'
+						name='teams'
+						id='teams'
+						value={teams}
+						onChange={handleTeams}
+					/>
+				</div>
+
+				<button
+					className='button authenticate__submit'
+					type='submit'
+					id='add-club-submit'>
+					<span className='button__text'>Create club</span>
+				</button>
 			</form>
 
-			{createdClub && (
-				<h3>Your club key is {`${createdClub.data._id}`}</h3>
-			)}
+			<div>
+				{createdClub && (
+					<p>
+						Your club key is <span>{`${createdClub.data._id}`}</span>
+					</p>
+				)}
+			</div>
+
+			
 		</section>
 	);
 }

@@ -49,16 +49,16 @@ function Login() {
     }
 
     return ( 
-        <section className='login-page'>
-            <div class="container">
-                <div class="screen">
-                    <div class="screen__content">
-                        <form className='login' onSubmit={handleSubmit}>
-                            <div class="login__field">
-                                <i class="login__icon fas fa-user"></i>
+        <section className='authenticate-page'>
+            <div className="container">
+                <div className="screen">
+                    <div className="screen__content">
+                        <form className='authenticate' id='login-form' onSubmit={handleSubmit}>
+                            <div className="authenticate__field">
+                                
                                 <input 
                                     type="email" 
-                                    class="login__input" 
+                                    className="authenticate__input" 
                                     placeholder="Email" 
                                     name="email" 
                                     id="email" 
@@ -66,11 +66,11 @@ function Login() {
                                     onChange={handleEmail}
                                 />
                             </div>
-                            <div class="login__field">
-                                <i class="login__icon fas fa-lock"></i>
+                            <div className="authenticate__field">
+                                
                                 <input 
                                     type="password" 
-                                    class="login__input" 
+                                    className="authenticate__input" 
                                     placeholder="Password"
                                     name="password"
                                     id="password"
@@ -79,27 +79,31 @@ function Login() {
                                 />
                             </div>
 
-                            <button class="button login__submit" type="submit">
-                                <span class="button__text">Log In Now</span>
-                                <i class="button__icon fas fa-chevron-right"></i>
+                            <button className="button authenticate__submit" type="submit">
+                                <span className="button__text">Log In Now</span>
+                                <i className="button__icon fas fa-chevron-right"></i>
                             </button>
 
                         </form>
-                        <p>Don't have an account?</p>
-                        <Link to="/signup">Signup</Link>
+                        
                         
                     </div>
-                    <div class="screen__content"></div>
-                    <div class="screen__background">
-                        <span class="screen__background__shape screen__background__shape4"></span>
-                        <span class="screen__background__shape screen__background__shape3"></span>		
-                        <span class="screen__background__shape screen__background__shape2"></span>
-                        <span class="screen__background__shape screen__background__shape1"></span>
+                    <div className="screen__content" id="call-to-signup">
+                        <p>Don't have an account?</p>
+                        <Link to="/signup">
+                            <button className="button authenticate__submit">
+                                    <span className="button__text">Signup</span>
+                            </button>
+                        </Link>
+                    </div>
+                    <div className="screen__background">
+                        <span className="screen__background__shape screen__background__shape4"></span>
+                        <span className="screen__background__shape screen__background__shape3"></span>		
+                        <span className="screen__background__shape screen__background__shape2"></span>
+                        <span className="screen__background__shape screen__background__shape1"></span>
                     </div>		
                 </div>
             </div>
-
-            
 
         </section>
     )

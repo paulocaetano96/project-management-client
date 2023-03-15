@@ -128,7 +128,7 @@ function App() {
 
   return (
     <div className="App">
-      <Box sx={{ display: "flex"}}>
+      <Box sx={{ display: "flex", overflow: "hidden"}}>
         <CssBaseline />
         <AppBar position="fixed" open={open}>
           <Toolbar>
