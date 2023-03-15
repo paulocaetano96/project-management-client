@@ -85,14 +85,6 @@ function Signup() {
             </div>
 
 
-
-
-
-
-
-
-
-
 			<h1>Sign Up</h1>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor='name'>Name</label>

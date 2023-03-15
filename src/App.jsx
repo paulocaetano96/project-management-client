@@ -1,7 +1,7 @@
 // ---------------------------------------------------- package imports
 import React, { useState, useEffect, useContext } from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import { AuthContext } from './context/auth.context';
+import { AuthContext } from "./context/auth.context";
 
 /* import Link from '@mui/material/Link';
  */
@@ -17,6 +17,7 @@ import Calendar from "./pages/Calendar";
 import Club from "./pages/Club";
 import Documents from "./pages/Documents";
 import PhotoGallery from "./pages/PhotoGallery";
+import Profile from "./pages/Profile";
 import Private from "./components/Private";
 
 //---------------------------------------------------- MUI COMPONENT IMPORTS
@@ -41,14 +42,13 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import CollectionsIcon from '@mui/icons-material/Collections';
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import CollectionsIcon from "@mui/icons-material/Collections";
 
 function App() {
   //Drawer function for all pages
   const [open, setOpen] = useState(false);
   const { loggedIn, user, logout } = useContext(AuthContext);
-
 
   const theme = useTheme();
 
@@ -128,7 +128,7 @@ function App() {
 
   return (
     <div className="App">
-      <Box sx={{ display: "flex"}}>
+      <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar position="fixed" open={open}>
           <Toolbar>
@@ -147,14 +147,14 @@ function App() {
             <Typography variant="h6" noWrap component="div">
               {/* TEAM COMMS LOGOTYPE IMAGE - INSTERT ALL OTHER IMAGES FOR THE NAVBAR HERE */}
               <img
-                src="../public/images/teamcomms-logo.png"
+                src="../images/teamcomms-logo.png"
                 alt="team comms logotype picture"
                 id="team-comms-logo"
               />
             </Typography>
           </Toolbar>
         </AppBar>
-        <Drawer variant="permanent" open={open} >
+        <Drawer variant="permanent" open={open}>
           <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === "rtl" ? (
@@ -166,13 +166,11 @@ function App() {
           </DrawerHeader>
           <Divider />
 
-            <NavConsole />
+          <NavConsole />
 
           <Divider />
-          
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1, p: 3, padding: 0 }}>
-
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/signup" element={<Signup />} />
@@ -207,6 +205,14 @@ function App() {
               element={
                 <Private>
                   <PhotoGallery />
+                </Private>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <Private>
+                  <Profile />
                 </Private>
               }
             />

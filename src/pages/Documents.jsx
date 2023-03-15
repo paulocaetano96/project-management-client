@@ -12,6 +12,9 @@ import EditDocument from "../components/EditDocument";
 
 import documentService from "../services/document.services";
 
+import fileDownload from "js-file-download";
+import axios from "axios";
+
 function Documents() {
   //Initializes a state variable called documents as an empty array and a function called setDocuments that can be used to update the documents state.
   const [documents, setDocuments] = useState([]);
@@ -102,6 +105,16 @@ function Documents() {
     setState({ ...state, top: true });
   };
 
+  const handleDownload = (url, filename) => {
+    axios
+      .get(url, {
+        responseType: "blob",
+      })
+      .then((res) => {
+        fileDownload(res.data, filename);
+      });
+  };
+
   return (
     <div>
       {/* render Drawer component with anchor "top" for creating/editing documents */}
@@ -143,20 +156,15 @@ function Documents() {
           documents.map((document) => {
             return (
               <article key={document._id}>
-                {/* <div>
-                  <CloudinaryContext cloudName="demo">
-                    <a
-                      href="https://res.cloudinary.com/demo/image/upload/fl_attachment:myPdf/multi_page_pdf.pdf"
-                      download
-                    >
-                      <Image publicId="multi_page_pdf.pdf">
-                        <Transformation fetchFormat="auto" />
-                      </Image>
-                    </a>
-                  </CloudinaryContext>
-                </div> */}
 
-                <Link to={document.fileUrl}>
+                <Link
+                  onClick={() =>
+                    handleDownload(
+                      document.fileUrl,
+                      `${document.title}${document.fileUrl.slice(-4)}`
+                    )
+                  }
+                >
                   <h3>{document.title}</h3>
                 </Link>
 
