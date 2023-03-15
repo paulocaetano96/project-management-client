@@ -117,8 +117,8 @@ function Home() {
 
   // render section containing a list of messages and a create/edit message form using Drawer
   return (
-    <div className="homepage-container">
-      <div className="BA">
+    <div className="homepage-container-total">
+      <div className="message-list">
 
         {user && (
           <>
@@ -158,9 +158,9 @@ function Home() {
                 </Drawer>
               </React.Fragment>
             ))}
-
+                    <div class="messages-container-area">
             {/* wait for the AuthContext, before rendering messages */}
-            <section className="message-container">
+            <section className="message-container-important">
               {/* render list of important messages */}
 
               {/* if messages is not null or undefined, map over messages array and render each message as an article */}
@@ -173,9 +173,9 @@ function Home() {
                     return (
                       <article
                         key={message._id}
-                        className="message-card-important"
+                        className="message-card-important card"
                       >
-                        <h3>{message.title}</h3>
+                        <h2>{message.title}</h2>
                         <p>{message.description}</p>
                         {user.role === "staff" && (
                           <div>
@@ -199,7 +199,7 @@ function Home() {
             </section>
 
             {/* render list of normal messages */}
-            <section className="message-container-normal-messages">
+            <section className="message-container-normal">
               {/* if messages is not null or undefined, map over messages array and render each message as an article */}
               {messages &&
                 messages.map((message) => {
@@ -207,9 +207,9 @@ function Home() {
                     return (
                       <article
                         key={message._id}
-                        className="message-card-not-important"
+                        className="message-card-not-important card"
                       >
-                        <h3>{message.title}</h3>
+                        <h2>{message.title}</h2>
                         <p>{message.description}</p>
                         {user.role === "staff" && (
                           <div>
@@ -231,6 +231,7 @@ function Home() {
                   }
                 })}
             </section>
+            </div>
           </>
         )}
       </div>
