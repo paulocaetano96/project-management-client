@@ -160,7 +160,7 @@ function NavConsole() {
                   </Link>
                 </ListItemIcon>
                 <Link
-                  to="/calendar"
+                  to="/photos"
                   className="navconsole-link navconsole-link-text"
                 >
                   <ListItemText
@@ -220,7 +220,7 @@ function NavConsole() {
                   }}
                 >
                   <Link to="/" className="navconsole-link">
-                    <ExitToAppOutlinedIcon />
+                    <ExitToAppOutlinedIcon onClick={logout}/>
                   </Link>
                 </ListItemIcon>
                 <Link to="/" className="navconsole-link navconsole-link-text">

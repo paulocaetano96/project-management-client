@@ -85,8 +85,11 @@ function Login() {
                             </button>
 
                         </form>
+                        <p>Don't have an account?</p>
+                        <Link to="/signup">Signup</Link>
                         
                     </div>
+                    <div class="screen__content"></div>
                     <div class="screen__background">
                         <span class="screen__background__shape screen__background__shape4"></span>
                         <span class="screen__background__shape screen__background__shape3"></span>		
@@ -95,6 +98,8 @@ function Login() {
                     </div>		
                 </div>
             </div>
+
+            
 
         </section>
     )

@@ -1,7 +1,8 @@
 * {
 	box-sizing: border-box;
 	margin: 0;
-	padding: 0;	
+	padding: 0;
+	overflow:hidden
 }
 
 .login-page {
@@ -13,13 +14,14 @@
 	align-items: center;
 	justify-content: center;
 	min-height: 100vh;
+	padding-top: 64px;
 }
 
 .screen {		
 	background: linear-gradient(90deg, #bd5b43, #22314a);		
 	position: relative;	
-	height: 80vh;
-	width: auto;	
+	height: 60vh;
+	width: 70%;	
 /* 	box-shadow: 0px 0px 24px #bd5b43; */
 }
 
@@ -50,7 +52,7 @@
 	width: 520px;
 	background: #FFF;	
 	top: -50px;
-	right: 120px;	
+	right: 75%;	
 	border-radius: 0 72px 0 0;
 }
 
@@ -59,7 +61,7 @@
 	width: 220px;
 	background: #bd5b43;	
 	top: -172px;
-	right: 0;	
+	right: 30%;	
 	border-radius: 32px;
 }
 
@@ -68,7 +70,7 @@
 	width: 190px;
 	background: linear-gradient(270deg, #bd5b43, #22314a);
 	top: -24px;
-	right: 0;	
+	right: 30%;	
 	border-radius: 32px;
 }
 
@@ -77,14 +79,14 @@
 	width: 200px;
 	background: #22314a;	
 	top: 420px;
-	right: 50px;	
+	right: 50%;	
 	border-radius: 60px;
 }
 
 .login {
-	width: 320px;
+	width: 60vh;
 	padding: 30px;
-	padding-top: 156px;
+	padding-top: 10%;
 }
 
 .login__field {

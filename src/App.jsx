@@ -128,7 +128,7 @@ function App() {
 
   return (
     <div className="App">
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex"}}>
         <CssBaseline />
         <AppBar position="fixed" open={open}>
           <Toolbar>
@@ -149,11 +149,12 @@ function App() {
               <img
                 src="../public/images/teamcomms-logo.png"
                 alt="team comms logotype picture"
+                id="team-comms-logo"
               />
             </Typography>
           </Toolbar>
         </AppBar>
-        <Drawer variant="permanent" open={open}>
+        <Drawer variant="permanent" open={open} >
           <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === "rtl" ? (
@@ -164,18 +165,13 @@ function App() {
             </IconButton>
           </DrawerHeader>
           <Divider />
-          
 
-                <NavConsole />
-
-
-
+            <NavConsole />
 
           <Divider />
           
         </Drawer>
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <DrawerHeader />
+        <Box component="main" sx={{ flexGrow: 1, p: 3, padding: 0 }}>
 
           <Routes>
             <Route path="/" element={<Landing />} />

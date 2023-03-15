@@ -37,6 +37,62 @@ function Signup() {
 
 	return (
 		<section>
+
+<div class="container">
+                <div class="screen">
+                    <div class="screen__content">
+                        <form className='login' onSubmit={handleSubmit}>
+                            <div class="login__field">
+                                <i class="login__icon fas fa-user"></i>
+                                <input 
+                                    type="email" 
+                                    class="login__input" 
+                                    placeholder="Email" 
+                                    name="email" 
+                                    id="email" 
+                                    value={email} 
+                                    onChange={handleEmail}
+                                />
+                            </div>
+                            <div class="login__field">
+                                <i class="login__icon fas fa-lock"></i>
+                                <input 
+                                    type="password" 
+                                    class="login__input" 
+                                    placeholder="Password"
+                                    name="password"
+                                    id="password"
+                                    value={password} 
+                                    onChange={handlePassword}
+                                />
+                            </div>
+
+                            <button class="button login__submit" type="submit">
+                                <span class="button__text">Log In Now</span>
+                                <i class="button__icon fas fa-chevron-right"></i>
+                            </button>
+
+                        </form>
+                        
+                    </div>
+                    <div class="screen__background">
+                        <span class="screen__background__shape screen__background__shape4"></span>
+                        <span class="screen__background__shape screen__background__shape3"></span>		
+                        <span class="screen__background__shape screen__background__shape2"></span>
+                        <span class="screen__background__shape screen__background__shape1"></span>
+                    </div>		
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
 			<h1>Sign Up</h1>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor='name'>Name</label>

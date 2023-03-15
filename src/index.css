@@ -13,6 +13,8 @@ team-comms-secondary-color: #bd5b43 */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+    margin: 0;
+    padding: 0;
   }
   a {
     font-weight: 500;
@@ -23,6 +25,7 @@ team-comms-secondary-color: #bd5b43 */
   a:hover {
     color: #535BF2;
   }
+  
   body {
     margin: 0;
     display: flex;
@@ -30,6 +33,7 @@ team-comms-secondary-color: #bd5b43 */
     min-width: 320px;
     min-height: 100vh;
   }
+
   h1 {
     font-size: 3.2em;
     line-height: 1.1;
