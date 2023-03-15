@@ -2,6 +2,7 @@ import React, {useState, useRef, useEffect, useContext} from 'react'
 import moment from 'moment';
 
 import eventService from '../services/event.services';
+import '../styles/calendar.css'
 //-------------------------------------------------------------- Fullcalendar imports ⤵
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
@@ -10,6 +11,8 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 //-------------------------------------------------------------- MUI imports ⤵
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import Stack from '@mui/material/Stack';
 //-------------------------------------------------------------- Component imports ⤵
 import AddEvent from '../components/AddEvent';
 import EditEvent from '../components/EditEvent'
@@ -111,13 +114,17 @@ function Calendar() {
   //-------------------------------------------------------------- Return ⤵
 
   return (
-    <section>
+    <section className="calendar-box">
       { user && (
         <>
         {['top'].map((anchor) => (
             <React.Fragment key={anchor}>
             {user.role === "staff" && (
-              <Button onClick={toggleDrawer(anchor, true)}>Create event</Button>
+              <Stack direction="row" spacing={2}>
+                <Button variant="contained" endIcon={<AddCircleIcon />} onClick={toggleDrawer(anchor, true)} id="main-btn">
+                Create event
+                </Button>
+              </Stack>
             )}
               <Drawer
                   PaperProps={{ sx: {height: 350}, elevation: 20 }}
@@ -157,6 +164,7 @@ function Calendar() {
         ))}
 
           <FullCalendar
+            className="calendar-box"
             ref={calendarRef}
             events={events}
             plugins={[ dayGridPlugin,timeGridPlugin, listPlugin ]}

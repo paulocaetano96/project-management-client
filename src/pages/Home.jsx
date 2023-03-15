@@ -166,6 +166,7 @@ function Home() {
               {/* if messages is not null or undefined, map over messages array and render each message as an article */}
               {messages &&
                 messages.map((message) => {
+                  {/* console.log(messages) */}
                   if (!message.readBy.includes(user._id)) {
                     message.readBy.push(user._id)
                   }
@@ -191,6 +192,12 @@ function Home() {
                             </button>
                           </div>
                         )}
+                        <details>
+                          <summary>Read by {message.readBy.length} of {message.sentTo.length}</summary>
+                          {message.readBy.forEach((user) => {{<p>user</p>}})}
+                          <p>{message.readBy[0]}</p>
+{/*                           <p>Ready by: {message.readBy.map((user) => {<span>`${user.name}`</span>})}</p> */}
+                        </details>
                         <p>Read by {message.readBy.length} of {message.sentTo.length}</p>
                       </article>
                     );
