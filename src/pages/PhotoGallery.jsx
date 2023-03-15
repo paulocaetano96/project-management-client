@@ -16,6 +16,9 @@ import EditPhoto from "../components/EditPhoto";
 
 import photogalleryService from "../services/photogallery.services";
 
+//-------------------------------------------CSS imports
+import "../styles/navconsole.css";
+
 function PhotoGallery() {
   //Initializes a state variable called photos as an empty array and a function called setPhotos that can be used to update the photos state.
   const [photos, setPhotos] = useState([]);
