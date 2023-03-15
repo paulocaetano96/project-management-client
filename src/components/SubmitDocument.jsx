@@ -8,7 +8,7 @@ import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
-function SubmitDocument() {
+function SubmitDocument({onClose}) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [fileUrl, setFileUrl] = useState("");
@@ -27,6 +27,7 @@ function SubmitDocument() {
           group,
         }
       );
+      onClose();
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -55,7 +56,6 @@ function SubmitDocument() {
 
   return (
     <div>
-      <h1>DOCUMENTS OLE OLE OLE</h1>
 
       <div className="upload-document-container">
         <div className="mb-3">

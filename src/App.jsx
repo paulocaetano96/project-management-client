@@ -128,9 +128,9 @@ function App() {
 
   return (
     <div className="App">
-      <Box sx={{ display: "flex", overflow: "hidden"}}>
+      <Box sx={{ display: "flex", overflow: "hidden"}} >
         <CssBaseline />
-        <AppBar position="fixed" open={open}>
+        <AppBar position="fixed" open={open} id="bar-box">
           <Toolbar>
             <IconButton
               color="inherit"
@@ -154,7 +154,7 @@ function App() {
             </Typography>
           </Toolbar>
         </AppBar>
-        <Drawer variant="permanent" open={open}>
+        <Drawer variant="permanent" open={open} id="console-box">
           <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === "rtl" ? (
