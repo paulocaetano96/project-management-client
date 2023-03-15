@@ -14,6 +14,7 @@ import NavConsole from "../components/NavConsole";
 //-------------------------------------------CSS imports
 import "../styles/homepage.css";
 
+
 function Home() {
   //Initializes a state variable called messages as an empty array and a function called setMessages that can be used to update the messages state.
   const [messages, setMessages] = useState([]);
@@ -128,8 +129,8 @@ function Home() {
                 {/* button to open Drawer and show create message form */}
                 {user.role === "staff" && (
                   
-                  <Button onClick={toggleDrawer(anchor, true)}>
-                    Create Message
+                  <Button id="create-message-button" onClick={toggleDrawer(anchor, true)} >
+                    CREATE MESSAGE
                   </Button>
                 )}
                 {/* Drawer component containing either CreateMessage or EditMessage component */}
@@ -162,7 +163,7 @@ function Home() {
             {/* wait for the AuthContext, before rendering messages */}
             <section className="message-container-important">
               {/* render list of important messages */}
-
+                    <h4 className="important-messages-container-title-h4">Important messages</h4>
               {/* if messages is not null or undefined, map over messages array and render each message as an article */}
               {messages &&
                 messages.map((message) => {
@@ -175,17 +176,16 @@ function Home() {
                         key={message._id}
                         className="message-card-important card"
                       >
-                        <h2>{message.title}</h2>
+                        <h3 className="card-title">{message.title}</h3>
                         <p>{message.description}</p>
                         {user.role === "staff" && (
-                          <div>
+                          <div className="message-cardbuttons">
                             {/* button to open Drawer and show edit message form */}
-                            <button onClick={() => handleEditDrawer(message)}>
+                            <button className="editbutton" onClick={() => handleEditDrawer(message)}>
                               Edit Message
                             </button>
                             {/* button to delete message with given id */}
-                            <button
-                              onClick={() => handleDeleteMessage(message._id)}
+                            <button className="deletebutton" onClick={() => handleDeleteMessage(message._id)}
                             >
                               Delete Message
                             </button>
@@ -200,6 +200,7 @@ function Home() {
 
             {/* render list of normal messages */}
             <section className="message-container-normal">
+            <h4 className="normal-messages-container-title-h4">Reminders</h4>
               {/* if messages is not null or undefined, map over messages array and render each message as an article */}
               {messages &&
                 messages.map((message) => {
@@ -207,19 +208,18 @@ function Home() {
                     return (
                       <article
                         key={message._id}
-                        className="message-card-not-important card"
+                        className="message-card-normal card"
                       >
-                        <h2>{message.title}</h2>
+                        <h3 className="card-title">{message.title}</h3>
                         <p>{message.description}</p>
                         {user.role === "staff" && (
-                          <div>
+                          <div className="message-cardbuttons">
                             {/* button to open Drawer and show edit message form */}
-                            <button onClick={() => handleEditDrawer(message)}>
+                            <button className="editbutton" onClick={() => handleEditDrawer(message)}>
                               Edit Message
                             </button>
                             {/* button to delete message with given id */}
-                            <button
-                              onClick={() => handleDeleteMessage(message._id)}
+                            <button className="deletebutton" onClick={() => handleDeleteMessage(message._id)}
                             >
                               Delete Message
                             </button>

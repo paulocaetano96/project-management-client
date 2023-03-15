@@ -3,20 +3,17 @@
 }
 
 .homepage-container-total{
-    background-color: red;
+    background-color: rgb(244, 250, 255);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    height: 100vw;
-    width: 100vw;
-    
+    align-items: center; 
 }
 
 .message-list{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top:  10vh;
+    margin-top:  5vh;
     padding: 0;
 }
 
@@ -26,32 +23,138 @@
     
 }
 
-.message-container-normal{
-    margin-top: 5vh;
+.important-messages-container-title-h4{
+    color:black;
+    display: flex;
+    padding-left: 2vw;
+    padding-top: 1vh;
 }
 
-.message-container-important{
-    margin-top: 5vh;
+.normal-messages-container-title-h4{
+    color:black;
+    display: flex;
+    padding-left: 2vw;
+    padding-top: 1vh;
+}
+
+.message-container-important {
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-top: 4vh;
+    margin-right: 2vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.message-container-normal {
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-top: 4vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    box-sizing: border-box;
+    width: 30vw;
+    background: rgba(217, 217, 217, 0.58);
+    border: 1px solid white;
+    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(6px);
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    font-weight: bolder;
+    padding: 2rem;
+    font-weight: 400;
+    font-size: 0.9em;
+    text-align: justify;
+    line-height: 1.4em;
+    margin: 2vw;
+  }
+  
+  .card:hover {
+    border: 1px solid black;
+    transform: scale(1.05) translate(-0.8rem);
+  }
+  
+  .card:active {
+    transform: scale(0.95) rotateY(1.7deg);
+  }
+
+.card-title {
+    text-align: center;
+    padding-bottom: 2vh;
 }
 
 .message-card-important{
-    background-color: blueviolet;
+    background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    margin-top: 5vh;
-    margin-right: 5vw;
-    height: 20vh;  
+    box-shadow: 0.3rem 0.3rem rgba(230, 132, 19, 0.9), -0.3rem -0.3rem rgba(246, 10, 10, 0.9);  
 }
 
-.message-card-not-important{
-    background-color: green;
+ .message-card-normal{
+    background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 5vh;
-
+    justify-content: space-evenly;
 }
 
+.message-cardbuttons{
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
+.editbutton{
+    margin-bottom: 2vh;
+}
+.deletebutton{
+    margin-bottom: 2vh;
+}
+
+/* ----------------------------- */
+#create-message-button {
+
+    position: relative;
+  --b: 3px;   /* border thickness */
+  --s: .45em; /* size of the corner */
+  --color: #373B44;
+  
+  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+  color: var(--color);
+  --_p: var(--s);
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+  transition: .3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: .6em;
+  font-size: 16px;
+  border: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#create-message-button:hover,
+#create-message-button:focus-visible{
+  --_p: 0px;
+  outline-color: var(--color);
+  outline-offset: .05em;
+}
+
+#create-message-button:active {
+  background: var(--color);
+  color: #fff;
+}
