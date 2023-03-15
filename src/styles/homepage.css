@@ -1,0 +1,25 @@
+.body {
+    background-color: black;
+}
+
+.homepage-container{
+    background-color: red;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.message-card-important{
+    background-color: blueviolet;
+}
+
+.message-card-not-important{
+    background-color: green;
+}
+
+.BA {
+    display: flex;
+}
+
+.create-message{
+    display: block;
+}

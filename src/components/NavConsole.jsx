@@ -39,7 +39,7 @@ import EmojiPeopleOutlinedIcon from '@mui/icons-material/EmojiPeopleOutlined';
 import CottageOutlinedIcon from '@mui/icons-material/CottageOutlined';
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
 import CancelPresentationOutlinedIcon from '@mui/icons-material/CancelPresentationOutlined';
-
+import DocumentScannerOutlinedIcon from '@mui/icons-material/DocumentScannerOutlined';
 
 function NavConsole() {
   //authentication access
@@ -50,7 +50,8 @@ function NavConsole() {
       {loggedIn ? (
         <>
           <List>
-            <Link to="/profile"><ListItem disablePadding sx={{ display: "block" }}>
+
+          <Link to="/profile"><ListItem disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -81,6 +82,37 @@ function NavConsole() {
               </ListItemButton>
             </ListItem></Link>
 
+
+          <Link to="/home"><ListItem disablePadding sx={{ display: "block" }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Link to="/home" className="navconsole-link">
+                    <CottageOutlinedIcon />
+                  </Link>
+                </ListItemIcon>
+                <Link
+                  to="/home"
+                  className="navconsole-link navconsole-link-text"
+                >
+                  <ListItemText
+                    primary="Home"
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </Link>
+              </ListItemButton>
+            </ListItem></Link>
 
             <Link to="/calendar"><ListItem disablePadding sx={{ display: "block" }}>
               <ListItemButton
@@ -122,7 +154,7 @@ function NavConsole() {
                   px: 2.5,
                 }}
               >
-                <ListItemIcon
+                <DocumentScannerOutlinedIcon
                   sx={{
                     minWidth: 0,
                     mr: open ? 3 : "auto",
@@ -132,7 +164,7 @@ function NavConsole() {
                   <Link to="/documents" className="navconsole-link">
                     <MailIcon />
                   </Link>
-                </ListItemIcon>
+                </DocumentScannerOutlinedIcon>
                 <Link
                   to="/documents"
                   className="navconsole-link navconsole-link-text"

@@ -11,7 +11,8 @@ import CreateMessage from "../components/CreateMessage";
 import EditMessage from "../components/EditMessage";
 import NavConsole from "../components/NavConsole";
 
-import "../App.css";
+//-------------------------------------------CSS imports
+import "../styles/homepage.css";
 
 function Home() {
   //Initializes a state variable called messages as an empty array and a function called setMessages that can be used to update the messages state.
@@ -31,16 +32,16 @@ function Home() {
   const loadMessages = async () => {
     try {
       const response = await messageService.getMessages();
-      const filteredMessages = response.data.filter(function(message) {
-        return message.club === user.club
-      })
+      const filteredMessages = response.data.filter(function (message) {
+        return message.club === user.club;
+      });
       setMessages(filteredMessages);
-      const importantMessages = filteredMessages.filter(function(message) {
-        return message.important === true
-      })
-      const normalMessages = filteredMessages.filter(function(message) {
-        return message.important === false
-      })
+      const importantMessages = filteredMessages.filter(function (message) {
+        return message.important === true;
+      });
+      const normalMessages = filteredMessages.filter(function (message) {
+        return message.important === false;
+      });
     } catch (error) {
       console.log(error);
     }
@@ -61,25 +62,25 @@ function Home() {
       );
       setMessages(updatedMessages);
       setSelectedMessage(null);
-      console.log(selectedMessage)
+      console.log(selectedMessage);
       setState({ ...state, top: false });
     } catch (error) {
       console.log(error);
     }
   };
 
-// async function to handle deleting a message
+  // async function to handle deleting a message
   const handleDeleteMessage = async (id) => {
     try {
-          // delete message with given id using messageService
+      // delete message with given id using messageService
       const response = await messageService.deleteMessage(id);
-          // log response data to console
+      // log response data to console
       console.log(response.data);
-          // filter out deleted message from messages state and update messages state with remaining messages
+      // filter out deleted message from messages state and update messages state with remaining messages
       const filteredMessages = messages.filter((m) => m._id !== id);
       setMessages(filteredMessages);
     } catch (error) {
-          // log any errors to console
+      // log any errors to console
 
       console.log(error);
     }
@@ -114,107 +115,121 @@ function Home() {
     setState({ ...state, top: true });
   };
 
-
-// render section containing a list of messages and a create/edit message form using Drawer
+  // render section containing a list of messages and a create/edit message form using Drawer
   return (
-    <section>
-    {user && (
-      <>
-      <h1>Messages</h1>
-      {/* render Drawer component with anchor "top" for creating/editing messages */}
-      {["top"].map((anchor) => (
-        <React.Fragment key={anchor}>
-          {/* button to open Drawer and show create message form */}
-          {user.role === "staff" && (
-            <Button onClick={toggleDrawer(anchor, true)}>Create Message</Button>
-          )}
-          {/* Drawer component containing either CreateMessage or EditMessage component */}
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
-            {selectedMessage ? (
-            // render EditMessage component with selectedMessage props
-              <EditMessage
-                message={selectedMessage}
-                onUpdate={(handleUpdateMessage)}
-                onDelete={handleDeleteMessage}
-                onClose={() => {
-                  setSelectedMessage(null);
-                  setState({ ...state, top: false });
-                }}
-              />
-            ) : (
-              // render CreateMessage component
-              <CreateMessage
-                onClose={() => setState({ ...state, [anchor]: false })}
-              />
-            )}
-          </Drawer>
-        </React.Fragment>
-      ))}
+    <div className="homepage-container">
+      <div className="BA">
 
-      {/* wait for the AuthContext, before rendering messages */}
+        {user && (
+          <>
+            {/* render Drawer component with anchor "top" for creating/editing messages */}
+            {["top"].map((anchor) => (
+              <React.Fragment key={anchor}>
+                {/* button to open Drawer and show create message form */}
+                {user.role === "staff" && (
+                  
+                  <Button onClick={toggleDrawer(anchor, true)}>
+                    Create Message
+                  </Button>
+                )}
+                {/* Drawer component containing either CreateMessage or EditMessage component */}
+                <Drawer
+                  anchor={anchor}
+                  open={state[anchor]}
+                  onClose={toggleDrawer(anchor, false)}
+                >
+                  {selectedMessage ? (
+                    // render EditMessage component with selectedMessage props
+                    <EditMessage
+                      message={selectedMessage}
+                      onUpdate={handleUpdateMessage}
+                      onDelete={handleDeleteMessage}
+                      onClose={() => {
+                        setSelectedMessage(null);
+                        setState({ ...state, top: false });
+                      }}
+                    />
+                  ) : (
+                    // render CreateMessage component
+                    <CreateMessage
+                      onClose={() => setState({ ...state, [anchor]: false })}
+                    />
+                  )}
+                </Drawer>
+              </React.Fragment>
+            ))}
 
-        {/* render list of important messages */}
-        <div className="message-container">
-            {/* if messages is not null or undefined, map over messages array and render each message as an article */}
-            {messages &&
-              messages.map((message) => {
-                if (message.important === true) {
-                  return (
-                  <article key={message._id}>
-                    <h3>{message.title}</h3>
-                    <p>{message.description}</p>
-                    {user.role === "staff" && (
-                      <div>
-                    {/* button to open Drawer and show edit message form */}
-                      <button onClick={() => handleEditDrawer(message)}>
-                        Edit Message
-                      </button>
-                      {/* button to delete message with given id */}
-                      <button onClick={() => handleDeleteMessage(message._id)}>
-                        Delete Message
-                      </button>
-                    </div>
-                    )}
-                  </article>
-                );
-                }
-            })}
-        </div>
+            {/* wait for the AuthContext, before rendering messages */}
+            <section className="message-container">
+              {/* render list of important messages */}
 
-        {/* render list of normal messages */}
-        <div className="message-container">
-            {/* if messages is not null or undefined, map over messages array and render each message as an article */}
-            {messages &&
-              messages.map((message) => {
-                if (message.important === false) {
-                  return (
-                  <article key={message._id}>
-                    <h3>{message.title}</h3>
-                    <p>{message.description}</p>
-                    {user.role === "staff" && (
-                      <div>
-                    {/* button to open Drawer and show edit message form */}
-                      <button onClick={() => handleEditDrawer(message)}>
-                        Edit Message
-                      </button>
-                      {/* button to delete message with given id */}
-                      <button onClick={() => handleDeleteMessage(message._id)}>
-                        Delete Message
-                      </button>
-                    </div>
-                    )}
-                  </article>
-                );
-                }
-            })}
-        </div>
-      </>
-    )}
-    </section>
+              {/* if messages is not null or undefined, map over messages array and render each message as an article */}
+              {messages &&
+                messages.map((message) => {
+                  if (message.important === true) {
+                    return (
+                      <article
+                        key={message._id}
+                        className="message-card-important"
+                      >
+                        <h3>{message.title}</h3>
+                        <p>{message.description}</p>
+                        {user.role === "staff" && (
+                          <div>
+                            {/* button to open Drawer and show edit message form */}
+                            <button onClick={() => handleEditDrawer(message)}>
+                              Edit Message
+                            </button>
+                            {/* button to delete message with given id */}
+                            <button
+                              onClick={() => handleDeleteMessage(message._id)}
+                            >
+                              Delete Message
+                            </button>
+                          </div>
+                        )}
+                      </article>
+                    );
+                  }
+                })}
+            </section>
+
+            {/* render list of normal messages */}
+            <section className="message-container-normal-messages">
+              {/* if messages is not null or undefined, map over messages array and render each message as an article */}
+              {messages &&
+                messages.map((message) => {
+                  if (message.important === false) {
+                    return (
+                      <article
+                        key={message._id}
+                        className="message-card-not-important"
+                      >
+                        <h3>{message.title}</h3>
+                        <p>{message.description}</p>
+                        {user.role === "staff" && (
+                          <div>
+                            {/* button to open Drawer and show edit message form */}
+                            <button onClick={() => handleEditDrawer(message)}>
+                              Edit Message
+                            </button>
+                            {/* button to delete message with given id */}
+                            <button
+                              onClick={() => handleDeleteMessage(message._id)}
+                            >
+                              Delete Message
+                            </button>
+                          </div>
+                        )}
+                      </article>
+                    );
+                  }
+                })}
+            </section>
+          </>
+        )}
+      </div>
+    </div>
   );
 }
 
