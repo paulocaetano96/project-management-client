@@ -4,20 +4,32 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import messageService from "../services/message.services";
 import { AuthContext } from "../context/auth.context";
+import Checkbox from '@mui/material/Checkbox';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 //Defining a functional component CreateMessage and accepting props as a parameter.
 function CreateMessage(props) {
     // Initializing the state of the component to manage user input
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [expirationDays, setExpirationDays] = useState("");
+  const [important, setImportant] = useState(false)
   const { user } = useContext(AuthContext);
+
+    const handleImportant = (e) => {
+      console.log(e)
+      setImportant(e.target.checked);
+    };
 
   // Function that handles the form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const club = user.club;
     // Assembling the data object to be sent to the server
-    const data = { title, description, club };
+    const data = { title, description, club, important, expirationDays };
     try {
         // Making an API call to create a new message using messageService
       const response = await messageService.createMessage(data);
@@ -57,6 +69,26 @@ function CreateMessage(props) {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
+        <TextField
+          label="Expires in (days)"
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          multiline
+          maxRows={1}
+          value={expirationDays}
+          onChange={(e) => setExpirationDays(e.target.value)}
+        />
+        <FormGroup>
+          <FormControlLabel control={
+            <Checkbox
+              checked={important === true}
+              onChange={handleImportant}
+              inputProps={{ 'aria-label': 'controlled' }}
+              icon={<BookmarkBorderIcon />}
+              checkedIcon={<BookmarkIcon />}
+            />} label="set as important" />
+        </FormGroup>
         <Button type="submit" variant="contained">
           Create Message
         </Button>
