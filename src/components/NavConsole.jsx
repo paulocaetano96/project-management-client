@@ -36,6 +36,9 @@ import CollectionsOutlinedIcon from "@mui/icons-material/CollectionsOutlined";
 import ImportContactsOutlinedIcon from '@mui/icons-material/ImportContactsOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import EmojiPeopleOutlinedIcon from '@mui/icons-material/EmojiPeopleOutlined';
+import CottageOutlinedIcon from '@mui/icons-material/CottageOutlined';
+import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
+import CancelPresentationOutlinedIcon from '@mui/icons-material/CancelPresentationOutlined';
 
 
 function NavConsole() {
@@ -62,12 +65,12 @@ function NavConsole() {
                     justifyContent: "center",
                   }}
                 >
-                  <Link to="/team-card" className="navconsole-link">
+                  <Link to="/profile" className="navconsole-link">
                     <EmojiPeopleOutlinedIcon />
                   </Link>
                 </ListItemIcon>
                 <Link
-                  to="/team-card"
+                  to="/profile"
                   className="navconsole-link navconsole-link-text"
                 >
                   <ListItemText
@@ -220,7 +223,7 @@ function NavConsole() {
                   }}
                 >
                   <Link to="/" className="navconsole-link">
-                    <ExitToAppOutlinedIcon onClick={logout}/>
+                    <CancelPresentationOutlinedIcon onClick={logout}/>
                   </Link>
                 </ListItemIcon>
                 <Link to="/" className="navconsole-link navconsole-link-text">
@@ -255,7 +258,7 @@ function NavConsole() {
                     }}
                   >
                     <Link to="/" className="navconsole-link">
-                      <CollectionsOutlinedIcon />
+                      <CottageOutlinedIcon />
                     </Link>
                   </ListItemIcon>
                   <Link to="/" className="navconsole-link navconsole-link-text">
@@ -285,7 +288,7 @@ function NavConsole() {
                     }}
                   >
                     <Link to="/login" className="navconsole-link">
-                      <CollectionsOutlinedIcon />
+                      <ExitToAppOutlinedIcon />
                     </Link>
                   </ListItemIcon>
                   <Link
@@ -318,7 +321,7 @@ function NavConsole() {
                     }}
                   >
                     <Link to="/signup" className="navconsole-link">
-                      <CollectionsOutlinedIcon />
+                      <GroupAddOutlinedIcon />
                     </Link>
                   </ListItemIcon>
                   <Link

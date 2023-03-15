@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import { Link } from "react-router-dom";
+
+import axios from "axios";
+
+import fileDownload from "js-file-download";
 
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -101,7 +106,15 @@ function PhotoGallery() {
     setState({ ...state, top: true });
   };
 
-  
+  const handleDownload = (url, filename) => {
+    axios
+      .get(url, {
+        responseType: "blob",
+      })
+      .then((res) => {
+        fileDownload(res.data, filename);
+      });
+  };
 
   return (
     <div>
@@ -144,7 +157,20 @@ function PhotoGallery() {
           photos.map((photo) => {
             return (
               <article key={photo._id}>
+
+              
+              <Link
+                  onClick={() =>
+                    handleDownload(
+                      photo.fileUrl,
+                      `${photo.title}${photo.fileUrl.slice(-4)}`
+                    )
+                  }
+                >
                 <img src={photo.fileUrl} alt={photo.title} />
+                </Link>
+
+
                 <h3>{photo.title}</h3>
                 <p>{photo.description}</p>
                 <p>{photo.gallery}</p>

@@ -1,5 +1,5 @@
-.navconsole {
-
+/* .navconsole {
+    position: fixed;
     top: 0;
     left: 0;
     width: 8vw;
@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
   }
 
 .navconsole * {
@@ -27,11 +27,4 @@
     color: #000;
     font-weight: bold;
   }
-
-  .navconsole-link {
-    align-items: center;
-  }
-
-  .navconsole-link-text {
-    padding-left: 30px;
-  }
+   */
