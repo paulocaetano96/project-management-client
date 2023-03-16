@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 
+import clubService from "../services/club.services";
+
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
@@ -16,10 +18,20 @@ function SubmitDocument({onClose}) {
   const [description, setDescription] = useState("");
   const [fileUrl, setFileUrl] = useState("");
   const [group, setGroup] = useState("");
+  const [club, setClub] = useState(null);
+  const { user } = useContext(AuthContext);
+
+  const getClub = async () => {
+    try {
+      const response = await clubService.getClub(user.club);
+      setClub(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/documents`,
@@ -28,10 +40,11 @@ function SubmitDocument({onClose}) {
           description,
           fileUrl,
           group,
+          club: club._id,
         }
       );
       onClose();
-      console.log(response.data);
+/*       console.log(response.data); */
     } catch (error) {
       console.log(error);
     }
@@ -57,8 +70,13 @@ function SubmitDocument({onClose}) {
     }
   };
 
-  return (
+  useEffect(() => {
+    getClub();
+  }, []);
 
+  return (
+    <section>
+        {club && (
           <form onSubmit={handleSubmit}>
             <label htmlFor="fileUrl">Insert file</label>
             <input
@@ -68,7 +86,6 @@ function SubmitDocument({onClose}) {
               onChange={handleFileUpload}
               className="form-control"
               aria-label="file example"
-              required
             />
 
             <label htmlFor="title">Title</label>
@@ -78,6 +95,7 @@ function SubmitDocument({onClose}) {
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              required
             />
 
             <label htmlFor="description">Description</label>
@@ -102,8 +120,8 @@ function SubmitDocument({onClose}) {
               Submit Document
             </button>
           </form>
-          
-    
+        )}
+      </section>
   );
 }
 

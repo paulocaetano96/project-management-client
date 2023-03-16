@@ -97,6 +97,7 @@ function Signup() {
 									id='name'
 									value={name}
 									onChange={handleName}
+									required
 								/>
 							</div>
 							<div className='authenticate__field'>
@@ -108,6 +109,7 @@ function Signup() {
 									id='email'
 									value={email}
 									onChange={handleEmail}
+									required
 								/>
 							</div>
 							<div className='authenticate__field'>
@@ -119,6 +121,7 @@ function Signup() {
 									id='password'
 									value={password}
 									onChange={handlePassword}
+									required
 								/>
 							</div>
 							<div className='authenticate__field'>
@@ -130,6 +133,7 @@ function Signup() {
 									id='club'
 									value={club}
 									onChange={handleClub}
+									required
 								/>
 							</div>
 
@@ -201,6 +205,7 @@ function Signup() {
 									id='clubName'
 									value={clubName}
 									onChange={handleClubName}
+									required
 								/>
 							</div>
 							<div className='authenticate__field'>
@@ -259,12 +264,18 @@ function Signup() {
 						</form>
 					</div>
 					<div id="club-key">
-						{createdClub && (
+{/* 						{createdClub && (
 							<p >
 								Your club key is{' '}
 								<span>{`${createdClub.data._id}`}</span>
 							</p>
-						)}
+							<>
+							<details>
+								<summary>Your club key is:</summary>
+								<p>{`${createdClub.data._id}`}</p>
+							</details>
+							</>
+						)} */}
 					</div>
 
 					<div className='screen__background'>

@@ -78,6 +78,7 @@ function CreatePhoto() {
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              required
             />
 
             <label htmlFor="description">Description</label>

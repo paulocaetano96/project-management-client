@@ -32,6 +32,7 @@ function AddEvent({ onEventAdded }) {
 					id='title'
 					value={title}
 					onChange={handleTitle}
+					required
 				/>
                 
                     <label htmlFor="start">Start Date</label>

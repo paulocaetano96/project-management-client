@@ -64,6 +64,7 @@ function Login() {
                                     id="email" 
                                     value={email} 
                                     onChange={handleEmail}
+                                    required
                                 />
                             </div>
                             <div className="authenticate__field">
@@ -76,6 +77,7 @@ function Login() {
                                     id="password"
                                     value={password} 
                                     onChange={handlePassword}
+                                    required
                                 />
                             </div>
 

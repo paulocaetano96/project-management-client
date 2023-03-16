@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import Box from "@mui/material/Box";
+
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -13,18 +13,17 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import messageService from "../services/message.services";
 import CreateMessage from "../components/CreateMessage";
 import EditMessage from "../components/EditMessage";
-import NavConsole from "../components/NavConsole";
+
 
 //-------------------------------------------CSS imports
 import "../styles/homepage.css";
 import "../styles/createAndEditDrawers.css";
 
-
 function Home() {
   //Initializes a state variable called messages as an empty array and a function called setMessages that can be used to update the messages state.
   const [messages, setMessages] = useState([]);
   //Initializes two variables loggedIn and user from the AuthContext using the useContext hook.
-  const { loggedIn, user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   //Initializes a state variable called selectedMessage as null and a function called setSelectedMessage that can be used to update the selectedMessage state.
   const [selectedMessage, setSelectedMessage] = useState(null);
 
@@ -43,7 +42,7 @@ function Home() {
         return message.club === user.club;
       });
       setMessages(filteredMessages);
-      console.log(messages)
+
       const importantMessages = filteredMessages.filter(function (message) {
         return message.important === true;
       });
@@ -70,7 +69,6 @@ function Home() {
       );
       setMessages(updatedMessages);
       setSelectedMessage(null);
-      console.log(selectedMessage);
       setState({ ...state, top: false });
     } catch (error) {
       console.log(error);

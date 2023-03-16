@@ -37,6 +37,7 @@ function EditEvent(props) {
             id="title"
             value={title}
             onChange={handleTitle}
+            required
           />
           <div>
             <label htmlFor="start">Start Date</label>

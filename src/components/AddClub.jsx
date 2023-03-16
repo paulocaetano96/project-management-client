@@ -61,6 +61,7 @@ function AddClub() {
 						id='clubName'
 						value={name}
 						onChange={handleName}
+						required
 					/>
 				</div>
 				<div className='authenticate__field'>

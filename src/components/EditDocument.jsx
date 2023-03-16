@@ -50,14 +50,7 @@ function EditDocument(props) {
   return (
     <div className="full-form-container">
       <div>
-{/*         Rendering a form with 4 TextField components for title, description
-        and group, respectively. The TextField components are populated with the
-        corresponding state variables and are set to call handleTitle and
-        handleDescription functions, respectively, when their values change. A
-        Button component is also rendered with the label "Edit Document" and set
-        to submit the form on click, calling the handleSubmit function. The form
-        is wrapped in a form element with the onSubmit attribute set to call
-        handleSubmit function. Finally, the entire form is returned by the */}
+
         <h2>Edit Document</h2>
         <form onSubmit={handleSubmit}>
           <TextField
