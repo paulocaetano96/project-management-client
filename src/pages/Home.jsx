@@ -38,10 +38,12 @@ function Home() {
   const loadMessages = async () => {
     try {
       const response = await messageService.getMessages();
+      
       const filteredMessages = response.data.filter(function (message) {
         return message.club === user.club;
       });
       setMessages(filteredMessages);
+      console.log(messages)
       const importantMessages = filteredMessages.filter(function (message) {
         return message.important === true;
       });
@@ -167,100 +169,98 @@ function Home() {
                 </Drawer>
               </React.Fragment>
             ))}
-                    <div class="messages-container-area">
-            {/* wait for the AuthContext, before rendering messages */}
-            <section className="message-container-important">
-              {/* render list of important messages */}
-                    
-              {/* if messages is not null or undefined, map over messages array and render each message as an article */}
-              {messages &&
-                messages.map((message) => {
-                  {/* console.log(messages) */}
-                  if (!message.readBy.includes(user._id)) {
-                    message.readBy.push(user._id)
-                  }
-                  if (message.important === true) {
-                    return (
-                      <>
-                      <h4 className="important-messages-container-title-h4">Important messages</h4>
-                      <article
-                        key={message._id}
-                        className="message-card-important card"
-                      >
-                        <h3 className="card-title">{message.title}</h3>
-                        <p className="card-message-text">{message.description}</p>
-                        {user.role === "staff" && (
-                          <div className="message-card-buttons">
 
-                            {/* button to open Drawer and show edit message form */}
-                            <Stack direction="row" spacing={2}>
-                              <Button variant="outlined" endIcon={<EditIcon />} onClick={() => handleEditDrawer(message)} id="edit-message-btn">
-                              Edit
-                              </Button>
-                            </Stack>
-                            {/* button to delete message with given id */}
-                            <Stack direction="row" spacing={2}>
-                              <Button variant="outlined" endIcon={<DeleteIcon />} onClick={() => handleDeleteMessage(message._id)} id="delete-message-btn">
-                              Delete
-                              </Button>
-                            </Stack>
+            <div className="message-container-area">
+              {/* wait for the AuthContext, before rendering messages */}
+              <section className="message-container">
+                {/* render list of important messages */}
+                {messages && (<o className="message-container-title">IMPORTANT MESSAGES</o>)}
+                {/* if messages is not null or undefined, map over messages array and render each message as an article */}
+                {messages &&
+                  messages.map((message) => {
+                    {/* console.log(messages) */}
+                    if (!message.readBy.includes(user._id)) {
+                      message.readBy.push(user._id)
+                    }
+                    if (message.important === true) {
+                      return (
 
-                          </div>
-                        )}
-                        <details>
-                          <summary>Read by {message.readBy.length} of {message.sentTo.length}</summary>
-                          {message.readBy.forEach((user) => {{<p>user</p>}})}
-                          <p>{message.readBy[0]}</p>
-                          <p>Ready by: {message.readBy.map((user) => {<span>`${user.name}`</span>})}</p>
-                        </details>
-{/*                         <p>Read by {message.readBy.length} of {message.sentTo.length}</p> */}
-                      </article>
-                      </>
-                    );
-                  }
-                })}
-            </section>
+                        <article
+                          key={message._id}
+                          className="message-card-important card"
+                        >
+                          <h3 className="card-title">{message.title}</h3>
+                          <p className="card-message-text">{message.description}</p>
+                          {user.role === "staff" && (
+                            <div className="message-card-buttons">
 
-            {/* render list of normal messages */}
-            <section className="message-container-normal">
-            
-              {/* if messages is not null or undefined, map over messages array and render each message as an article */}
-              {messages &&
-                messages.map((message) => {
-                  if (message.important === false) {
-                    return (
-                      <>
-                      <h4 className="normal-messages-container-title-h4">Reminders</h4>
+                              {/* button to open Drawer and show edit message form */}
+                              <Stack direction="row" spacing={2}>
+                                <Button variant="outlined" endIcon={<EditIcon />} onClick={() => handleEditDrawer(message)} id="edit-message-btn">
+                                Edit
+                                </Button>
+                              </Stack>
+                              {/* button to delete message with given id */}
+                              <Stack direction="row" spacing={2}>
+                                <Button variant="outlined" endIcon={<DeleteIcon />} onClick={() => handleDeleteMessage(message._id)} id="delete-message-btn">
+                                Delete
+                                </Button>
+                              </Stack>
 
-                      <article
-                        key={message._id}
-                        className="message-card-normal card"
-                      >
-                        <h3 className="card-title">{message.title}</h3>
-                        <p className="card-message-text">{message.description}</p>
-                        {user.role === "staff" && (
-                          <div className="message-card-buttons">
-                            {/* button to open Drawer and show edit message form */}
-                            <Stack direction="row" spacing={2}>
-                              <Button variant="outlined" endIcon={<EditIcon />} onClick={() => handleEditDrawer(message)} id="edit-message-btn">
-                              Edit
-                              </Button>
-                            </Stack>
-                            {/* button to delete message with given id */}
-                            <Stack direction="row" spacing={2}>
-                              <Button variant="outlined" endIcon={<DeleteIcon />} onClick={() => handleDeleteMessage(message._id)} id="delete-message-btn">
-                              Delete
-                              </Button>
-                            </Stack>
-                          </div>
-                        )}
-                        <p>Read by {message.readBy.length} of {message.sentTo.length}</p>
-                      </article>
-                      </>
-                    );
-                  }
-                })}
-            </section>
+                            </div>
+                          )}
+                          <details>
+                            <summary>Read by {message.readBy.length} of {message.sentTo.length}</summary>
+                            <p>Ready by:</p>
+                          </details>
+                        {/*<p>Read by {message.readBy.length} of {message.sentTo.length}</p> */}
+                        </article>
+                      );
+                    }
+                  })}
+              </section>
+
+              {/* render list of normal messages */}
+              <section className="message-container" id='normal-message-container'>
+                {messages && (<p className="message-container-title">REMINDERS</p>)}
+                {/* if messages is not null or undefined, map over messages array and render each message as an article */}
+                {messages &&
+                  messages.map((message) => {
+                    if (message.important === false) {
+                      return (
+                        <article
+                          key={message._id}
+                          className="message-card-normal card"
+                        >
+                          <h3 className="card-title">{message.title}</h3>
+                          <p className="card-message-text">{message.description}</p>
+                          {user.role === "staff" && (
+                            <div className="message-card-buttons">
+                              {/* button to open Drawer and show edit message form */}
+                              <Stack direction="row" spacing={2}>
+                                <Button variant="outlined" endIcon={<EditIcon />} onClick={() => handleEditDrawer(message)} id="edit-message-btn">
+                                Edit
+                                </Button>
+                              </Stack>
+                              {/* button to delete message with given id */}
+                              <Stack direction="row" spacing={2}>
+                                <Button variant="outlined" endIcon={<DeleteIcon />} onClick={() => handleDeleteMessage(message._id)} id="delete-message-btn">
+                                Delete
+                                </Button>
+                              </Stack>
+                            </div>
+                          )}
+                          <details>
+                            <summary>Read by {message.readBy.length} of {message.sentTo.length}</summary>
+                            <p>Ready by:</p>
+                          </details>
+                        </article>
+
+                      );
+                    }
+                  })}
+              </section>
+
             </div>
           </>
         )}

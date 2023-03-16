@@ -2,11 +2,11 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-
 }
 
 .authenticate-page {
-	background-color: #22314a;		
+	background-color: #22314a;
+	overflow-y: hidden;
 }
 
 .container {

@@ -29,6 +29,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import CollectionsIcon from "@mui/icons-material/Collections";
@@ -48,8 +50,8 @@ function NavConsole() {
   return (
     <nav>
       {loggedIn ? (
-        <>
-          <List>
+        <section className='navconsole-box'>
+          <List >
 
           <Link to="/profile"><ListItem disablePadding sx={{ display: "block" }}>
               <ListItemButton
@@ -96,7 +98,7 @@ function NavConsole() {
                   }}
                 >
                   
-                    <CottageOutlinedIcon />
+                    <MailOutlineIcon />
 
                 </ListItemIcon>
                
@@ -145,7 +147,7 @@ function NavConsole() {
                   px: 2.5,
                 }}
               >
-                <DocumentScannerOutlinedIcon
+                <ListItemIcon
                   sx={{
                     minWidth: 0,
                     mr: open ? 3 : "auto",
@@ -153,9 +155,9 @@ function NavConsole() {
                   }}
                 >
                   
-                    <MailIcon />
+                    <DocumentScannerIcon />
 
-                </DocumentScannerOutlinedIcon>
+                </ListItemIcon>
                 
                   <ListItemText
                     primary={"Documents"}
@@ -256,10 +258,10 @@ function NavConsole() {
             </ListItem>
             </Link>
           </List>
-        </>
+        </section>
       ) : (
         //-> OR, if the user is NOT logged in, we show on the navbar, the Signup and Login links
-        <>
+        <section className='navconsole-box'>
           <List>
             <Link to="/">
               <ListItem disablePadding sx={{ display: "block" }}>
@@ -351,7 +353,7 @@ function NavConsole() {
               </ListItem>
             </Link>
           </List>
-        </>
+        </section>
       )}
     </nav>
   );

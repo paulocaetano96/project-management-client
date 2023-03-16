@@ -1,4 +1,11 @@
 /* our website's logo on the navbar */
+
+
+
+.navconsole-box > *{
+    overflow: hidden;
+}
+
 #team-comms-navbarlogo {
     height: 1rem;
 }

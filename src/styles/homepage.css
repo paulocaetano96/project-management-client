@@ -14,33 +14,38 @@
     padding: 0;
 }
 
-@media screen and (max-width: 992px) {
+/* @media screen and (max-width: 992px) {
     .message-list {
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
-
     }
   }
   
-  /* On screens that are 600px or less, set the background color to olive */
+
   @media screen and (max-width: 600px) {
     .message-list {
       background-color: olive;
     }
-}
+} */
 
-.messages-container-area{
+.message-container-area{
     display: flex;
     flex-direction: row;
-    
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.important-messages-container-title-h4{
-    color:black;
+.message-container-title{
+    color:white;
+    font-size: 0.8rem;
+    font-style: italic;
     display: flex;
     padding-left: 2vw;
     padding-top: 1vh;
+    letter-spacing: 0.2rem;
+    font-weight: 300;
+    align-self: start;
 }
 
 .card-title {
@@ -53,35 +58,41 @@
     font-weight: 400;
 }
 
-.normal-messages-container-title-h4{
-    color:black;
-    display: flex;
-    padding-left: 2vw;
-    padding-top: 1vh;
-}
-
-.message-container-important {
+.message-container {
     /* border: 1px solid black; */
     background-color: rgb(34, 49, 74,0.9);
     border-radius: 20px;
-    margin-top: 4vh;
-    margin-right: 2vw;
+    margin: 4vh 2vw;
     display: flex;
     flex-direction: column;
+    min-width: 300px;
+    width: 40vw;
+    align-items: center;
 }
 
-.message-container-normal {
-    /* border: 1px solid black; */
+#normal-message-container {
+    background-color: rgb(34, 49, 74,0.3);
+}
+
+/* .message-container-normal {
     background-color: rgb(34, 49, 74,0.3);
     border-radius: 20px;
-    margin-top: 4vh;
+    margin: 4vh 2vw;
     display: flex;
     flex-direction: column;
-}
+    min-width: 300px;
+    width: 40vw;
+} */
+
+@media screen and (max-width: 772px) {
+    .message-container {
+      width: 80vw;
+    }
+  }
 
 .card {
     box-sizing: border-box;
-    width: 30vw;
+    width: 90%;
     background: rgba(217, 217, 217, 0.58);
     border: 1px solid white;
     box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
@@ -111,9 +122,6 @@
   .card:active {
     transform: scale(0.95) rotateY(1.7deg);
   }
-
-
-
 
 .message-card-important{
     background-color: rgb(255, 255, 255);
