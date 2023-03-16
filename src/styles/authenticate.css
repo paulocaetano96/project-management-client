@@ -211,6 +211,10 @@
 	margin-bottom: 30px;
 }
 
+.input-text{
+	color: white
+}
+
 /* #add-club-component {
 	display: flex;
 	justify-content: center;
@@ -227,13 +231,25 @@
 	flex-direction: column;
 } */
 
-#club-key {
-	width: 100%;
-	color: white;
-	position: relative;
-	text-align: center;
+.club-key-area {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100vw;
 	z-index:999;
+	
 }
+
+.club-key-text {
+	color:aliceblue;
+	background-color: rgb(34, 49, 74, 0.8);
+	border: 1px solid black;
+	padding: 2vh 2vw;
+	border-radius: 26px;
+	margin-bottom: 3vh;
+	margin-top: 2vh;
+}
+
 
 
 /* .social-login {	
