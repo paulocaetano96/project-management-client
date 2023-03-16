@@ -1,4 +1,4 @@
 /* our website's logo on the navbar */
-img {
-    height: 2rem;
+#team-comms-navbarlogo {
+    height: 1rem;
 }

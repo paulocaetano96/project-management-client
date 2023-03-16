@@ -3,6 +3,9 @@ import Datetime from 'react-datetime';
 
 import { AuthContext } from "../context/auth.context";
 
+// ---------------------------------------------------- CSS IMPORTS
+import "../styles/createAndEditDrawers.css";
+
 function AddEvent({ onEventAdded }) {
 	const [title, setTitle] = useState('');
 	const [start, setStart] = useState(new Date());
@@ -18,8 +21,9 @@ function AddEvent({ onEventAdded }) {
     };
 
 	return (
-		<section>
-			<form onSubmit={handleSubmit}>
+		<section className="full-form-calendar-container">
+			<form onSubmit={handleSubmit} className="form-calendar">
+			<h2>Add Event</h2>
 				<label htmlFor='title'>Title</label>
 				<input
 					placeholder='Title'
@@ -29,14 +33,13 @@ function AddEvent({ onEventAdded }) {
 					value={title}
 					onChange={handleTitle}
 				/>
-                <div>
+                
                     <label htmlFor="start">Start Date</label>
                     <Datetime value={start} onChange={date => setStart(date)} />
-                </div>
-                <div>
+                
                     <label htmlFor="end">End Date</label>
                     <Datetime value={end} onChange={date => setEnd(date)} />
-                </div>
+                
                 
                 <button type='submit'>Add Event</button>
 			</form>

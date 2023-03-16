@@ -17,6 +17,7 @@ import NavConsole from "../components/NavConsole";
 
 //-------------------------------------------CSS imports
 import "../styles/homepage.css";
+import "../styles/createAndEditDrawers.css";
 
 
 function Home() {

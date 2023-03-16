@@ -1,0 +1,40 @@
+/* create message - Home Page */
+.full-form-container{
+    width: 100vw;
+    display:flex;
+    justify-content: center;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+
+#button {
+    margin-top: 1vh;
+}
+
+
+
+/* ---------------------------------------- */
+/* calendar page */
+.calendar-box{
+    padding-top: 8vh;
+   padding-left: 2vw;
+    padding-right: 2vw;
+  
+}
+
+.full-form-calendar-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.form-calendar {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+}
+
+/* ---------------------------------------- */

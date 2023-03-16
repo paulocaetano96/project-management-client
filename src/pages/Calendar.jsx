@@ -19,6 +19,9 @@ import EditEvent from '../components/EditEvent'
 import { AuthContext } from "../context/auth.context";
 import EventDetailsView from '../components/EventDetailsView';
 
+// ---------------------------------------------------- CSS IMPORTS
+import "../styles/createAndEditDrawers.css";
+
 //-------------------------------------------------------------- Function ⤵
 
 function Calendar() {
@@ -164,7 +167,7 @@ function Calendar() {
         ))}
 
           <FullCalendar
-            className="calendar-box"
+            id="calendar-box"
             ref={calendarRef}
             events={events}
             plugins={[ dayGridPlugin,timeGridPlugin, listPlugin ]}

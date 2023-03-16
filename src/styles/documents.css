@@ -1,0 +1,9 @@
+.homepage-container-total{
+    background-color: rgb(244, 250, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-top: 5vh;
+    height: 100vh;
+
+}

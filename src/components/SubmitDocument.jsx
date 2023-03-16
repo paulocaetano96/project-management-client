@@ -8,6 +8,9 @@ import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
+// ---------------------------------------------------- CSS IMPORTS
+import "../styles/createAndEditDrawers.css";
+
 function SubmitDocument({onClose}) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -55,10 +58,7 @@ function SubmitDocument({onClose}) {
   };
 
   return (
-    <div>
 
-      <div className="upload-document-container">
-        <div className="mb-3">
           <form onSubmit={handleSubmit}>
             <label htmlFor="fileUrl">Insert file</label>
             <input
@@ -98,13 +98,12 @@ function SubmitDocument({onClose}) {
               onChange={(e) => setGroup(e.target.value)}
             />
 
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" id="button">
               Submit Document
             </button>
           </form>
-        </div>
-      </div>
-    </div>
+          
+    
   );
 }
 

@@ -146,11 +146,11 @@ function App() {
             </IconButton>
             <Typography variant="h6" noWrap component="div">
               {/* TEAM COMMS LOGOTYPE IMAGE - INSTERT ALL OTHER IMAGES FOR THE NAVBAR HERE */}
-              <img
+              <Link to="/"><img
                 src="../images/teamcomms-logo.png"
                 alt="team comms logotype picture"
                 id="team-comms-logo"
-              />
+              /></Link>
             </Typography>
           </Toolbar>
         </AppBar>

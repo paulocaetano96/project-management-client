@@ -15,6 +15,10 @@ import documentService from "../services/document.services";
 import fileDownload from "js-file-download";
 import axios from "axios";
 
+//-------------------------------------------CSS imports
+import "../styles/documents.css";
+import "../styles/createAndEditDrawers.css";
+
 function Documents() {
   //Initializes a state variable called documents as an empty array and a function called setDocuments that can be used to update the documents state.
   const [documents, setDocuments] = useState([]);
@@ -116,7 +120,8 @@ function Documents() {
   };
 
   return (
-    <div>
+    <div className="homepage-container-total">
+      
       {/* render Drawer component with anchor "top" for creating/editing documents */}
       {["top"].map((anchor) => (
         <React.Fragment key={anchor}>
