@@ -9,7 +9,7 @@
 
 .top-area-container{
     height: 100vh;
-    background-image: url(/public/images/landingpage-main-img.jpg); 
+    background-image: url(./images/landingpage-main-img.jpg); 
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -36,9 +36,10 @@
     border-radius: 10px;
     font-size: 1.1em;
     font-weight: 600;
-    background-color: rgb(34, 49, 74);
+    background-color: rgb(189, 91, 67);
     color: whitesmoke;
 }
+/* 23013219 */
 
 .signin-login-buttons:hover{
     animation: scale 1s linear forwards;
@@ -138,7 +139,7 @@
     
 
     box-shadow:inset 0px 1px 0px 0px #8aaed6;
-	background-color:#8aaed6;
+	background-color:rgb(189, 91, 67);
 	border-radius:6px;
 	border:1px solid #337fed;
 	display:inline-block;

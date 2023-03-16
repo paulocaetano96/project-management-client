@@ -29,6 +29,10 @@
     }
 } */
 
+.top-area-container{
+  padding-bottom: 40vh;
+}
+
 .message-container-area{
     display: flex;
     flex-direction: row;

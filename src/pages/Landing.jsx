@@ -14,7 +14,7 @@ function Landing() {
             alt="The letter A - it's the app's small logotype"
             className="a-logo-img"
           />
-          <h1>Comms are on. You're up</h1>
+          <h2>Reach new heights, with Team Comms.</h2>
         </div>
 
         <div className="signin-login-buttons-area">
@@ -29,7 +29,7 @@ function Landing() {
         <div className="middle-area-container-left-area">
           <div className="info-header">
             <img
-              src="/public/images/landing-small-img-1.png"
+              src="./images/landing-small-img-1.png"
               alt=""
               className="small-images-landingpage img-title"
             />
@@ -45,7 +45,7 @@ function Landing() {
         <div className="middle-area-container-right-area">
           <div className="info-header">
             <img
-              src="/public/images/landing-small-img-2.png"
+              src="./images/landing-small-img-2.png"
               alt=""
               className="small-images-landingpage img-title"
             />
@@ -112,18 +112,7 @@ function Landing() {
           </p>
 
           <div class="footer-icons">
-            <a href="#">
-              <i class="fa fa-facebook"></i>
-            </a>
-            <a href="#">
-              <i class="fa fa-twitter"></i>
-            </a>
-            <a href="#">
-              <i class="fa fa-linkedin"></i>
-            </a>
-            <a href="#">
-              <i class="fa fa-github"></i>
-            </a>
+            
           </div>
         </div>
       </footer>
