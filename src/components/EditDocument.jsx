@@ -3,6 +3,9 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import documentService from "../services/document.services";
 
+// ---------------------------------------------------- CSS IMPORTS
+import "../styles/createAndEditDrawers.css";
+
 //Defining a functional component EditDocument and accepting props as a parameter.
 function EditDocument(props) {
   const { document, onClose } = props;
@@ -48,7 +51,7 @@ function EditDocument(props) {
   };
 
   return (
-    <div className="document-submit-full-area">
+    <div className="full-form-container">
       <div>
 
         <h2>Edit Document</h2>

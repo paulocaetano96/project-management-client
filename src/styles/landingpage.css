@@ -182,7 +182,7 @@ footer {
 }
 
 .footer-distributed{
-	background: #666;
+	background: #4b87d1;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
 	box-sizing: border-box;
 	width: 100%;
@@ -332,7 +332,7 @@ footer {
 	border-radius: 2px;
 
 	font-size: 20px;
-	color: #ffffff;
+	color: rgb(34, 49, 74);
 	text-align: center;
 	line-height: 35px;
 

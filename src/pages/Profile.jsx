@@ -12,7 +12,6 @@ function Profile() {
       </div>
       <div className="cover">
         <p>Are we hiding something under this cover? Hover me and find out  </p>
-        
       </div>
       
     </div>
