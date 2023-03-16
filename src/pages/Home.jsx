@@ -171,7 +171,7 @@ function Home() {
             {/* wait for the AuthContext, before rendering messages */}
             <section className="message-container-important">
               {/* render list of important messages */}
-                    <h4 className="important-messages-container-title-h4">Important messages</h4>
+                    
               {/* if messages is not null or undefined, map over messages array and render each message as an article */}
               {messages &&
                 messages.map((message) => {
@@ -181,6 +181,8 @@ function Home() {
                   }
                   if (message.important === true) {
                     return (
+                      <>
+                      <h4 className="important-messages-container-title-h4">Important messages</h4>
                       <article
                         key={message._id}
                         className="message-card-important card"
@@ -213,6 +215,7 @@ function Home() {
                         </details>
 {/*                         <p>Read by {message.readBy.length} of {message.sentTo.length}</p> */}
                       </article>
+                      </>
                     );
                   }
                 })}
@@ -220,7 +223,7 @@ function Home() {
 
             {/* render list of normal messages */}
             <section className="message-container-normal">
-            <h4 className="normal-messages-container-title-h4">Reminders</h4>
+            
               {/* if messages is not null or undefined, map over messages array and render each message as an article */}
               {messages &&
                 messages.map((message) => {
