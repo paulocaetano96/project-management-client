@@ -21,6 +21,7 @@ import EventDetailsView from '../components/EventDetailsView';
 
 // ---------------------------------------------------- CSS IMPORTS
 import "../styles/createAndEditDrawers.css";
+import "../styles/calendar.css"
 
 //-------------------------------------------------------------- Function ⤵
 
@@ -167,7 +168,7 @@ function Calendar() {
         ))}
 
           <FullCalendar
-            id="calendar-box"
+            id="fullcalendar-box"
             ref={calendarRef}
             events={events}
             plugins={[ dayGridPlugin,timeGridPlugin, listPlugin ]}

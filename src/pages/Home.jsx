@@ -42,7 +42,7 @@ function Home() {
         return message.club === user.club;
       });
       setMessages(filteredMessages);
-
+      console.log(filteredMessages)
       const importantMessages = filteredMessages.filter(function (message) {
         return message.important === true;
       });
@@ -63,7 +63,6 @@ function Home() {
         updatedMessage._id,
         updatedMessage
       );
-      console.log(response.data);
       const updatedMessages = messages.map((m) =>
         m._id === updatedMessage._id ? response.data : m
       );
@@ -74,6 +73,21 @@ function Home() {
       console.log(error);
     }
   };
+
+  //update readBy array
+
+  const handleReadBy = async (message, userId) => {
+    message.readBy.push(userId)
+    const updatedMessage = message
+    try {
+      const response = await messageService.updateMessage(
+        updatedMessage._id,
+        updatedMessage
+      );
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   // async function to handle deleting a message
   const handleDeleteMessage = async (id) => {
@@ -172,13 +186,13 @@ function Home() {
               {/* wait for the AuthContext, before rendering messages */}
               <section className="message-container">
                 {/* render list of important messages */}
-                {messages && (<o className="message-container-title">IMPORTANT MESSAGES</o>)}
+                {messages && (<p className="message-container-title">IMPORTANT MESSAGES</p>)}
                 {/* if messages is not null or undefined, map over messages array and render each message as an article */}
                 {messages &&
                   messages.map((message) => {
                     {/* console.log(messages) */}
                     if (!message.readBy.includes(user._id)) {
-                      message.readBy.push(user._id)
+                      handleReadBy(message, user._id)
                     }
                     if (message.important === true) {
                       return (
@@ -209,7 +223,10 @@ function Home() {
                           )}
                           <details>
                             <summary>Read by {message.readBy.length} of {message.sentTo.length}</summary>
-                            <p>Ready by:</p>
+                            <p>Read by:</p>
+                            {message.readBy.forEach((user) => {
+                              return (<p>{user.name}</p>)
+                            })}
                           </details>
                         {/*<p>Read by {message.readBy.length} of {message.sentTo.length}</p> */}
                         </article>
