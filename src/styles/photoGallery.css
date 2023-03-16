@@ -1,8 +1,8 @@
-#photogallery-container-total{
+#photogallery-box{
     background-color: rgb(244, 250, 255);
     display: flex;
     flex-direction: column;
     align-items: center; 
-    margin-top: 100px;
+    padding: 100px;
     height: 100vh;
 }
