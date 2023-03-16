@@ -9,6 +9,10 @@ import fileDownload from "js-file-download";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import Stack from '@mui/material/Stack';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from "@mui/material/TextField";
 
 import CreatePhoto from "../components/CreatePhoto";
@@ -131,7 +135,17 @@ function PhotoGallery() {
       {["top"].map((anchor) => (
         <React.Fragment key={anchor}>
           {/* button to open Drawer and show create photo form */}
-          <Button onClick={toggleDrawer(anchor, true)}>Upload Photo</Button>
+
+          <Stack direction="row" spacing={2}>
+            <Button variant="contained" endIcon={<AddCircleIcon />} onClick={toggleDrawer(anchor, true)} id="upload-message-btn">
+              Upload Photo
+            </Button>
+          </Stack>
+
+
+
+
+
           {/* Drawer component containing either CreatePhoto or EditPhoto component */}
           <Drawer
             anchor={anchor}
@@ -160,39 +174,50 @@ function PhotoGallery() {
       ))}
 
       {/* render list of photos */}
-      <div >
+      <div className='photos-container'>
         {/* if photos is not null or undefined, map over photos array and render each photo as an article */}
+{/*         <div className='heading'>
+              <h3>Photo Gallery</h3>
+        </div> */}
+
         {photos &&
           photos.map((photo) => {
             return (
-              <article key={photo._id}>
+              <article key={photo._id} className='individual-photo-section'>
+                  <img src={photo.fileUrl} alt={photo.title} className='individual-photo'/>
+                <details >
+                  <summary></summary>
+                  <div className='photo-dropdown'>
+                    <Link
+                      onClick={() =>
+                        handleDownload(
+                          photo.fileUrl,
+                          `${photo.title}${photo.fileUrl.slice(-4)}`
+                        )
+                      }
+                    >
+                    <h3>{photo.title}<span className='mini-text'>click to download</span></h3>
+                    </Link>
+                    <p>{photo.description}</p>
+                    <p>{photo.gallery}</p>
+                    
+                    <div className='secondary-btn-container'>
+                      {/* button to open Drawer and show edit photo form */}
+                      <Stack direction="row" spacing={2}>
+                        <Button variant="outlined" endIcon={<EditIcon />} onClick={() => handleEditDrawer(photo)} className="secondary-btn">
+                          Edit
+                        </Button>
+                      </Stack>
+                      {/* button to delete photo with given id */}
 
-              
-              <Link
-                  onClick={() =>
-                    handleDownload(
-                      photo.fileUrl,
-                      `${photo.title}${photo.fileUrl.slice(-4)}`
-                    )
-                  }
-                >
-                <img src={photo.fileUrl} alt={photo.title} />
-                </Link>
-
-
-                <h3>{photo.title}</h3>
-                <p>{photo.description}</p>
-                <p>{photo.gallery}</p>
-                <div>
-                  {/* button to open Drawer and show edit photo form */}
-                  <button onClick={() => handleEditDrawer(photo)}>
-                    Edit Photo Details
-                  </button>
-                  {/* button to delete photo with given id */}
-                  <button onClick={() => handleDeletePhoto(photo._id)}>
-                    Delete Photo
-                  </button>
-                </div>
+                      <Stack direction="row" spacing={2}>
+                        <Button variant="outlined" endIcon={<DeleteIcon />} onClick={() => handleDeletePhoto(photo._id)} className="secondary-btn">
+                          Delete
+                        </Button>
+                      </Stack>
+                    </div>
+                  </div>
+                </details>
               </article>
             );
           })}
