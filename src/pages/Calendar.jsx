@@ -97,7 +97,7 @@ function Calendar() {
 
     if (calendarEvent) {
       setSelectedEvent(calendarEvent);
-    }
+    } else setSelectedEvent(null);
 
     setState({ ...state, [anchor]: open });
   };

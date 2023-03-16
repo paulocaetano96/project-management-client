@@ -78,7 +78,7 @@ function CreateMessage(props) {
   // Rendering the CreateMessage component with a form to create a new message
   return (
     <div className="full-form-container">
-      <div>
+
         {club && (
           <form onSubmit={handleSubmit}>
             <h2>Create New Message</h2>
@@ -131,7 +131,7 @@ function CreateMessage(props) {
             </Button>
           </form>
         )}
-      </div>
+
     </div>
   );
 }

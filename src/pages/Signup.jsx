@@ -264,18 +264,12 @@ function Signup() {
 						</form>
 					</div>
 					<div id="club-key">
-{/* 						{createdClub && (
-							<p >
+						{createdClub && (
+							<p>
 								Your club key is{' '}
 								<span>{`${createdClub.data._id}`}</span>
 							</p>
-							<>
-							<details>
-								<summary>Your club key is:</summary>
-								<p>{`${createdClub.data._id}`}</p>
-							</details>
-							</>
-						)} */}
+						)}
 					</div>
 
 					<div className='screen__background'>
