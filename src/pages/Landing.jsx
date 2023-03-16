@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 //-------------------------------------------CSS imports
 import "../styles/landingpage.css";
 
-
-
 function Landing() {
   return (
     <div className="full-page-container">

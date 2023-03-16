@@ -1,0 +1,33 @@
+.full-clubdetails-area{
+    padding-top: 1vh;
+    padding-left: 3vw;
+    padding-right: 3vw;
+}
+
+.clubmembers-area{
+ padding-top: 2vh;
+ padding-bottom: 2vh;
+}
+
+.invitation-key{
+    display: flex;
+    justify-content: center;
+    color:aliceblue;
+	background-color: rgb(34, 49, 74, 0.8);
+	border: 1px solid black;
+	padding: 2vh 2vw;
+	border-radius: 26px;
+	margin-bottom: 3vh;
+	margin-top: 2vh;
+    margin-left: 2vw;
+    width: 80vw;
+    
+}
+
+.edit-form {
+    width: 80vw
+}
+
+.editclub-page{
+    padding-top: 11vh;
+}

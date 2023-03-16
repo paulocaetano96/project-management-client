@@ -4,6 +4,9 @@ import clubService from "../services/club.services";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
+//-------------------------------------------CSS imports
+import "../styles/editclub.css";
+
 function EditClub(props) {
   //Initializing the name, sport, primaryColor, secondaryColor and teams state variables using useState hook, and setting their default values to the name and sport properties of props.message.
   const [name, setName] = useState(props.club.name);
@@ -64,10 +67,11 @@ function EditClub(props) {
 
   return (
     //Rendering a form with 4 TextField components for title, description and group,  respectively. The TextField components are populated with the corresponding state variables and are set to call handleTitle and handleDescription functions, respectively, when their values change. A Button component is also rendered with the label "Edit Document" and set to submit the form on click, calling the handleSubmit function. The form is wrapped in a form element with the onSubmit attribute set to call handleSubmit function. Finally, the entire form is returned by the component.
-    <div>
-      <div>
-        <form onSubmit={handleSubmit}>
-        <h2>Create New Message</h2>
+    <div className="full-clubdetails-area">
+      <div className="full-clubdetails-edit-area">
+        <h2 className="page-title">Edit Club Details</h2>
+
+        <form onSubmit={handleSubmit} className="edit-form">
           <TextField
             label="Name"
             variant="outlined"
@@ -117,21 +121,18 @@ function EditClub(props) {
             onChange={handleTeams}
           />
 
-          <TextField
-            label="Members"
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            required
-            value={members.map((member) => member.name).join(", ")}
-            onChange={handleMembers}
-          />
-
           <Button type="submit" variant="contained">
             Edit Club Details
           </Button>
         </form>
       </div>
+
+      <div className="clubmembers-area">
+        <h2>Club Members</h2>
+
+        {members.map((member) => member.name).join(", ")}
+      </div>
+
     </div>
   );
 }
