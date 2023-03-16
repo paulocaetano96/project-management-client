@@ -72,9 +72,8 @@
     display: flex;
     flex-direction: column;
     min-width: 300px;
-    width: 40vw;
+    width: 35vw;
     align-items: center;
-    
 }
 
 #normal-message-container {
