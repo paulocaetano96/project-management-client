@@ -61,7 +61,7 @@ function Landing() {
       <footer class="footer-distributed">
         <div class="footer-left">
           <h3>
-            Team<span>Comms</span>
+            Team<span id="comms-color-footer">Comms</span>
           </h3>
 
           <p class="footer-links">
@@ -99,7 +99,7 @@ function Landing() {
           <div>
             <i class="fa fa-envelope"></i>
             <p>
-              <a href="mailto:dev@team-comms.com">dev@company.org</a>
+              <a href="mailto:dev@team-comms.com" id="comms-color-footer">dev@company.org</a>
             </p>
           </div>
         </div>

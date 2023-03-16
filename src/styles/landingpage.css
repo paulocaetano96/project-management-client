@@ -258,6 +258,8 @@ footer {
 	vertical-align: middle;
 }
 
+
+
 .footer-distributed .footer-center i.fa-envelope{
 	font-size: 17px;
 	line-height: 38px;
@@ -310,6 +312,14 @@ footer {
 	font-weight: normal;
 	margin: 0;
 }
+
+#comms-color-footer{
+   color:rgb(189, 91, 67);
+   font-weight: bold;
+
+}
+
+
 
 .footer-distributed .footer-company-about span{
 	display: block;
