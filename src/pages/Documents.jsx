@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import Stack from '@mui/material/Stack';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import SubmitDocument from '../components/SubmitDocument';
 import EditDocument from '../components/EditDocument';
@@ -123,14 +127,17 @@ function Documents() {
 	};
 
 	return (
-		<div className='homepage-container-total'>
+		<div id='documents-gallery-box'>
 			{/* render Drawer component with anchor "top" for creating/editing documents */}
 			{['top'].map((anchor) => (
 				<React.Fragment key={anchor}>
 					{/* button to open Drawer and show create document form */}
-					<Button onClick={toggleDrawer(anchor, true)}>
-						SUBMIT DOCUMENT
-					</Button>
+					<Stack direction="row" spacing={2}>
+						<Button variant="contained" endIcon={<AddCircleIcon />} onClick={toggleDrawer(anchor, true)} id="upload-document-btn">
+						Upload Document
+						</Button>
+					</Stack>
+
 					{/* Drawer component containing either CreateDocument or EditDocument component */}
 					<Drawer
 						anchor={anchor}
@@ -160,12 +167,12 @@ function Documents() {
 			))}
 
 			{/* render list of documents */}
-			<div className='document-container'>
+			<div className='documents-container'>
 				{/* if documents is not null or undefined, map over documents array and render each document as an article */}
 				{documents &&
 					documents.map((document) => {
 						return (
-							<article key={document._id} className="">
+							<article key={document._id} className="individual-document-article">
 								<Link
 									onClick={() =>
 										handleDownload(
@@ -175,26 +182,27 @@ function Documents() {
 											}${document.fileUrl.slice(-4)}`,
 										)
 									}>
-									<h3>{document.title}</h3>
+									<h3>{document.title}<span className='mini-text'>click to download</span></h3>
 								</Link>
 
 								<p>{document.description}</p>
-								<div>
+
+								<div className='secondary-btn-container'>
 									{/* button to open Drawer and show edit document form */}
-									<button
-										onClick={() =>
-											handleEditDrawer(document)
-										}>
-										Edit Document
-									</button>
+									<Stack direction="row" spacing={2}>
+										<Button variant="outlined" endIcon={<EditIcon />} onClick={() => handleEditDrawer(document)} className="secondary-btn">
+										Edit
+										</Button>
+									</Stack>
 									{/* button to delete document with given id */}
-									<button
-										onClick={() =>
-											handleDeleteDocument(document._id)
-										}>
-										Delete Document
-									</button>
+
+									<Stack direction="row" spacing={2}>
+										<Button variant="outlined" endIcon={<DeleteIcon />} onClick={() => handleDeleteDocument(document._id)} className="secondary-btn">
+										Delete
+										</Button>
+									</Stack>
 								</div>
+
 							</article>
 						);
 					})}

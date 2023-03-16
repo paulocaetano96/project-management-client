@@ -142,10 +142,6 @@ function PhotoGallery() {
             </Button>
           </Stack>
 
-
-
-
-
           {/* Drawer component containing either CreatePhoto or EditPhoto component */}
           <Drawer
             anchor={anchor}

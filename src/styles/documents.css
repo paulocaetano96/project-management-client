@@ -1,8 +1,53 @@
-.homepage-container-total{
+#documents-gallery-box{
     background-color: rgb(244, 250, 255);
     display: flex;
     flex-direction: column;
     align-items: center; 
-    margin-top: 5vh;
-    height: 100vh;
+    padding: 100px 20px;
+}
+
+.documents-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    max-width: 100%;
+}
+
+.individual-document-article {
+    height: auto;
+    max-width: 40vw;
+    margin: 20px;
+    background-color: rgba(34, 49, 74);
+    padding: 30px;
+    border-radius: 15px;
+    color: white;
+}
+
+.individual-document-article p {
+    font-weight: 300;
+    font-size: 1rem;
+}
+
+.individual-document-article h3 {
+    color: white
+}
+
+.mini-text {
+    font-size: 0.7rem;
+    font-weight: 200;
+    font-style: italic;
+    margin-left: 10px;
+    color:rgb(180, 180, 180)
+}
+
+#upload-document-btn {
+    margin: 20px 0;
+    background-color: rgba(189, 91, 67);
+}
+
+.secondary-btn-container{
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
