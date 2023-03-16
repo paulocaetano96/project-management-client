@@ -126,7 +126,7 @@ function PhotoGallery() {
   };
 
   return (
-    <div id='photogallery-container-total'>
+    <div id='photogallery-box'>
       {/* render Drawer component with anchor "top" for creating/editing photos */}
       {["top"].map((anchor) => (
         <React.Fragment key={anchor}>
@@ -160,7 +160,7 @@ function PhotoGallery() {
       ))}
 
       {/* render list of photos */}
-      <div className="photogallery-container">
+      <div >
         {/* if photos is not null or undefined, map over photos array and render each photo as an article */}
         {photos &&
           photos.map((photo) => {
