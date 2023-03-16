@@ -61,7 +61,8 @@
 }
 
 .message-container-important {
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    background-color: rgb(34, 49, 74,0.9);
     border-radius: 20px;
     margin-top: 4vh;
     margin-right: 2vw;
@@ -70,7 +71,8 @@
 }
 
 .message-container-normal {
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    background-color: rgb(34, 49, 74,0.3);
     border-radius: 20px;
     margin-top: 4vh;
     display: flex;
