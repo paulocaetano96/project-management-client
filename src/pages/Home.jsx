@@ -186,7 +186,7 @@ function Home() {
                         className="message-card-important card"
                       >
                         <h3 className="card-title">{message.title}</h3>
-                        <p>{message.description}</p>
+                        <p className="card-message-text">{message.description}</p>
                         {user.role === "staff" && (
                           <div className="message-card-buttons">
 
@@ -226,12 +226,15 @@ function Home() {
                 messages.map((message) => {
                   if (message.important === false) {
                     return (
+                      <>
+                      <h4 className="normal-messages-container-title-h4">Reminders</h4>
+
                       <article
                         key={message._id}
                         className="message-card-normal card"
                       >
                         <h3 className="card-title">{message.title}</h3>
-                        <p>{message.description}</p>
+                        <p className="card-message-text">{message.description}</p>
                         {user.role === "staff" && (
                           <div className="message-card-buttons">
                             {/* button to open Drawer and show edit message form */}
@@ -250,6 +253,7 @@ function Home() {
                         )}
                         <p>Read by {message.readBy.length} of {message.sentTo.length}</p>
                       </article>
+                      </>
                     );
                   }
                 })}
