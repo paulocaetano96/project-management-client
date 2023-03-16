@@ -101,7 +101,7 @@ function Documents() {
 
 		if (document) {
 			setSelectedDocument(document);
-		}
+		} else setSelectedDocument(null);
 
 		setState({ ...state, [anchor]: open });
 	};
