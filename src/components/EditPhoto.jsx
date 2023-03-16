@@ -3,6 +3,10 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import photogalleryService from "../services/photogallery.services";
 
+
+// ---------------------------------------------------- CSS IMPORTS
+import "../styles/createAndEditDrawers.css";
+
 //Defining a functional component EditPhoto and accepting props as a parameter.
 function EditPhoto(props) {
   const { photo, onClose } = props;
@@ -50,39 +54,45 @@ function EditPhoto(props) {
 
   return (
     //Rendering a form with 3 TextField components for title, description and gallery,  respectively. The TextField components are populated with the corresponding state variables and are set to call handleTitle, handleDescription and handleGallery functions, respectively, when their values change. A Button component is also rendered with the label "Edit Photo" and set to submit the form on click, calling the handleSubmit function. The form is wrapped in a form element with the onSubmit attribute set to call handleSubmit function. Finally, the entire form is returned by the component.
-    <form onSubmit={handleSubmit}>
-      <TextField
-        label="Title"
-        variant="outlined"
-        margin="normal"
-        fullWidth
-        required
-        value={title}
-        onChange={handleTitle}
-      />
-      <TextField
-        label="Description"
-        variant="outlined"
-        margin="normal"
-        fullWidth
-        required
-        value={description}
-        onChange={handleDescription}
-      />
+    <div  className="full-form-container">
+      <div>
+        <form onSubmit={handleSubmit}>
+          <h2>Edit Photos</h2>
 
-      <TextField
-        label="Gallery"
-        variant="outlined"
-        margin="normal"
-        fullWidth
-        required
-        value={gallery}
-        onChange={handleGallery}
-      />
-      <Button type="submit" variant="contained">
-        Edit Photo
-      </Button>
-    </form>
+          <TextField
+            label="Title"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            required
+            value={title}
+            onChange={handleTitle}
+          />
+          <TextField
+            label="Description"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            required
+            value={description}
+            onChange={handleDescription}
+          />
+
+          <TextField
+            label="Gallery"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            required
+            value={gallery}
+            onChange={handleGallery}
+          />
+          <Button type="submit" variant="contained" className="edit-photo-button" >
+            Edit Photo
+          </Button>
+        </form>
+      </div>
+    </div>
   );
 }
 

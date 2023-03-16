@@ -8,11 +8,13 @@ function Profile() {
     <section className="full-area-container">
     <div className="book">
       <div className="info">
-          <p>Place code for user name, club and whatever else we want</p>
+          <img src="./images/easter-egg.png"></img>
       </div>
       <div className="cover">
-        <p>Information Card</p>
+        <p>Are we hiding something under this cover? Hover me and find out  </p>
+        
       </div>
+      
     </div>
     </section>
   );

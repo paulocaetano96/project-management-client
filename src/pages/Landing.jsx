@@ -69,9 +69,9 @@ function Landing() {
               Home
             </a>
 
-            <a href="#">Blog</a>
+            <a href="#">Calendar</a>
 
-            <a href="#">Pricing</a>
+            <a href="#">Photo Gallery</a>
 
             <a href="#">About</a>
 
@@ -80,14 +80,14 @@ function Landing() {
             <a href="#">Contact</a>
           </p>
 
-          <p class="footer-company-name">Company Name © 2015</p>
+          <p class="footer-company-name">Team Comms © 2023</p>
         </div>
 
         <div class="footer-center">
           <div>
             <i class="fa fa-map-marker"></i>
             <p>
-              <span>127 Rua da amargura</span> Curral de Moinas, Braga
+              <span>127 Rua da Boa Esperança</span> Curral de Moinas, Braga
             </p>
           </div>
 
@@ -99,7 +99,7 @@ function Landing() {
           <div>
             <i class="fa fa-envelope"></i>
             <p>
-              <a href="mailto:support@company.com">support@company.com</a>
+              <a href="mailto:dev@team-comms.com">dev@company.org</a>
             </p>
           </div>
         </div>

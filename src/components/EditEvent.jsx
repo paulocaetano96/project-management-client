@@ -3,6 +3,13 @@ import Datetime from "react-datetime";
 import eventService from "../services/event.services";
 import { useNavigate, useParams } from "react-router-dom";
 
+
+
+// ---------------------------------------------------- MUI IMPORTS
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 // ---------------------------------------------------- CSS IMPORTS
 import "../styles/createAndEditDrawers.css";
 
@@ -25,19 +32,20 @@ function EditEvent(props) {
   };
 
   return (
-    <div  className="full-form-container">
+    <div className="full-form-calendar-container">
       <div>
         <form onSubmit={handleSubmit} className="form-calendar">
         <h2>Edit Event</h2>
-          <label htmlFor="title">Title</label>
-          <input
-            placeholder="Title"
-            type="text"
-            name="title"
-            id="title"
-            value={title}
-            onChange={handleTitle}
-            required
+          
+          <TextField
+          label="Title"
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              required
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            
           />
           <div>
             <label htmlFor="start">Start Date</label>
@@ -48,10 +56,10 @@ function EditEvent(props) {
             <Datetime value={end} onChange={(date) => setEnd(date)} />
           </div>
 
-          <button type="submit">Edit Event</button>
+          <button type="submit" id="add-event-button">Edit Event</button>
         </form>
 
-        <button onClick={handleDelete} id="button">Delete Event</button>
+        <button onClick={handleDelete} id="add-event-button">Delete Event</button>
       </div>
     </div>
   );
