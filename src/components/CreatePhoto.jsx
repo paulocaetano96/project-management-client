@@ -2,14 +2,17 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-import clubService from '../services/club.services';
+import clubService from "../services/club.services";
 
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
-function CreatePhoto({onClose}) {
+// ---------------------------------------------------- CSS IMPORTS
+import "../styles/createAndEditDrawers.css";
+
+function CreatePhoto({ onClose }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [gallery, setGallery] = useState("");
@@ -37,7 +40,7 @@ function CreatePhoto({onClose}) {
           description,
           gallery,
           fileUrl,
-          club: club._id
+          club: club._id,
         }
       );
       onClose();
@@ -49,12 +52,12 @@ function CreatePhoto({onClose}) {
 
   const handleFileUpload = async (e) => {
     try {
-    if (!e.target.files || e.target.files.length === 0) {
-      return;
-    }
+      if (!e.target.files || e.target.files.length === 0) {
+        return;
+      }
 
-    const uploadData = new FormData();
-    uploadData.append("fileUrl", e.target.files[0]);
+      const uploadData = new FormData();
+      uploadData.append("fileUrl", e.target.files[0]);
 
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/upload`,
@@ -72,10 +75,9 @@ function CreatePhoto({onClose}) {
   }, []);
 
   return (
-    <div>
-      <h1>Please Upload a photo here</h1>
-      <div className="upload-document-container">
-        <div className="mb-3">
+    <div className="full-form-container">
+      <div>
+        <h2>Please Upload a photo here</h2>
         {club && (
           <form onSubmit={handleSubmit}>
             <label htmlFor="fileUrl">Insert file</label>
@@ -89,40 +91,45 @@ function CreatePhoto({onClose}) {
               required
             />
 
-            <label htmlFor="title">Title</label>
-            <input
-              type="text"
-              name="title"
-              id="title"
+            <TextField
+              label="Title"
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              required
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              required
             />
 
-            <label htmlFor="description">Description</label>
-            <input
-              type="text"
-              name="description"
-              id="description"
+            <TextField
+              label="Description"
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              multiline
+              maxRows={4}
+              required
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
 
-            <label htmlFor="gallery">Gallery</label>
-            <input
-              type="text"
-              name="gallery"
-              id="gallery"
+            <TextField
+              label="Gallery"
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              multiline
+              maxRows={4}
+              required
               value={gallery}
               onChange={(e) => setGallery(e.target.value)}
             />
 
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" id="add-event-button">
               Submit Photo
             </button>
           </form>
-          )}
-        </div>
+        )}
       </div>
     </div>
   );

@@ -9,7 +9,7 @@
 
 .top-area-container{
     height: 100vh;
-    background-image: url(./images/landingpage-main-img.jpg); 
+    background-image: url(../images/landingpage-main-img.jpg); 
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;

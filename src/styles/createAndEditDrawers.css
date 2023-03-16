@@ -20,7 +20,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 5vh;
+    padding-top: 2vh;
 
 }
 
@@ -49,8 +49,13 @@
 #add-event-button:hover {
     transform: scale(1.1);
 }
+/* ---------------------------------------------------- */
 
-
+.edit-photo-button{
+    
+    display: flex;
+    padd
+}
 
 
 
