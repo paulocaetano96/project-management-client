@@ -146,11 +146,11 @@ function App() {
             </IconButton>
             <Typography variant="h6" noWrap component="div">
               {/* TEAM COMMS LOGOTYPE IMAGE - INSTERT ALL OTHER IMAGES FOR THE NAVBAR HERE */}
-              <Link to="/"><img
+              <img
                 src="../images/teamcomms-logo.png"
                 alt="team comms logotype picture"
                 id="team-comms-logo"
-              /></Link>
+              />
             </Typography>
           </Toolbar>
         </AppBar>
@@ -172,7 +172,7 @@ function App() {
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1, p: 3, padding: 0 }}>
           <Routes>
-            <Route path="/" element={<Landing />} />
+            <Route path="/" element={<Landing /> } />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/home" element={<Home />} />
