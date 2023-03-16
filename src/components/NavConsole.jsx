@@ -103,7 +103,7 @@ function NavConsole() {
                 </ListItemIcon>
                
                   <ListItemText
-                    primary="Home"
+                    primary="Messages"
                     sx={{ opacity: open ? 1 : 0 }}
                   />
 
