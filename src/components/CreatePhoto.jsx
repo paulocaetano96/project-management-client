@@ -2,17 +2,29 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import clubService from '../services/club.services';
 
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
-function CreatePhoto() {
+function CreatePhoto({onClose}) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [gallery, setGallery] = useState("");
   const [fileUrl, setFileUrl] = useState("");
+  const [club, setClub] = useState(null);
+  const { user } = useContext(AuthContext);
+
+  const getClub = async () => {
+    try {
+      const response = await clubService.getClub(user.club);
+      setClub(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,8 +37,10 @@ function CreatePhoto() {
           description,
           gallery,
           fileUrl,
+          club: club._id
         }
       );
+      onClose();
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -53,12 +67,16 @@ function CreatePhoto() {
     }
   };
 
+  useEffect(() => {
+    getClub();
+  }, []);
+
   return (
     <div>
       <h1>Please Upload a photo here</h1>
-
       <div className="upload-document-container">
         <div className="mb-3">
+        {club && (
           <form onSubmit={handleSubmit}>
             <label htmlFor="fileUrl">Insert file</label>
             <input
@@ -103,6 +121,7 @@ function CreatePhoto() {
               Submit Photo
             </button>
           </form>
+          )}
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
-/* .calendar-box {
-    z-index: -1;
-} */
+.calendar-box {
+/*     margin-top: 64px; */
+    padding: 100px 5vw;
+}
+
 
 
 #main-btn {

@@ -17,13 +17,14 @@ import EditPhoto from "../components/EditPhoto";
 import photogalleryService from "../services/photogallery.services";
 
 //-------------------------------------------CSS imports
-import "../styles/navconsole.css";
+
+import "../styles/photoGallery.css"
 
 function PhotoGallery() {
   //Initializes a state variable called photos as an empty array and a function called setPhotos that can be used to update the photos state.
   const [photos, setPhotos] = useState([]);
   //const { loggedIn, user } = useContext(AuthContext);: Initializes two variables loggedIn and user from the AuthContext using the useContext hook.
-  const { loggedIn, user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   //const [selectedPhoto, setSelectedPhoto] = useState(null);: Initializes a state variable called selectedPhoto as null and a function called setSelectedPhoto that can be used to update the selectedPhoto state.
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
@@ -36,7 +37,12 @@ function PhotoGallery() {
   const getPhotos = async () => {
     try {
       const response = await photogalleryService.getPhotos();
-      setPhotos(response.data);
+
+      const filteredPhotos = response.data.filter((photo) => {
+        return photo.club === user.club
+      })
+      setPhotos(filteredPhotos);
+
     } catch (error) {
       console.log(error);
     }
@@ -83,7 +89,7 @@ function PhotoGallery() {
   //useEffect(() => {...}, []);: Runs the getPhotos function when the component mounts.
   useEffect(() => {
     getPhotos();
-  }, [state]);
+  }, [user, state]);
 
   //------------------------------------------------------------- MUI Drawer functions ⤵
 
@@ -98,7 +104,7 @@ function PhotoGallery() {
 
     if (photo) {
       setSelectedPhoto(photo);
-    }
+    } else setSelectedPhoto(null);
 
     setState({ ...state, [anchor]: open });
   };
@@ -120,7 +126,7 @@ function PhotoGallery() {
   };
 
   return (
-    <div>
+    <div id='photogallery-container-total'>
       {/* render Drawer component with anchor "top" for creating/editing photos */}
       {["top"].map((anchor) => (
         <React.Fragment key={anchor}>
