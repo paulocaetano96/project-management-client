@@ -12,7 +12,7 @@ function Landing() {
       <section className="top-area-container">
         <div className="A-logo-description-landingpage">
           <img
-            src="/public/images/a-icon-white.png"
+            src="./images/a-icon-white.png"
             alt="The letter A - it's the app's small logotype"
             className="a-logo-img"
           />
