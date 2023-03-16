@@ -8,6 +8,8 @@ import EditClub from "../components/EditClub";
 
 // CSS imports
 import '../styles/navconsole.css';
+import '../styles/editclub.css';
+
 
 
 function Club() {
@@ -48,7 +50,7 @@ function Club() {
   }, []);
 
   return (
-    <div>
+    <div className="editclub-page">
       {/*       {club && (
         <div>
           <p>Club Name: </p>
@@ -62,12 +64,13 @@ function Club() {
         </div>
       )}
  */}
-      {club && <EditClub club={club} />}
+     
 
-      <div>
+      <div className="invitation-key">
       
       {club && <p>Invite Key: {club._id}</p>}
       </div>
+       {club && <EditClub club={club} />}
     </div>
   );
 }

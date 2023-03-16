@@ -34,6 +34,8 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    background-color: rgb(244, 250, 255);
+
 }
 
 .message-container-title{
@@ -68,6 +70,7 @@
     min-width: 300px;
     width: 40vw;
     align-items: center;
+    
 }
 
 #normal-message-container {

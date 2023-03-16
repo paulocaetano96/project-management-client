@@ -67,7 +67,9 @@ function AddClub() {
 				<div className='authenticate__field'>
 					<input
 						className='authenticate__input'
-						placeholder='Sport'
+						plac
+						
+						eholder='Sport'
 						type='text'
 						name='sport'
 						id='sport'

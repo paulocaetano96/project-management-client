@@ -4,15 +4,13 @@ import { Link } from "react-router-dom";
 //-------------------------------------------CSS imports
 import "../styles/landingpage.css";
 
-
-
 function Landing() {
   return (
     <div className="full-page-container">
       <section className="top-area-container">
         <div className="A-logo-description-landingpage">
           <img
-            src="/public/images/a-icon-white.png"
+            src="./images/a-icon-white.png"
             alt="The letter A - it's the app's small logotype"
             className="a-logo-img"
           />
@@ -35,7 +33,7 @@ function Landing() {
               alt=""
               className="small-images-landingpage img-title"
             />
-            <h5 className="img-title">Imagem</h5>
+            <h5 className="img-title">A safe storage</h5>
           </div>
           
           <p class="middle-section-text-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit repudiandae totam quis, temporibus veritatis nulla ratione, dolor ad modi pariatur beatae repellendus molestias deserunt quia eius, earum consectetur inventore laudantium?</p>
@@ -51,7 +49,7 @@ function Landing() {
               alt=""
               className="small-images-landingpage img-title"
             />
-            <h5 className="img-title">Improve Communication in-house</h5>
+            <h5 className="img-title">Improve in-house Communication</h5>
           </div>
 
             <p class="middle-section-text-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit repudiandae totam quis, temporibus veritatis nulla ratione, dolor ad modi pariatur beatae repellendus molestias deserunt quia eius, earum consectetur inventore laudantium?</p>
@@ -63,7 +61,7 @@ function Landing() {
       <footer class="footer-distributed">
         <div class="footer-left">
           <h3>
-            Company<span>logo</span>
+            Team<span>Comms</span>
           </h3>
 
           <p class="footer-links">
@@ -89,13 +87,13 @@ function Landing() {
           <div>
             <i class="fa fa-map-marker"></i>
             <p>
-              <span>444 S. Cedros Ave</span> Solana Beach, California
+              <span>127 Rua da amargura</span> Curral de Moinas, Braga
             </p>
           </div>
 
           <div>
             <i class="fa fa-phone"></i>
-            <p>+1.555.555.5555</p>
+            <p>291 456 789</p>
           </div>
 
           <div>
