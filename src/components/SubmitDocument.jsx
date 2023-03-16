@@ -5,6 +5,7 @@ import { AuthContext } from "../context/auth.context";
 
 import clubService from "../services/club.services";
 
+// ---------------------------------------------------- MUI IMPORTS
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
@@ -13,7 +14,7 @@ import TextField from "@mui/material/TextField";
 // ---------------------------------------------------- CSS IMPORTS
 import "../styles/createAndEditDrawers.css";
 
-function SubmitDocument({onClose}) {
+function SubmitDocument({ onClose }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [fileUrl, setFileUrl] = useState("");
@@ -44,7 +45,7 @@ function SubmitDocument({onClose}) {
         }
       );
       onClose();
-/*       console.log(response.data); */
+      /*       console.log(response.data); */
     } catch (error) {
       console.log(error);
     }
@@ -75,7 +76,9 @@ function SubmitDocument({onClose}) {
   }, []);
 
   return (
-    <section>
+    <div className="full-form-container">
+      <div>
+        <h2>Submit Document</h2>
         {club && (
           <form onSubmit={handleSubmit}>
             <label htmlFor="fileUrl">Insert file</label>
@@ -88,40 +91,47 @@ function SubmitDocument({onClose}) {
               aria-label="file example"
             />
 
-            <label htmlFor="title">Title</label>
-            <input
-              type="text"
-              name="title"
-              id="title"
+            <TextField
+              label="Title"
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              required
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              required
             />
 
-            <label htmlFor="description">Description</label>
-            <input
-              type="text"
-              name="description"
-              id="description"
+            <TextField
+              label="Description"
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              multiline
+              maxRows={4}
+              required
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
 
-            <label htmlFor="group">Group</label>
-            <input
-              type="text"
-              name="group"
-              id="group"
+            <TextField
+              label="Group"
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              multiline
+              maxRows={4}
+              required
               value={group}
               onChange={(e) => setGroup(e.target.value)}
             />
 
-            <button type="submit" id="button">
-              Submit Document
-            </button>
+            <Button type="submit" variant="contained" id="button">
+              Submit document
+            </Button>
           </form>
         )}
-      </section>
+      </div>
+    </div>
   );
 }
 

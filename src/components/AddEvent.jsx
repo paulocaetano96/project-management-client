@@ -3,6 +3,13 @@ import Datetime from 'react-datetime';
 
 import { AuthContext } from "../context/auth.context";
 
+
+// ---------------------------------------------------- MUI IMPORTS
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+
 // ---------------------------------------------------- CSS IMPORTS
 import "../styles/createAndEditDrawers.css";
 
@@ -21,30 +28,32 @@ function AddEvent({ onEventAdded }) {
     };
 
 	return (
-		<section className="full-form-calendar-container">
+		<div className="full-form-calendar-container">
+		<section>
 			<form onSubmit={handleSubmit} className="form-calendar">
-			<h2>Add Event</h2>
-				<label htmlFor='title'>Title</label>
-				<input
-					placeholder='Title'
-					type='text'
-					name='title'
-					id='title'
-					value={title}
-					onChange={handleTitle}
-					required
-				/>
-                
-                    <label htmlFor="start">Start Date</label>
+			<h2 className='white-color-label' >Add Event</h2>
+			<TextField
+              label="Title"
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              required
+			  className='calendar-title-input'
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+					<div id="lala">
+                    <label htmlFor="start" className='white-color-label'>Start Date</label>
                     <Datetime value={start} onChange={date => setStart(date)} />
                 
-                    <label htmlFor="end">End Date</label>
+                    <label htmlFor="end" className='white-color-label' >End Date</label>
                     <Datetime value={end} onChange={date => setEnd(date)} />
+                </div>
                 
-                
-                <button type='submit'>Add Event</button>
+                <button type="submit" variant="contained"  id="add-event-button">Add Event</button>
 			</form>
 		</section>
+		</div>
 	);
 }
 

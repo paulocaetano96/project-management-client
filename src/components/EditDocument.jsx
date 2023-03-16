@@ -48,7 +48,7 @@ function EditDocument(props) {
   };
 
   return (
-    <div className="full-form-container">
+    <div className="document-submit-full-area">
       <div>
 
         <h2>Edit Document</h2>

@@ -165,7 +165,7 @@ function Documents() {
 				{documents &&
 					documents.map((document) => {
 						return (
-							<article key={document._id}>
+							<article key={document._id} className="">
 								<Link
 									onClick={() =>
 										handleDownload(

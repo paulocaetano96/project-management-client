@@ -12,22 +12,50 @@
 }
 
 
-
 /* ---------------------------------------- */
-
+/*Calendar --------------------------------*/
 .full-form-calendar-container{
     width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.form-calendar {
+    height: 80vh;
     display: flex;
     flex-direction: column;
-    width: 20vw;
+    align-items: center;
+    padding-top: 5vh;
+
 }
 
-/* ---------------------------------------- */
+.calendar-title-input{
+    background-color: white;
+    border: 1px solid invisible;
+    border-radius: 10px;
+}
+
+#add-event-button {
+    background-color: rgb(189, 91, 67);
+    height: 4vh;
+    width: 11vw;
+    border-radius: 10px;
+    font-size: 1em;
+    display: flex;
+    justify-content: center;
+    padding-top: 1vh;
+    padding-bottom: 4vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    color: black;
+}
+
+
+#add-event-button:hover {
+    transform: scale(1.1);
+}
+
+
+
+
+
+
+
+
+
+
